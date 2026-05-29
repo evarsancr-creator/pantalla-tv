@@ -18,12 +18,15 @@
     <img class="slide active" src="foto1.jpg">
     <img class="slide" src="foto2.jpg">
     <img class="slide" src="foto3.jpg">
+    <img class="slide" src="foto4.jpg">
+    <img class="slide" src="foto5.jpg">
+    <img class="slide" src="foto6.jpg">
 </div>
 
 <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambioImagen = 5000; // Cambia de foto cada 5 segundos
+    const tiempoCambioImagen = 3000; // Cambia de foto cada 5 segundos
 
     function changeSlide() {
         slides[currentIndex].classList.remove('active');
