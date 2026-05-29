@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Imágenes</title>
+    <title>Prueba Refresco 30s</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; background-color: black; }
@@ -15,21 +15,16 @@
 <body>
 
 <div class="slideshow-container">
-    <!-- Tus imágenes con nombres fijos -->
     <img class="slide active" src="foto1.jpg">
     <img class="slide" src="foto2.jpg">
     <img class="slide" src="foto3.jpg">
-      <img class="slide" src="foto4.jpg">
-      <img class="slide" src="foto5.jpg">
-      <img class="slide" src="foto6.jpg">
 </div>
 
 <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambioImagen = 8000; // Cambia de imagen cada 8 segundos
+    const tiempoCambioImagen = 5000; // Cambia de foto cada 5 segundos
 
-    // 1. FUNCIÓN PARA PASAR LAS IMÁGENES
     function changeSlide() {
         slides[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % slides.length;
@@ -37,12 +32,12 @@
     }
     setInterval(changeSlide, tiempoCambioImagen);
 
-    // 2. TRUCO DE REFRESCO AUTOMÁTICO (Agrega esto)
-    // 3600000 milisegundos = 1 Hora. La TV se recargará por completo cada hora.
+    // CONFIGURACIÓN DE PRUEBA: Refresco automático cada 30 segundos
     setTimeout(function() { 
         location.reload(); 
-    }, 3600000); 
+    }, 30000); 
 </script>
 
 </body>
 </html>
+
