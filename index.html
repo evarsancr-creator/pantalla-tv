@@ -15,26 +15,33 @@
 <body>
 
 <div class="slideshow-container">
+    <!-- Tus imágenes con nombres fijos -->
     <img class="slide active" src="foto1.jpg">
     <img class="slide" src="foto2.jpg">
     <img class="slide" src="foto3.jpg">
-    <img class="slide" src="foto4.jpg">
-    <img class="slide" src="foto5.jpg">
-    <img class="slide" src="foto6.jpg">
+      <img class="slide" src="foto4.jpg">
+      <img class="slide" src="foto5.jpg">
+      <img class="slide" src="foto6.jpg">
 </div>
 
 <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambio = 8000; // Tiempo en milisegundos (5000 = 5 segundos)
+    const tiempoCambioImagen = 5000; // Cambia de imagen cada 5 segundos
 
+    // 1. FUNCIÓN PARA PASAR LAS IMÁGENES
     function changeSlide() {
         slides[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % slides.length;
         slides[currentIndex].classList.add('active');
     }
+    setInterval(changeSlide, tiempoCambioImagen);
 
-    setInterval(changeSlide, tiempoCambio);
+    // 2. TRUCO DE REFRESCO AUTOMÁTICO (Agrega esto)
+    // 3600000 milisegundos = 1 Hora. La TV se recargará por completo cada hora.
+    setTimeout(function() { 
+        location.reload(); 
+    }, 3600000); 
 </script>
 
 </body>
