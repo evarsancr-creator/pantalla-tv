@@ -3,7 +3,7 @@ html<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla Institucional - CCSS</title>
+    <title>DABS1</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -16,7 +16,7 @@ html<!DOCTYPE html>
             height: 100vh;
         }
 
-        /* BARRA SUPERIOR INSTITUCIONAL (Marco de Gobierno) */
+        /* BARRA SUPERIOR INSTITUCIONAL */
         .marco-superior {
             width: 100%;
             height: 15vh; /* Ocupa el 15% superior de la pantalla */
@@ -30,7 +30,7 @@ html<!DOCTYPE html>
             z-index: 10;
         }
 
-        /* Contenedor del Logo */
+        /* Contenedor del Logo Local */
         .logo-ccss {
             height: 80%; /* Ajusta el logo al tamaño de la barra */
             object-fit: contain;
@@ -63,9 +63,9 @@ html<!DOCTYPE html>
             position: absolute;
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Cambia a 'cover' si no quieres que se estiren las fotos pequeñas */
+            object-fit: fill; 
             opacity: 0; 
-            transition: opacity 1s ease-in-out; /* Transición desvanecida suave */
+            transition: opacity 1s ease-in-out; 
         }
         
         img.slide.active { 
@@ -79,20 +79,17 @@ html<!DOCTYPE html>
 
     <!-- MARCO CORPORATIVO CCSS -->
     <header class="marco-superior">
-        <!-- Enlace directo al logo azul oficial de la CCSS en Wikipedia -->
-        <img class="logo-ccss" src="https://wikimedia.org" alt="Logo CCSS">
+        <!-- AHORA CARGA DESDE TU PROPIO REPOSITORIO -->
+        <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
         <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
     </header>
 
     <!-- VISUALIZADOR DE IMÁGENES -->
     <main class="slideshow-container">
         <!-- Reemplaza con los nombres exactos de tus fotos semanales -->
-        <img class="slide active" src="foto1.jpg">
-        <img class="slide" src="foto2.jpg">
-        <img class="slide" src="foto3.jpg">
-        <img class="slide" src="foto4.jpg">
-        <img class="slide" src="foto5.jpg">
-        <img class="slide" src="foto6.jpg">
+        <img class="slide active" src="foto1.png">
+        <img class="slide" src="foto2.png">
+        <img class="slide" src="foto3.png">
     </main>
 
 </div>
@@ -112,7 +109,6 @@ html<!DOCTYPE html>
     setInterval(changeSlide, tiempoCambioImagen);
 
     // CONFIGURACIÓN DE PRODUCCIÓN: Autorefresco cada 1 hora (3600000 ms)
-    // Esto jalará las nuevas fotos que subas cada semana de forma automática
     setTimeout(function() { 
         location.reload(); 
     }, 60000); 
