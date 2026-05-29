@@ -52,7 +52,7 @@ html<!DOCTYPE html>
 <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambioImagen = 5000; // Cambia cada 5 segundos
+    const tiempoCambioImagen = 8000; // Cambia cada 5 segundos
 
     function changeSlide() {
         slides[currentIndex].classList.remove('active');
@@ -64,7 +64,7 @@ html<!DOCTYPE html>
     // CONFIGURACIÓN FINAL: Refresco automático cada 1 hora (3600000 ms)
     setTimeout(function() { 
         location.reload(); 
-    }, 3600000); 
+    }, 60000); 
 </script>
 
 </body>
