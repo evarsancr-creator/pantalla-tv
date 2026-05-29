@@ -3,50 +3,98 @@ html<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DABS Indicadores</title>
+    <title>Pantalla Institucional - CCSS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; background-color: black; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* Contenedor que obliga a usar el 100% de la televisión */
+        /* Contenedor principal de la pantalla */
+        .pantalla-completa {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* BARRA SUPERIOR INSTITUCIONAL (Marco de Gobierno) */
+        .marco-superior {
+            width: 100%;
+            height: 15vh; /* Ocupa el 15% superior de la pantalla */
+            background-color: #ffffff; /* Fondo blanco limpio */
+            border-bottom: 5px solid #0056b3; /* Línea azul oficial CCSS */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        /* Contenedor del Logo */
+        .logo-ccss {
+            height: 80%; /* Ajusta el logo al tamaño de la barra */
+            object-fit: contain;
+        }
+
+        /* Texto Institucional de la Dirección */
+        .texto-direccion {
+            color: #003366; /* Azul marino corporativo */
+            font-size: 2.3vw; /* Ajuste dinámico según el tamaño del televisor */
+            font-weight: bold;
+            text-align: right;
+            flex-grow: 1;
+            padding-left: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ESPACIO PARA EL CONTENIDO MULTIMEDIA */
         .slideshow-container { 
-            width: 100vw; 
-            height: 100vh; 
+            width: 100%;
+            height: 85vh; /* Ocupa el 85% restante de la pantalla */
             position: relative; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
+            background-color: #0d0d0d;
         }
         
-        img { 
+        /* Imágenes de la presentación */
+        img.slide { 
             position: absolute;
-            /* Forza a la imagen pequeña a medir el 100% de la pantalla */
             width: 100%; 
             height: 100%; 
-            
-            /* OPCIÓN A: Cambia a 'cover' si prefieres que mantenga la proporción 
-               pero recorte un poco arriba/abajo para no dejar franjas negras.
-               OPCIÓN B: 'fill' estira la imagen exacta al tamaño de la TV. */
-            object-fit: fill; 
-            
+            object-fit: fill; /* Cambia a 'cover' si no quieres que se estiren las fotos pequeñas */
             opacity: 0; 
-            transition: opacity 1s ease-in-out; 
+            transition: opacity 1s ease-in-out; /* Transición desvanecida suave */
         }
         
-        img.active { 
+        img.slide.active { 
             opacity: 1; 
         }
     </style>
 </head>
 <body>
 
-<div class="slideshow-container">
-    <img class="slide active" src="foto1.jpg">
-    <img class="slide" src="foto2.jpg">
-    <img class="slide" src="foto3.jpg">
-    <img class="slide" src="foto4.jpg">
-    <img class="slide" src="foto5.jpg">
-    <img class="slide" src="foto6.jpg">
+<div class="pantalla-completa">
+
+    <!-- MARCO CORPORATIVO CCSS -->
+    <header class="marco-superior">
+        <!-- Enlace directo al logo azul oficial de la CCSS en Wikipedia -->
+        <img class="logo-ccss" src="https://wikimedia.org" alt="Logo CCSS">
+        <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+    </header>
+
+    <!-- VISUALIZADOR DE IMÁGENES -->
+    <main class="slideshow-container">
+        <!-- Reemplaza con los nombres exactos de tus fotos semanales -->
+        <img class="slide active" src="foto1.jpg">
+        <img class="slide" src="foto2.jpg">
+        <img class="slide" src="foto3.jpg">
+        <img class="slide" src="foto4.jpg">
+        <img class="slide" src="foto5.jpg">
+        <img class="slide" src="foto6.jpg">
+    </main>
+
 </div>
 
 <script>
@@ -55,13 +103,16 @@ html<!DOCTYPE html>
     const tiempoCambioImagen = 8000; // Cambia cada 5 segundos
 
     function changeSlide() {
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % slides.length;
-        slides[currentIndex].classList.add('active');
+        if (slides.length > 1) {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
     }
     setInterval(changeSlide, tiempoCambioImagen);
 
-    // CONFIGURACIÓN FINAL: Refresco automático cada 1 hora (3600000 ms)
+    // CONFIGURACIÓN DE PRODUCCIÓN: Autorefresco cada 1 hora (3600000 ms)
+    // Esto jalará las nuevas fotos que subas cada semana de forma automática
     setTimeout(function() { 
         location.reload(); 
     }, 60000); 
