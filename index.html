@@ -7,7 +7,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Fondo base de seguridad */
         body, html { 
             width: 100%; 
             height: 100%; 
@@ -55,7 +54,7 @@
             filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.15));
         }
 
-        /* CONTENEDOR DE TEXTOS INSTITUCIONALES EN DOS NIVELES */
+        /* TEXTOS INSTITUCIONALES */
         .bloque-titulos {
             display: flex;
             flex-direction: column;
@@ -66,9 +65,8 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* Línea 1: Institución y Gerencia */
         .texto-institucion-gerencia {
-            color: #93c5fd; /* Azul claro elegante */
+            color: #93c5fd; 
             font-size: 1.1vw;
             font-weight: 600;
             letter-spacing: 1px;
@@ -76,7 +74,6 @@
             margin-bottom: 2px;
         }
 
-        /* Línea 2: Dirección Principal */
         .texto-direccion {
             color: #ffffff;
             font-size: 1.9vw;
@@ -127,7 +124,6 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
         
-        /* Imágenes principales en primer plano */
         img.slide { 
             position: absolute;
             max-width: 100%; 
@@ -172,15 +168,15 @@
 </head>
 <body>
 
-    <!-- CAPA MÁGICA: Fondo adaptativo basado en tus imágenes -->
+    <!-- CAPA MÁGICA: Fondo adaptativo (Sincronizado con tus nombres reales) -->
     <div class="background-ambientes">
-        <img class="slide-bg active" src="foto1.jpg">
+        <img class="slide-bg active" src="85aniversario.webp">
+        <img class="slide-bg" src="foto1.jpg">
         <img class="slide-bg" src="foto2.jpg">
         <img class="slide-bg" src="foto3.jpg">
         <img class="slide-bg" src="foto4.jpg">
-        <img class="slide-bg" src="foto4.jpg">
+        <img class="slide-bg" src="foto5.jpg">
         <img class="slide-bg" src="foto6.jpg">
-        <img class="slide-bg" src="85aniversario.webp">
     </div>
 
     <div class="pantalla-completa">
@@ -191,7 +187,6 @@
                 <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
             </div>
             
-            <!-- TÍTULOS EN DOS NIVELES -->
             <div class="bloque-titulos">
                 <h2 class="texto-institucion-gerencia">Caja Costarricense de Seguro Social - Gerencia de Logística</h2>
                 <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
@@ -203,25 +198,28 @@
             </div>
         </header>
 
-        <!-- IMÁGENES NÍTIDAS EN PRIMER PLANO -->
+        <!-- IMÁGENES EN PRIMER PLANO (Nombres corregidos: foto1 a foto6) -->
         <main class="slideshow-container">
-            <img class="slide active" src="foto1.jpg">
-            <img class="slide" src="foto2.jpg">
-            <img class="slide" src="foto3.jpg">
-            <img class="slide" src="foto4.jpg">
-            <img class="slide" src="foto5.jpg">
-            <img class="slide" src="foto6.jpg">
-             <img class="slide" src="85aniversario.webp">
+            <!-- Animación WebP: 3 segundos -->
+            <img class="slide active" src="85aniversario.webp" data-tiempo="3000"> 
+            
+            <!-- Imágenes Fijas: 8 segundos cada una -->
+            <img class="slide" src="foto1.jpg" data-tiempo="8000">
+            <img class="slide" src="foto2.jpg" data-tiempo="8000">
+            <img class="slide" src="foto3.jpg" data-tiempo="8000">
+            <img class="slide" src="foto4.jpg" data-tiempo="8000">
+            <img class="slide" src="foto5.jpg" data-tiempo="8000">
+            <img class="slide" src="foto6.jpg" data-tiempo="8000">
         </main>
 
     </div>
 
 <script>
-    // 1. SINCRONIZACIÓN DE SLIDESHOW
+    // 1. CONTROL DEL SLIDESHOW DINÁMICO
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const backgroundSlides = document.querySelectorAll('.slide-bg');
-    const tiempoCambioImagen = 8000; // Cambio cada 8 segundos
+    let timerID = null;
 
     function changeSlide() {
         if (slides.length > 1) {
@@ -233,16 +231,24 @@
             slides[currentIndex].classList.add('active');
             backgroundSlides[currentIndex].classList.add('active');
         }
+        programarSiguienteCambio();
     }
-    setInterval(changeSlide, tiempoCambioImagen);
+
+    function programarSiguienteCambio() {
+        const tiempoActual = parseInt(slides[currentIndex].getAttribute('data-tiempo')) || 8000;
+        clearTimeout(timerID);
+        timerID = setTimeout(changeSlide, tiempoActual);
+    }
+
+    programarSiguienteCambio();
 
     // 2. RELOJ Y FECHA EN VIVO
     function actualizarTiempo() {
         const ahora = new Date();
         let horas = ahora.getHours().toString().padStart(2, '0');
-        let minutos = ahora.getMinutes().toString().padStart(2, '0');
+        let minutes = ahora.getMinutes().toString().padStart(2, '0');
         let segundos = ahora.getSeconds().toString().padStart(2, '0');
-        document.getElementById('reloj').textContent = `${horas}:${minutos}:${segundos}`;
+        document.getElementById('reloj').textContent = `${horas}:${minutes}:${segundos}`;
         
         const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
         document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opciones);
@@ -253,8 +259,9 @@
     // 3. REFRESCO SEMANAL AUTOMÁTICO (Cada 1 hora)
     setTimeout(function() { 
         location.reload(); 
-    }, 120000); 
+    }, 3600000); 
 </script>
 
 </body>
 </html>
+
