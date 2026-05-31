@@ -27,7 +27,7 @@
             z-index: 5;
         }
 
-        /* MARCO SUPERIOR MODERNIZADO (Cristal Translúcido) */
+        /* MARCO SUPERIOR (Cristal Translúcido) */
         .marco-superior {
             width: 100%;
             height: 15vh;
@@ -44,7 +44,7 @@
         }
 
         .contenedor-logo {
-            height: 75%;
+            height: 80%;
             display: flex;
             align-items: center;
         }
@@ -55,16 +55,35 @@
             filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.15));
         }
 
-        .texto-direccion {
-            color: #ffffff;
-            font-size: 2vw;
-            font-weight: 700;
-            text-align: center;
+        /* CONTENEDOR DE TEXTOS INSTITUCIONALES EN DOS NIVELES */
+        .bloque-titulos {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             flex-grow: 1;
             padding: 0 20px;
-            letter-spacing: 0.8px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Línea 1: Institución y Gerencia */
+        .texto-institucion-gerencia {
+            color: #93c5fd; /* Azul claro elegante */
+            font-size: 1.1vw;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        /* Línea 2: Dirección Principal */
+        .texto-direccion {
+            color: #ffffff;
+            font-size: 1.9vw;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-align: center;
         }
 
         .tiempo-contenedor {
@@ -108,7 +127,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
         
-        /* Imágenes principales en primer plano (Respetan su forma) */
+        /* Imágenes principales en primer plano */
         img.slide { 
             position: absolute;
             max-width: 100%; 
@@ -125,7 +144,7 @@
             transform: scale(1);
         }
 
-        /* CAPA DE FONDO ADAPTATIVO (La magia del color) */
+        /* CAPA DE FONDO ADAPTATIVO */
         .background-ambientes {
             position: absolute;
             top: 0;
@@ -140,9 +159,8 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Se estira para rellenar todo el fondo */
+            object-fit: cover;
             opacity: 0;
-            /* Filtro masivo para mezclar los colores predominantes en una nube suave */
             filter: blur(60px) brightness(0.4) saturate(1.4); 
             transition: opacity 1.2s ease-in-out;
         }
@@ -154,24 +172,29 @@
 </head>
 <body>
 
-    <!-- CAPA MÁGICA: Colores dinámicos difuminados al fondo de toda la pantalla -->
+    <!-- CAPA MÁGICA: Fondo adaptativo basado en tus imágenes -->
     <div class="background-ambientes">
         <img class="slide-bg active" src="foto1.jpg">
         <img class="slide-bg" src="foto2.jpg">
         <img class="slide-bg" src="foto3.jpg">
         <img class="slide-bg" src="foto4.jpg">
-        <img class="slide-bg" src="foto5.jpg">
+        <img class="slide-bg" src="foto4.jpg">
         <img class="slide-bg" src="foto6.jpg">
     </div>
 
     <div class="pantalla-completa">
 
-        <!-- MARCO CORPORATIVO -->
+        <!-- MARCO CORPORATIVO CCSS -->
         <header class="marco-superior">
             <div class="contenedor-logo">
                 <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
             </div>
-            <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+            
+            <!-- TÍTULOS EN DOS NIVELES -->
+            <div class="bloque-titulos">
+                <h2 class="texto-institucion-gerencia">Caja Costarricense de Seguro Social - Gerencia de Logística</h2>
+                <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+            </div>
             
             <div class="tiempo-contenedor">
                 <div class="reloj" id="reloj">00:00:00</div>
@@ -192,22 +215,19 @@
     </div>
 
 <script>
-    // 1. SINCRONIZACIÓN DE SLIDESHOW (Imagen nítida + Fondo de color coordinado)
+    // 1. SINCRONIZACIÓN DE SLIDESHOW
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const backgroundSlides = document.querySelectorAll('.slide-bg');
-    const tiempoCambioImagen = 8000; // 6 segundos
+    const tiempoCambioImagen = 6000; // Cambio cada 6 segundos
 
     function changeSlide() {
         if (slides.length > 1) {
-            // Quitar clase activa a lo viejo
             slides[currentIndex].classList.remove('active');
             backgroundSlides[currentIndex].classList.remove('active');
             
-            // Calcular siguiente índice
             currentIndex = (currentIndex + 1) % slides.length;
             
-            // Añadir clase activa a lo nuevo (cambian al mismo tiempo)
             slides[currentIndex].classList.add('active');
             backgroundSlides[currentIndex].classList.add('active');
         }
@@ -218,7 +238,7 @@
     function actualizarTiempo() {
         const ahora = new Date();
         let horas = ahora.getHours().toString().padStart(2, '0');
-        let minutos = caffeine = ahora.getMinutes().toString().padStart(2, '0');
+        let minutos = ahora.getMinutes().toString().padStart(2, '0');
         let segundos = ahora.getSeconds().toString().padStart(2, '0');
         document.getElementById('reloj').textContent = `${horas}:${minutos}:${segundos}`;
         
