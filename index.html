@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla Corporativa - CCSS</title>
+    <title>Pantalla Corporativa Inteligente - CCSS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Fondo moderno con gradiente institucional en movimiento */
+        /* Fondo base de seguridad */
         body, html { 
             width: 100%; 
             height: 100%; 
             overflow: hidden; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #021B3A 0%, #063970 50%, #021B3A 100%);
-            background-size: 400% 400%;
-            animation: gradientMovement 15s ease infinite;
-        }
-
-        @keyframes gradientMovement {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background-color: #0d1117;
         }
         
         .pantalla-completa {
@@ -29,27 +21,28 @@
             flex-direction: column;
             width: 100vw;
             height: 100vh;
-            padding: 20px; /* Margen para efecto flotante */
+            padding: 20px;
             gap: 15px;
+            position: relative;
+            z-index: 5;
         }
 
-        /* MARCO SUPERIOR: Efecto Vidrio Esmerilado (Glassmorphism) */
+        /* MARCO SUPERIOR MODERNIZADO (Cristal Translúcido) */
         .marco-superior {
             width: 100%;
             height: 15vh;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(13, 17, 23, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
-        /* Contenedor del Logo */
         .contenedor-logo {
             height: 75%;
             display: flex;
@@ -59,10 +52,9 @@
         .logo-ccss {
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.2));
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.15));
         }
 
-        /* Texto Institucional de la Dirección */
         .texto-direccion {
             color: #ffffff;
             font-size: 2vw;
@@ -71,11 +63,10 @@
             flex-grow: 1;
             padding: 0 20px;
             letter-spacing: 0.8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
             text-transform: uppercase;
         }
 
-        /* Bloque de Tiempo (Reloj + Fecha) */
         .tiempo-contenedor {
             display: flex;
             flex-direction: column;
@@ -84,27 +75,25 @@
             min-width: 220px;
         }
 
-        /* Nuevo Color del Reloj (Blanco/Azul Glacial) */
         .reloj {
             color: #e0f2fe; 
             font-size: 2.4vw;
             font-weight: 700;
             font-family: monospace;
-            text-shadow: 0 0 10px rgba(224, 242, 254, 0.5);
+            text-shadow: 0 0 10px rgba(224, 242, 254, 0.4);
             line-height: 1;
             margin-bottom: 4px;
         }
 
-        /* Componente de Fecha */
         .fecha {
-            color: #93c5fd; /* Azul claro suave para la fecha */
+            color: #93c5fd; 
             font-size: 1.1vw;
             font-weight: 500;
-            text-transform: capitalize; /* Pone en mayúscula la primera letra */
+            text-transform: capitalize;
             letter-spacing: 0.5px;
         }
 
-        /* CONTENEDOR MULTIMEDIA CON FONDO ADAPTATIVO */
+        /* CONTENEDOR MULTIMEDIA PRINCIPAL */
         .slideshow-container { 
             width: 100%;
             height: 79vh;
@@ -112,21 +101,22 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            background-color: #121212; /* Gris oscuro elegante para las franjas de 'contain' */
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
         
-        /* Imágenes configuradas en CONTAIN */
+        /* Imágenes principales en primer plano (Respetan su forma) */
         img.slide { 
             position: absolute;
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; /* Ajusta sin deformar ni recortar */
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
             opacity: 0; 
-            transform: scale(0.98);
+            z-index: 2;
+            transform: scale(0.97);
             transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out; 
         }
         
@@ -134,72 +124,108 @@
             opacity: 1; 
             transform: scale(1);
         }
+
+        /* CAPA DE FONDO ADAPTATIVO (La magia del color) */
+        .background-ambientes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        img.slide-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Se estira para rellenar todo el fondo */
+            opacity: 0;
+            /* Filtro masivo para mezclar los colores predominantes en una nube suave */
+            filter: blur(60px) brightness(0.4) saturate(1.4); 
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        img.slide-bg.active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
-<div class="pantalla-completa">
+    <!-- CAPA MÁGICA: Colores dinámicos difuminados al fondo de toda la pantalla -->
+    <div class="background-ambientes">
+        <img class="slide-bg active" src="foto1.jpg">
+        <img class="slide-bg" src="foto2.jpg">
+        <img class="slide-bg" src="foto3.jpg">
+        <img class="slide-bg" src="foto4.jpg">
+        <img class="slide-bg" src="foto5.jpg">
+        <img class="slide-bg" src="foto6.jpg">
+    </div>
 
-    <!-- MARCO CORPORATIVO UPGRADE -->
-    <header class="marco-superior">
-        <div class="contenedor-logo">
-            <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
-        </div>
-        <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
-        
-        <!-- Bloque de fecha y hora en vivo -->
-        <div class="tiempo-contenedor">
-            <div class="reloj" id="reloj">00:00:00</div>
-            <div class="fecha" id="fecha">Cargando fecha...</div>
-        </div>
-    </header>
+    <div class="pantalla-completa">
 
-    <!-- COMPONENTE DE IMÁGENES -->
-    <main class="slideshow-container">
-        <img class="slide active" src="foto1.jpg">
-        <img class="slide" src="foto2.jpg">
-        <img class="slide" src="foto3.jpg">
-        <img class="slide" src="foto4.jpg">
-        <img class="slide" src="foto5.jpg">
-        <img class="slide" src="foto6.jpg">
-    </main>
+        <!-- MARCO CORPORATIVO -->
+        <header class="marco-superior">
+            <div class="contenedor-logo">
+                <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
+            </div>
+            <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+            
+            <div class="tiempo-contenedor">
+                <div class="reloj" id="reloj">00:00:00</div>
+                <div class="fecha" id="fecha">Cargando...</div>
+            </div>
+        </header>
 
-</div>
+        <!-- IMÁGENES NÍTIDAS EN PRIMER PLANO -->
+        <main class="slideshow-container">
+            <img class="slide active" src="foto1.png">
+            <img class="slide" src="foto2.png">
+            <img class="slide" src="foto3.png">
+        </main>
+
+    </div>
 
 <script>
-    // 1. CONTROL DEL SLIDESHOW
+    // 1. SINCRONIZACIÓN DE SLIDESHOW (Imagen nítida + Fondo de color coordinado)
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambioImagen = 8000; // 6 segundos por foto
+    const backgroundSlides = document.querySelectorAll('.slide-bg');
+    const tiempoCambioImagen = 8000; // 6 segundos
 
     function changeSlide() {
         if (slides.length > 1) {
+            // Quitar clase activa a lo viejo
             slides[currentIndex].classList.remove('active');
+            backgroundSlides[currentIndex].classList.remove('active');
+            
+            // Calcular siguiente índice
             currentIndex = (currentIndex + 1) % slides.length;
+            
+            // Añadir clase activa a lo nuevo (cambian al mismo tiempo)
             slides[currentIndex].classList.add('active');
+            backgroundSlides[currentIndex].classList.add('active');
         }
     }
     setInterval(changeSlide, tiempoCambioImagen);
 
-    // 2. FUNCIÓN DE RELOJ Y FECHA EN VIVO
+    // 2. RELOJ Y FECHA EN VIVO
     function actualizarTiempo() {
         const ahora = new Date();
-        
-        // Formato del Reloj
         let horas = ahora.getHours().toString().padStart(2, '0');
-        let minutos = ahora.getMinutes().toString().padStart(2, '0');
+        let minutos = caffeine = ahora.getMinutes().toString().padStart(2, '0');
         let segundos = ahora.getSeconds().toString().padStart(2, '0');
         document.getElementById('reloj').textContent = `${horas}:${minutos}:${segundos}`;
         
-        // Formato de la Fecha en Español (Ejemplo: lunes, 24 de agosto)
         const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
-        let fechaTexto = ahora.toLocaleDateString('es-ES', opciones);
-        document.getElementById('fecha').textContent = fechaTexto;
+        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opciones);
     }
     setInterval(actualizarTiempo, 1000);
-    actualizarTiempo(); // Carga inmediata
+    actualizarTiempo();
 
-    // 3. AUTOREFRESCO DE PRODUCCIÓN (Cada 1 hora)
+    // 3. REFRESCO SEMANAL AUTOMÁTICO (Cada 1 hora)
     setTimeout(function() { 
         location.reload(); 
     }, 60000); 
