@@ -1,75 +1,121 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DABS1</title>
+    <title>Pantalla Corporativa - CCSS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000000; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* Contenedor principal de la pantalla */
+        /* Fondo moderno con gradiente institucional y animación sutil */
+        body, html { 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #021B3A 0%, #063970 50%, #021B3A 100%);
+            background-size: 400% 400%;
+            animation: gradientMovement 15s ease infinite;
+        }
+
+        @keyframes gradientMovement {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
         .pantalla-completa {
             display: flex;
             flex-direction: column;
             width: 100vw;
             height: 100vh;
+            padding: 25px; /* Margen externo para que todo flote de forma elegante */
+            gap: 20px;
         }
 
-        /* BARRA SUPERIOR INSTITUCIONAL */
+        /* MARCO SUPERIOR: Efecto Vidrio Esmerilado (Glassmorphism) */
         .marco-superior {
             width: 100%;
-            height: 15vh; /* Ocupa el 15% superior de la pantalla */
-            background-color: #ffffff; /* Fondo blanco limpio */
-            border-bottom: 5px solid #0056b3; /* Línea azul oficial CCSS */
+            height: 14vh;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 3%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 10;
+            padding: 0 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        /* Contenedor del Logo Local */
+        /* Contenedor del Logo con brillo suave trasero */
+        .contenedor-logo {
+            height: 75%;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
         .logo-ccss {
-            height: 80%; /* Ajusta el logo al tamaño de la barra */
+            height: 100%;
             object-fit: contain;
+            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.2));
         }
 
-        /* Texto Institucional de la Dirección */
+        /* Texto Institucional Estilizado */
         .texto-direccion {
-            color: #003366; /* Azul marino corporativo */
-            font-size: 2.3vw; /* Ajuste dinámico según el tamaño del televisor */
-            font-weight: bold;
-            text-align: right;
+            color: #ffffff;
+            font-size: 2.1vw;
+            font-weight: 700;
+            text-align: center;
             flex-grow: 1;
-            padding-left: 20px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            text-transform: uppercase;
         }
 
-        /* ESPACIO PARA EL CONTENIDO MULTIMEDIA */
+        /* Reloj Digital Moderno */
+        .reloj-contenedor {
+            color: #00e5ff; /* Color cian tecnológico neón */
+            font-size: 2.2vw;
+            font-weight: 600;
+            font-family: monospace;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            min-width: 150px;
+            text-align: right;
+        }
+
+        /* CONTENEDOR DE FILMINAS ESTILO TARJETA FLOTANTE */
         .slideshow-container { 
             width: 100%;
-            height: 85vh; /* Ocupa el 85% restante de la pantalla */
+            height: 80vh;
             position: relative; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            background-color: #0d0d0d;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
         
-        /* Imágenes de la presentación */
+        /* Imágenes de la presentación con bordes suavizados internos */
         img.slide { 
             position: absolute;
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Cambia a 'cover o fill' si no quieres que se estiren las fotos pequeñas */
+            object-fit: cover; /* Cambia a 'contain' si prefieres que se vea la foto completa sin recortar bordes */
             opacity: 0; 
-            transition: opacity 1s ease-in-out; 
+            transform: scale(0.98);
+            transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out; 
         }
         
         img.slide.active { 
             opacity: 1; 
+            transform: scale(1);
         }
     </style>
 </head>
@@ -77,16 +123,18 @@ html<!DOCTYPE html>
 
 <div class="pantalla-completa">
 
-    <!-- MARCO CORPORATIVO CCSS -->
+    <!-- MARCO CORPORATIVO MODERNIZADO -->
     <header class="marco-superior">
-        <!-- AHORA CARGA DESDE TU PROPIO REPOSITORIO -->
-        <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
+        <div class="contenedor-logo">
+            <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
+        </div>
         <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+        <!-- Reloj digital en vivo -->
+        <div class="reloj-contenedor" id="reloj">00:00:00</div>
     </header>
 
-    <!-- VISUALIZADOR DE IMÁGENES -->
+    <!-- COMPONENTE DE IMÁGENES FLOTANTES -->
     <main class="slideshow-container">
-        <!-- Reemplaza con los nombres exactos de tus fotos semanales -->
         <img class="slide active" src="foto1.jpg">
         <img class="slide" src="foto2.jpg">
         <img class="slide" src="foto3.jpg">
@@ -98,9 +146,10 @@ html<!DOCTYPE html>
 </div>
 
 <script>
+    // 1. CONTROL DEL SLIDESHOW
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const tiempoCambioImagen = 8000; // Cambia cada 5 segundos
+    const tiempoCambioImagen = 6000; // Cambia cada 6 segundos para dar tiempo al efecto
 
     function changeSlide() {
         if (slides.length > 1) {
@@ -111,10 +160,21 @@ html<!DOCTYPE html>
     }
     setInterval(changeSlide, tiempoCambioImagen);
 
-    // CONFIGURACIÓN DE PRODUCCIÓN: Autorefresco cada 1 hora (3600000 ms)
+    // 2. FUNCIÓN DEL RELOJ DIGITAL EN VIVO
+    function actualizarReloj() {
+        const ahora = new Date();
+        let horas = ahora.getHours().toString().padStart(2, '0');
+        let minutos = ahora.getMinutes().toString().padStart(2, '0');
+        let segundos = ahora.getSeconds().toString().padStart(2, '0');
+        document.getElementById('reloj').textContent = `${horas}:${minutos}:${segundos}`;
+    }
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj(); // Ejecución inmediata al cargar
+
+    // 3. AUTOREFRESCO DE PRODUCCIÓN (Cada 1 hora)
     setTimeout(function() { 
         location.reload(); 
-    }, 60000); 
+    }, 3600000); 
 </script>
 
 </body>
