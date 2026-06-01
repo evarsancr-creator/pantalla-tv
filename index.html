@@ -88,9 +88,10 @@
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            min-width: 220px;
+            min-width: 240px; /* Un poco más ancho para dar espacio al AM/PM */
         }
 
+        /* DISEÑO DE RELOJ 12H */
         .reloj {
             color: #e0f2fe; 
             font-size: 2.4vw;
@@ -168,7 +169,7 @@
 </head>
 <body>
 
-    <!-- CAPA MÁGICA: Fondo adaptativo (Sincronizado con tus nombres reales) -->
+    <!-- CAPA MÁGICA: Fondo adaptativo -->
     <div class="background-ambientes">
         <img class="slide-bg active" src="85aniversario.webp">
         <img class="slide-bg" src="foto1.jpg">
@@ -193,17 +194,14 @@
             </div>
             
             <div class="tiempo-contenedor">
-                <div class="reloj" id="reloj">00:00:00</div>
+                <div class="reloj" id="reloj">00:00 AM</div>
                 <div class="fecha" id="fecha">Cargando...</div>
             </div>
         </header>
 
-        <!-- IMÁGENES EN PRIMER PLANO (Nombres corregidos: foto1 a foto6) -->
+        <!-- IMÁGENES EN PRIMER PLANO -->
         <main class="slideshow-container">
-            <!-- Animación WebP: 3 segundos -->
             <img class="slide active" src="85aniversario.webp" data-tiempo="3000"> 
-            
-            <!-- Imágenes Fijas: 8 segundos cada una -->
             <img class="slide" src="foto1.jpg" data-tiempo="8000">
             <img class="slide" src="foto2.jpg" data-tiempo="8000">
             <img class="slide" src="foto3.jpg" data-tiempo="8000">
@@ -242,26 +240,29 @@
 
     programarSiguienteCambio();
 
-    // 2. RELOJ Y FECHA EN VIVO
+    // 2. RELOJ MODIFICADO A 12 HORAS Y FECHA EN VIVO
     function actualizarTiempo() {
         const ahora = new Date();
-        let horas = ahora.getHours().toString().padStart(2, '0');
-        let minutes = ahora.getMinutes().toString().padStart(2, '0');
-        let segundos = ahora.getSeconds().toString().padStart(2, '0');
-        document.getElementById('reloj').textContent = `${horas}:${minutes}:${segundos}`;
         
-        const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
-        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opciones);
+        // CORRECCIÓN: Configuración del formato de 12 horas sin segundos
+        const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
+        let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
+        
+        document.getElementById('reloj').textContent = hora12;
+        
+        // Formato de Fecha
+        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
+        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opcionesFecha);
     }
-    setInterval(actualizarTiempo, 1000);
+    // Se ejecuta cada 15 segundos para garantizar precisión en los cambios de minuto
+    setInterval(actualizarTiempo, 15000); 
     actualizarTiempo();
 
     // 3. REFRESCO SEMANAL AUTOMÁTICO (Cada 1 hora)
     setTimeout(function() { 
         location.reload(); 
-    }, 3600000); 
+    }, 60000); 
 </script>
 
 </body>
 </html>
-
