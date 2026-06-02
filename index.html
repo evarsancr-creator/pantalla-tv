@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla Corporativa Inteligente - CCSS</title>
+    <title>Pantalla Corporativa Protegida - CCSS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -26,11 +26,11 @@
             z-index: 5;
         }
 
-        /* MARCO SUPERIOR (Cristal Translúcido) */
+        /* MARCO SUPERIOR CON TRANSICIÓN PARA PIXEL-SHIFT */
         .marco-superior {
             width: 100%;
             height: 15vh;
-            background: rgba(13, 17, 23, 0.4);
+            background: rgba(13, 17, 23, 0.45);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -40,10 +40,13 @@
             justify-content: space-between;
             padding: 0 30px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            position: relative;
+            top: 0; left: 0; /* Variables base para el movimiento */
+            transition: top 0.5s ease, left 0.5s ease, opacity 1s ease, filter 1s ease;
         }
 
         .contenedor-logo {
-            height: 80%;
+            height: 75%;
             display: flex;
             align-items: center;
         }
@@ -54,7 +57,6 @@
             filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.15));
         }
 
-        /* TEXTOS INSTITUCIONALES */
         .bloque-titulos {
             display: flex;
             flex-direction: column;
@@ -65,8 +67,9 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
+        /* Colores suavizados para prevenir desgaste de fósforo/píxel */
         .texto-institucion-gerencia {
-            color: #93c5fd; 
+            color: #60a5fa; 
             font-size: 1.1vw;
             font-weight: 600;
             letter-spacing: 1px;
@@ -75,7 +78,7 @@
         }
 
         .texto-direccion {
-            color: #ffffff;
+            color: #e2e8f0; /* Blanco atenuado anti-burn-in */
             font-size: 1.9vw;
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -88,29 +91,28 @@
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            min-width: 220px;
+            min-width: 240px;
         }
 
-        /* DISEÑO DE RELOJ SIN SEGUNDOS */
         .reloj {
-            color: #e0f2fe; 
+            color: #cbd5e1; /* Reloj suavizado */
             font-size: 2.4vw;
             font-weight: 700;
-            font-family: monospace;
-            text-shadow: 0 0 10px rgba(224, 242, 254, 0.4);
+            font-family: 'Segoe UI', sans-serif;
+            text-shadow: 0 0 8px rgba(224, 242, 254, 0.2);
             line-height: 1;
             margin-bottom: 4px;
+            letter-spacing: -1px;
         }
 
         .fecha {
-            color: #93c5fd; 
+            color: #94a3b8; 
             font-size: 1.1vw;
             font-weight: 500;
             text-transform: capitalize;
             letter-spacing: 0.5px;
         }
 
-        /* CONTENEDOR MULTIMEDIA PRINCIPAL */
         .slideshow-container { 
             width: 100%;
             height: 79vh;
@@ -141,7 +143,6 @@
             transform: scale(1);
         }
 
-        /* CAPA DE FONDO ADAPTATIVO */
         .background-ambientes {
             position: absolute;
             top: 0;
@@ -150,6 +151,7 @@
             height: 100vh;
             z-index: 1;
             overflow: hidden;
+            transition: filter 1s ease;
         }
 
         img.slide-bg {
@@ -165,12 +167,20 @@
         img.slide-bg.active {
             opacity: 1;
         }
+
+        /* ESTILOS DE MODO PROTECCIÓN NOCTURNO */
+        .modo-eco .marco-superior {
+            opacity: 0.4; /* Atenúa la barra superior al salir de oficina */
+            filter: grayscale(0.5);
+        }
+        .modo-eco .background-ambientes {
+            filter: brightness(0.1); /* Apaga casi por completo el fondo */
+        }
     </style>
 </head>
 <body>
 
-    <!-- CAPA MÁGICA: Fondo adaptativo -->
-    <div class="background-ambientes">
+    <div class="background-ambientes" id="bg-ambientes">
         <img class="slide-bg active" src="85aniversario.webp">
         <img class="slide-bg" src="foto1.jpg">
         <img class="slide-bg" src="foto2.jpg">
@@ -180,10 +190,9 @@
         <img class="slide-bg" src="foto6.jpg">
     </div>
 
-    <div class="pantalla-completa">
+    <div class="pantalla-completa" id="contenedor-principal">
 
-        <!-- MARCO CORPORATIVO CCSS -->
-        <header class="marco-superior">
+        <header class="marco-superior" id="barra-institucional">
             <div class="contenedor-logo">
                 <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
             </div>
@@ -194,12 +203,11 @@
             </div>
             
             <div class="tiempo-contenedor">
-                <div class="reloj" id="reloj">00:00</div>
+                <div class="reloj" id="reloj">00:00 AM</div>
                 <div class="fecha" id="fecha">Cargando...</div>
             </div>
         </header>
 
-        <!-- IMÁGENES EN PRIMER PLANO -->
         <main class="slideshow-container">
             <img class="slide active" src="85aniversario.webp" data-tiempo="3000"> 
             <img class="slide" src="foto1.jpg" data-tiempo="8000">
@@ -213,7 +221,7 @@
     </div>
 
 <script>
-    // 1. CONTROL DEL SLIDESHOW DINÁMICO
+    // 1. CONTROL DEL SLIDESHOW
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const backgroundSlides = document.querySelectorAll('.slide-bg');
@@ -223,9 +231,7 @@
         if (slides.length > 1) {
             slides[currentIndex].classList.remove('active');
             backgroundSlides[currentIndex].classList.remove('active');
-            
             currentIndex = (currentIndex + 1) % slides.length;
-            
             slides[currentIndex].classList.add('active');
             backgroundSlides[currentIndex].classList.add('active');
         }
@@ -237,31 +243,49 @@
         clearTimeout(timerID);
         timerID = setTimeout(changeSlide, tiempoActual);
     }
-
     programarSiguienteCambio();
 
-    // 2. RELOJ SIN SEGUNDOS Y FECHA EN VIVO
+    // 2. RELOJ DE 12 HORAS LIMPIO Y CONTROL HORARIO ECO
     function actualizarTiempo() {
         const ahora = new Date();
         
-        // CORRECCIÓN: Se eliminaron los segundos de la variable
-        let horas = ahora.getHours().toString().padStart(2, '0');
-        let minutos = ahora.getMinutes().toString().padStart(2, '0');
-        document.getElementById('reloj').textContent = `${horas}:${minutos}`;
+        // Reloj formateado
+        const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
+        let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
+        hora12 = hora12.replace(/\./g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+        document.getElementById('reloj').textContent = hora12;
         
-        const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
-        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opciones);
+        // Fecha
+        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
+        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opcionesFecha);
+
+        // PROTECCIÓN ECO NOCTURNA: Si es antes de las 7am o después de las 4pm (Horario fuera de oficina)
+        const horaActual = ahora.getHours();
+        const cuerpo = document.body;
+        if (horaActual < 7 || horaActual >= 16) {
+            cuerpo.classList.add('modo-eco');
+        } else {
+            cuerpo.classList.remove('modo-eco');
+        }
     }
-    // Se actualiza cada 30 segundos (30000 ms) en vez de cada segundo para optimizar
-    setInterval(actualizarTiempo, 30000); 
+    setInterval(actualizarTiempo, 15000); 
     actualizarTiempo();
 
-    // 3. REFRESCO SEMANAL AUTOMÁTICO (Cada 1 hora)
-    setTimeout(function() { 
-        location.reload(); 
-    }, 120000); 
+    // 3. TECNOLOGÍA PIXEL-SHIFT (Mueve el marco sutilmente cada 2 minutos)
+    function ejecutarPixelShift() {
+        const barra = document.getElementById('barra-institucional');
+        // Elige un movimiento aleatorio entre -2, -1, 0, 1 o 2 píxeles
+        const desvíoTop = Math.floor(Math.random() * 5) - 2;
+        const desvíoLeft = Math.floor(Math.random() * 5) - 2;
+        
+        barra.style.top = desvíoTop + 'px';
+        barra.style.left = desvíoLeft + 'px';
+    }
+    setInterval(ejecutarPixelShift, 60000); // Cada 120 segundos (2 minutos)
+
+    // 4. REFRESCO GENERAL AUTOMÁTICO (Cada 1 hora)
+    setTimeout(function() { location.reload(); }, 120000); 
 </script>
 
 </body>
 </html>
-
