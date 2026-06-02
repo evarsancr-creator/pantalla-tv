@@ -104,11 +104,11 @@
             letter-spacing: -1px;
         }
 
+        /* CORRECCIÓN: Se eliminó text-transform: capitalize para evitar errores de ortografía */
         .fecha {
             color: #94a3b8; 
             font-size: 1.1vw;
             font-weight: 500;
-            text-transform: capitalize;
             letter-spacing: 0.5px;
         }
 
@@ -244,23 +244,24 @@
     }
     programarSiguienteCambio();
 
-    // 2. RELOJ DE 12 HORAS SIN AM/PM Y MODO ECO A LAS 4 PM
+    // 2. RELOJ CORREGIDO (12H SIN AM/PM) Y FECHA EN MINI-MAYÚSCULA NATIVA
     function actualizarTiempo() {
         const ahora = new Date();
         
-        // CORRECCIÓN: Formato 12 horas quitando la sección de AM/PM
+        // Reloj formateado limpio
         const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
         let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
-        
-        // Remueve puntos, remueve las letras AM/PM (o am/pm) y limpia espacios
         hora12 = hora12.replace(/\./g, '').replace(/[a-zA-Z]/g, '').trim();
         document.getElementById('reloj').textContent = hora12;
         
-        // Fecha
+        // CORRECCIÓN DE LA FECHA: Jalar frase y forzar solo primer carácter a Mayúscula
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
-        document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opcionesFecha);
+        let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
+        fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+        
+        document.getElementById('fecha').textContent = fechaTexto;
 
-        // MODO ECO: Activación a las 4:00 PM (Hora >= 16)
+        // MODO ECO (4:00 PM)
         const horaActual = ahora.getHours();
         const cuerpo = document.body;
         if (horaActual < 7 || horaActual >= 16) {
@@ -272,7 +273,7 @@
     setInterval(actualizarTiempo, 15000); 
     actualizarTiempo();
 
-    // 3. PIXEL-SHIFT ACELERADO (Se ejecuta cada 1 minuto - 60000 ms)
+    // 3. PIXEL-SHIFT ANTI QUEMADO (Cada 1 minuto)
     function ejecutarPixelShift() {
         const barra = document.getElementById('barra-institucional');
         const desvíoTop = Math.floor(Math.random() * 5) - 2;
@@ -283,7 +284,7 @@
     }
     setInterval(ejecutarPixelShift, 60000); 
 
-    // 4. ACTUALIZACIÓN DE LA PÁGINA ACELERADA (Cada 2 minutos - 120000 ms)
+    // 4. AUTOREFRESCO DE PRUEBAS (Cada 2 minutos)
     setTimeout(function() { 
         location.reload(); 
     }, 120000); 
