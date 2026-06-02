@@ -41,12 +41,12 @@
             padding: 0 30px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             position: relative;
-            top: 0; left: 0; /* Variables base para el movimiento */
+            top: 0; left: 0;
             transition: top 0.5s ease, left 0.5s ease, opacity 1s ease, filter 1s ease;
         }
 
         .contenedor-logo {
-            height: 75%;
+            height: 80%;
             display: flex;
             align-items: center;
         }
@@ -67,7 +67,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* Colores suavizados para prevenir desgaste de fósforo/píxel */
         .texto-institucion-gerencia {
             color: #60a5fa; 
             font-size: 1.1vw;
@@ -78,7 +77,7 @@
         }
 
         .texto-direccion {
-            color: #e2e8f0; /* Blanco atenuado anti-burn-in */
+            color: #e2e8f0; 
             font-size: 1.9vw;
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -91,11 +90,11 @@
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            min-width: 240px;
+            min-width: 220px;
         }
 
         .reloj {
-            color: #cbd5e1; /* Reloj suavizado */
+            color: #cbd5e1; 
             font-size: 2.4vw;
             font-weight: 700;
             font-family: 'Segoe UI', sans-serif;
@@ -168,13 +167,13 @@
             opacity: 1;
         }
 
-        /* ESTILOS DE MODO PROTECCIÓN NOCTURNO */
+        /* MODO PROTECCIÓN NOCTURNO (4:00 PM) */
         .modo-eco .marco-superior {
-            opacity: 0.4; /* Atenúa la barra superior al salir de oficina */
+            opacity: 0.4; 
             filter: grayscale(0.5);
         }
         .modo-eco .background-ambientes {
-            filter: brightness(0.1); /* Apaga casi por completo el fondo */
+            filter: brightness(0.1); 
         }
     </style>
 </head>
@@ -203,7 +202,7 @@
             </div>
             
             <div class="tiempo-contenedor">
-                <div class="reloj" id="reloj">00:00 AM</div>
+                <div class="reloj" id="reloj">00:00</div>
                 <div class="fecha" id="fecha">Cargando...</div>
             </div>
         </header>
@@ -245,21 +244,23 @@
     }
     programarSiguienteCambio();
 
-    // 2. RELOJ DE 12 HORAS LIMPIO Y CONTROL HORARIO ECO
+    // 2. RELOJ DE 12 HORAS SIN AM/PM Y MODO ECO A LAS 4 PM
     function actualizarTiempo() {
         const ahora = new Date();
         
-        // Reloj formateado
+        // CORRECCIÓN: Formato 12 horas quitando la sección de AM/PM
         const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
         let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
-        hora12 = hora12.replace(/\./g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+        
+        // Remueve puntos, remueve las letras AM/PM (o am/pm) y limpia espacios
+        hora12 = hora12.replace(/\./g, '').replace(/[a-zA-Z]/g, '').trim();
         document.getElementById('reloj').textContent = hora12;
         
         // Fecha
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
         document.getElementById('fecha').textContent = ahora.toLocaleDateString('es-ES', opcionesFecha);
 
-        // PROTECCIÓN ECO NOCTURNA: Si es antes de las 7am o después de las 4pm (Horario fuera de oficina)
+        // MODO ECO: Activación a las 4:00 PM (Hora >= 16)
         const horaActual = ahora.getHours();
         const cuerpo = document.body;
         if (horaActual < 7 || horaActual >= 16) {
@@ -271,20 +272,21 @@
     setInterval(actualizarTiempo, 15000); 
     actualizarTiempo();
 
-    // 3. TECNOLOGÍA PIXEL-SHIFT (Mueve el marco sutilmente cada 2 minutos)
+    // 3. PIXEL-SHIFT ACELERADO (Se ejecuta cada 1 minuto - 60000 ms)
     function ejecutarPixelShift() {
         const barra = document.getElementById('barra-institucional');
-        // Elige un movimiento aleatorio entre -2, -1, 0, 1 o 2 píxeles
         const desvíoTop = Math.floor(Math.random() * 5) - 2;
         const desvíoLeft = Math.floor(Math.random() * 5) - 2;
         
         barra.style.top = desvíoTop + 'px';
         barra.style.left = desvíoLeft + 'px';
     }
-    setInterval(ejecutarPixelShift, 60000); // Cada 120 segundos (2 minutos)
+    setInterval(ejecutarPixelShift, 60000); 
 
-    // 4. REFRESCO GENERAL AUTOMÁTICO (Cada 1 hora)
-    setTimeout(function() { location.reload(); }, 120000); 
+    // 4. ACTUALIZACIÓN DE LA PÁGINA ACELERADA (Cada 2 minutos - 120000 ms)
+    setTimeout(function() { 
+        location.reload(); 
+    }, 120000); 
 </script>
 
 </body>
