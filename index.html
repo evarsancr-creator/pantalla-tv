@@ -26,20 +26,21 @@
             z-index: 5;
         }
 
-        /* MARCO SUPERIOR CON TRANSICIÓN PARA PIXEL-SHIFT */
+        /* MARCO SUPERIOR: Cristal Ultra Traslúcido Corregido */
         .marco-superior {
             width: 100%;
             height: 15vh;
-            background: rgba(13, 17, 23, 0.45);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* CORRECCIÓN: Fondo más transparente (0.15) y mayor desenfoque (25px) */
+            background: rgba(13, 17, 23, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
             position: relative;
             top: 0; left: 0;
             transition: top 0.5s ease, left 0.5s ease, opacity 1s ease, filter 1s ease;
@@ -64,7 +65,7 @@
             align-items: center;
             flex-grow: 1;
             padding: 0 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8); /* Sombra de texto reforzada para lectura ultra clara */
         }
 
         .texto-institucion-gerencia {
@@ -98,18 +99,18 @@
             font-size: 2.4vw;
             font-weight: 700;
             font-family: 'Segoe UI', sans-serif;
-            text-shadow: 0 0 8px rgba(224, 242, 254, 0.2);
+            text-shadow: 0 0 8px rgba(224, 242, 254, 0.2), 0 2px 4px rgba(0,0,0,0.6);
             line-height: 1;
             margin-bottom: 4px;
             letter-spacing: -1px;
         }
 
-        /* CORRECCIÓN: Se eliminó text-transform: capitalize para evitar errores de ortografía */
         .fecha {
             color: #94a3b8; 
             font-size: 1.1vw;
             font-weight: 500;
             letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
 
         .slideshow-container { 
@@ -169,7 +170,8 @@
 
         /* MODO PROTECCIÓN NOCTURNO (4:00 PM) */
         .modo-eco .marco-superior {
-            opacity: 0.4; 
+            opacity: 0.3; /* Un poco más oscuro de noche para proteger el panel */
+            background: rgba(13, 17, 23, 0.3);
             filter: grayscale(0.5);
         }
         .modo-eco .background-ambientes {
@@ -244,21 +246,18 @@
     }
     programarSiguienteCambio();
 
-    // 2. RELOJ CORREGIDO (12H SIN AM/PM) Y FECHA EN MINI-MAYÚSCULA NATIVA
+    // 2. RELOJ 12H SIN AM/PM Y FECHA FORMATEADA CORRECTAMENTE
     function actualizarTiempo() {
         const ahora = new Date();
         
-        // Reloj formateado limpio
         const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
         let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
         hora12 = hora12.replace(/\./g, '').replace(/[a-zA-Z]/g, '').trim();
         document.getElementById('reloj').textContent = hora12;
         
-        // CORRECCIÓN DE LA FECHA: Jalar frase y forzar solo primer carácter a Mayúscula
         const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
         let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
         fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
-        
         document.getElementById('fecha').textContent = fechaTexto;
 
         // MODO ECO (4:00 PM)
@@ -292,3 +291,4 @@
 
 </body>
 </html>
+
