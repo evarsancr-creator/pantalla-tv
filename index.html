@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -11,7 +11,6 @@
     >
 
     <title>Pantalla Corporativa DABS</title>
-
 
     <style>
 
@@ -30,9 +29,10 @@
             overflow: hidden;
 
             font-family:
-                Arial,
                 "Segoe UI",
                 Tahoma,
+                Geneva,
+                Verdana,
                 sans-serif;
 
             background-color: #0d1117;
@@ -40,23 +40,21 @@
 
 
         /* =====================================================
-           PANTALLA GENERAL
+           CONTENEDOR GENERAL
         ===================================================== */
 
         .pantalla-completa {
-            position: relative;
-
-            z-index: 5;
-
             display: flex;
             flex-direction: column;
 
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
 
             padding: 20px;
-
             gap: 15px;
+
+            position: relative;
+            z-index: 5;
         }
 
 
@@ -65,50 +63,47 @@
         ===================================================== */
 
         .marco-superior {
-            position: relative;
-
-            top: 0;
-            left: 0;
-
             width: 100%;
-            height: 15%;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 30px;
+            height: 15vh;
 
             background:
-                rgba(13, 17, 23, 0.65);
+                rgba(13, 17, 23, 0.15);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
 
             border:
                 1px solid rgba(255, 255, 255, 0.08);
 
             border-radius: 16px;
 
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                0 30px;
+
             box-shadow:
                 0 8px 32px
                 rgba(0, 0, 0, 0.4);
 
-            /*
-                Si el navegador soporta backdrop-filter,
-                aplicará el desenfoque.
+            position: relative;
 
-                Si no lo soporta, simplemente conservará
-                el fondo oscuro.
-            */
-
-            -webkit-backdrop-filter:
-                blur(5px);
-
-            backdrop-filter:
-                blur(5px);
+            top: 0;
+            left: 0;
 
             transition:
                 top 0.5s ease,
                 left 0.5s ease,
-                opacity 1s ease;
+                opacity 1s ease,
+                filter 1s ease;
         }
 
 
@@ -120,15 +115,22 @@
             height: 80%;
 
             display: flex;
+
             align-items: center;
         }
 
 
         .logo-ccss {
             height: 100%;
-            max-width: 230px;
 
-            object-fit: contain;
+            object-fit:
+                contain;
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(255, 255, 255, 0.15)
+                );
         }
 
 
@@ -137,15 +139,21 @@
         ===================================================== */
 
         .bloque-titulos {
+            display: flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
             flex-grow: 1;
 
-            display: flex;
-            flex-direction: column;
-
-            justify-content: center;
-            align-items: center;
-
-            padding: 0 20px;
+            padding:
+                0 20px;
 
             text-shadow:
                 0 2px 5px
@@ -154,32 +162,47 @@
 
 
         .texto-institucion-gerencia {
-            color: #60a5fa;
+            color:
+                #60a5fa;
 
-            font-size: 1.1vw;
-            font-weight: 600;
+            font-size:
+                1.1vw;
 
-            letter-spacing: 1px;
+            font-weight:
+                600;
 
-            text-transform: uppercase;
+            letter-spacing:
+                1px;
 
-            text-align: center;
+            text-transform:
+                uppercase;
 
-            margin-bottom: 2px;
+            margin-bottom:
+                2px;
+
+            text-align:
+                center;
         }
 
 
         .texto-direccion {
-            color: #e2e8f0;
+            color:
+                #e2e8f0;
 
-            font-size: 1.9vw;
-            font-weight: 700;
+            font-size:
+                1.9vw;
 
-            letter-spacing: 0.5px;
+            font-weight:
+                700;
 
-            text-transform: uppercase;
+            letter-spacing:
+                0.5px;
 
-            text-align: center;
+            text-transform:
+                uppercase;
+
+            text-align:
+                center;
         }
 
 
@@ -188,41 +211,67 @@
         ===================================================== */
 
         .tiempo-contenedor {
-            display: flex;
-            flex-direction: column;
+            display:
+                flex;
 
-            align-items: flex-end;
-            justify-content: center;
+            flex-direction:
+                column;
 
-            min-width: 220px;
+            align-items:
+                flex-end;
+
+            justify-content:
+                center;
+
+            min-width:
+                220px;
         }
 
 
         .reloj {
-            color: #cbd5e1;
+            color:
+                #cbd5e1;
 
-            font-size: 2.4vw;
-            font-weight: 700;
+            font-size:
+                2.4vw;
 
-            line-height: 1;
+            font-weight:
+                700;
 
-            margin-bottom: 4px;
+            font-family:
+                "Segoe UI",
+                sans-serif;
 
             text-shadow:
                 0 0 8px
                 rgba(224, 242, 254, 0.2),
+
                 0 2px 4px
                 rgba(0, 0, 0, 0.6);
+
+            line-height:
+                1;
+
+            margin-bottom:
+                4px;
+
+            letter-spacing:
+                -1px;
         }
 
 
         .fecha {
-            color: #94a3b8;
+            color:
+                #94a3b8;
 
-            font-size: 1.1vw;
-            font-weight: 500;
+            font-size:
+                1.1vw;
 
-            letter-spacing: 0.5px;
+            font-weight:
+                500;
+
+            letter-spacing:
+                0.5px;
 
             text-shadow:
                 0 1px 3px
@@ -231,28 +280,40 @@
 
 
         /* =====================================================
-           CONTENEDOR DE IMÁGENES
+           SLIDESHOW
         ===================================================== */
 
         .slideshow-container {
-            position: relative;
+            width:
+                100%;
 
-            width: 100%;
-            height: calc(85% - 15px);
+            height:
+                79vh;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position:
+                relative;
 
-            overflow: hidden;
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
 
             background-color:
-                rgba(0, 0, 0, 0.30);
+                rgba(0, 0, 0, 0.2);
 
             border:
-                1px solid rgba(255, 255, 255, 0.08);
+                1px solid
+                rgba(255, 255, 255, 0.08);
 
-            border-radius: 20px;
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
 
             box-shadow:
                 0 15px 35px
@@ -263,214 +324,225 @@
         /* =====================================================
            IMAGEN PRINCIPAL
 
-           width y height al 100% permiten que las imágenes
-           pequeñas ocupen el espacio disponible.
-
-           object-fit: contain mantiene la proporción.
+           Este es el cambio para imágenes pequeñas.
+           Ocupa todo el área disponible sin deformarla.
         ===================================================== */
 
-        .slide {
-            position: absolute;
+        img.slide {
 
-            top: 0;
-            left: 0;
+            position:
+                absolute;
 
-            width: 100%;
-            height: 100%;
+            top:
+                0;
 
-            object-fit: contain;
-            object-position: center center;
+            left:
+                0;
 
-            opacity: 0;
+            width:
+                100%;
 
-            visibility: hidden;
+            height:
+                100%;
 
-            z-index: 2;
+            object-fit:
+                contain;
+
+            object-position:
+                center center;
+
+            opacity:
+                0;
+
+            z-index:
+                2;
+
+            transform:
+                scale(0.98);
 
             transition:
-                opacity 1.2s ease-in-out;
-
-            /*
-                Compatibilidad alternativa para navegadores
-                que no aplican correctamente object-fit.
-            */
-
-            max-width: none;
-            max-height: none;
+                opacity 1.2s ease-in-out,
+                transform 1.2s ease-in-out;
         }
 
 
-        .slide.active {
-            opacity: 1;
+        img.slide.active {
 
-            visibility: visible;
+            opacity:
+                1;
+
+            transform:
+                scale(1);
         }
 
 
         /* =====================================================
-           FONDO DIFUMINADO
+           FONDO AMBIENTE
         ===================================================== */
 
         .background-ambientes {
-            position: absolute;
 
-            top: 0;
-            left: 0;
+            position:
+                absolute;
 
-            width: 100%;
-            height: 100%;
+            top:
+                0;
 
-            z-index: 1;
+            left:
+                0;
 
-            overflow: hidden;
+            width:
+                100vw;
 
-            background-color: #0d1117;
+            height:
+                100vh;
+
+            z-index:
+                1;
+
+            overflow:
+                hidden;
+
+            background-color:
+                #0d1117;
+
+            transition:
+                filter 1s ease;
         }
 
 
-        .slide-bg {
-            position: absolute;
+        img.slide-bg {
 
-            top: -5%;
-            left: -5%;
+            position:
+                absolute;
 
-            width: 110%;
-            height: 110%;
+            top:
+                -5%;
 
-            object-fit: cover;
+            left:
+                -5%;
 
-            opacity: 0;
+            width:
+                110%;
 
-            visibility: hidden;
+            height:
+                110%;
+
+            object-fit:
+                cover;
+
+            opacity:
+                0;
 
             filter:
                 blur(60px)
                 brightness(0.4)
                 saturate(1.4);
 
-            -webkit-filter:
-                blur(60px)
-                brightness(0.4)
-                saturate(1.4);
+            transform:
+                scale(1.08);
 
             transition:
                 opacity 1.2s ease-in-out;
         }
 
 
-        .slide-bg.active {
-            opacity: 1;
+        img.slide-bg.active {
 
-            visibility: visible;
+            opacity:
+                1;
         }
 
 
         /* =====================================================
-           MENSAJE DE ESTADO
+           MENSAJE
         ===================================================== */
 
         .mensaje-estado {
-            position: relative;
 
-            z-index: 10;
+            color:
+                #cbd5e1;
 
-            color: #cbd5e1;
+            font-size:
+                1.3vw;
 
-            font-size: 22px;
-            font-weight: 500;
+            font-weight:
+                500;
 
-            text-align: center;
+            text-align:
+                center;
 
-            padding: 30px;
+            padding:
+                30px;
+
+            z-index:
+                10;
         }
 
 
         /* =====================================================
-           INDICADOR DE ESTADO
+           INDICADOR
         ===================================================== */
 
         .indicador-estado {
-            position: fixed;
 
-            right: 8px;
-            bottom: 8px;
+            position:
+                fixed;
 
-            width: 11px;
-            height: 11px;
+            right:
+                8px;
 
-            border-radius: 50%;
+            bottom:
+                8px;
 
-            background-color: #64748b;
+            width:
+                10px;
 
-            z-index: 100;
+            height:
+                10px;
 
-            opacity: 0.75;
+            border-radius:
+                50%;
+
+            background:
+                #64748b;
+
+            z-index:
+                100;
+
+            opacity:
+                0.65;
+
+            box-shadow:
+                0 0 6px
+                rgba(255, 255, 255, 0.15);
+
+            transition:
+                background 0.4s ease;
         }
 
 
         .estado-ok {
-            background-color: #22c55e;
+
+            background:
+                #22c55e;
+
         }
 
 
         .estado-consultando {
-            background-color: #f59e0b;
+
+            background:
+                #f59e0b;
+
         }
 
 
         .estado-error {
-            background-color: #ef4444;
-        }
 
+            background:
+                #ef4444;
 
-        /* =====================================================
-           PANEL DE DIAGNÓSTICO
-        ===================================================== */
-
-        .panel-diagnostico {
-            position: fixed;
-
-            right: 15px;
-            bottom: 28px;
-
-            width: 340px;
-
-            display: none;
-
-            z-index: 200;
-
-            padding: 15px;
-
-            color: #e2e8f0;
-
-            background-color:
-                rgba(13, 17, 23, 0.96);
-
-            border:
-                1px solid rgba(255, 255, 255, 0.20);
-
-            border-radius: 10px;
-
-            font-size: 13px;
-            line-height: 1.5;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.60);
-        }
-
-
-        .panel-diagnostico.visible {
-            display: block;
-        }
-
-
-        .diagnostico-titulo {
-            margin-bottom: 8px;
-
-            color: #60a5fa;
-
-            font-weight: 700;
         }
 
 
@@ -479,46 +551,53 @@
         ===================================================== */
 
         .modo-eco .marco-superior {
-            opacity: 0.35;
+
+            opacity:
+                0.3;
 
             background:
-                rgba(13, 17, 23, 0.80);
+                rgba(13, 17, 23, 0.3);
+
+            filter:
+                grayscale(0.5);
         }
 
 
         .modo-eco .background-ambientes {
-            filter:
-                brightness(0.20);
 
-            -webkit-filter:
-                brightness(0.20);
+            filter:
+                brightness(0.1);
         }
 
 
         /* =====================================================
-           PANTALLAS CON RESOLUCIÓN MENOR
+           RESOLUCIONES MENORES
         ===================================================== */
 
-        @media screen and (max-width: 900px) {
+        @media
+        (max-width: 900px) {
 
             .pantalla-completa {
-                padding: 10px;
-                gap: 10px;
+
+                padding:
+                    10px;
+
+                gap:
+                    10px;
             }
 
 
             .marco-superior {
-                padding: 0 15px;
+
+                padding:
+                    0 15px;
             }
 
 
             .tiempo-contenedor {
-                min-width: 130px;
-            }
 
-
-            .panel-diagnostico {
-                width: 290px;
+                min-width:
+                    140px;
             }
 
         }
@@ -542,7 +621,7 @@
 
 
     <!-- =====================================================
-         CONTENIDO PRINCIPAL
+         CONTENIDO
     ====================================================== -->
 
     <div
@@ -554,12 +633,13 @@
              ENCABEZADO
         ================================================== -->
 
-        <div
+        <header
             class="marco-superior"
             id="barra-institucional">
 
 
-            <div class="contenedor-logo">
+            <div
+                class="contenedor-logo">
 
                 <img
                     class="logo-ccss"
@@ -570,146 +650,138 @@
             </div>
 
 
-            <div class="bloque-titulos">
+            <div
+                class="bloque-titulos">
 
-                <div class="texto-institucion-gerencia">
+
+                <h2
+                    class="texto-institucion-gerencia">
+
                     Caja Costarricense de Seguro Social -
                     Gerencia de Logística
-                </div>
 
-                <div class="texto-direccion">
+                </h2>
+
+
+                <h1
+                    class="texto-direccion">
+
                     Dirección de Aprovisionamiento
                     de Bienes y Servicios
-                </div>
+
+                </h1>
+
 
             </div>
 
 
-            <div class="tiempo-contenedor">
+            <div
+                class="tiempo-contenedor">
+
 
                 <div
                     class="reloj"
                     id="reloj">
+
                     00:00
+
                 </div>
+
 
                 <div
                     class="fecha"
                     id="fecha">
+
                     Cargando...
+
                 </div>
+
 
             </div>
 
 
-        </div>
+        </header>
 
 
         <!-- =================================================
-             SLIDESHOW
+             PRESENTACIÓN
         ================================================== -->
 
-        <div
+        <main
             class="slideshow-container"
             id="slideshow">
 
-            <div class="mensaje-estado">
+
+            <div
+                class="mensaje-estado">
+
                 Cargando imágenes...
+
             </div>
 
-        </div>
+
+        </main>
 
 
     </div>
 
 
     <!-- =====================================================
-         INDICADOR Y DIAGNÓSTICO
+         INDICADOR
     ====================================================== -->
 
     <div
         id="indicador-estado"
         class="indicador-estado estado-consultando"
-        title="Consultando imágenes">
-    </div>
-
-
-    <div
-        id="panel-diagnostico"
-        class="panel-diagnostico">
-
-        <div class="diagnostico-titulo">
-            Diagnóstico de pantalla
-        </div>
-
-        <div id="diagnostico-contenido">
-            Inicializando...
-        </div>
-
+        title="Inicializando">
     </div>
 
 
 
-<script type="text/javascript">
-
-
-/*
-=========================================================
-VERSIÓN COMPATIBLE CON NAVEGADORES ANTIGUOS
-=========================================================
-
-No utiliza:
-
-- fetch
-- async / await
-- Promise
-- let
-- const
-- funciones flecha
-- template strings
-- replaceChildren
-- Array.from
-- location.reload
-
-=========================================================
-*/
+<script>
 
 
 // ======================================================
 // 1. CONFIGURACIÓN
 // ======================================================
 
-var usuarioGitHub =
+const usuarioGitHub =
     "evarsancr-creator";
 
 
-var repositorioGitHub =
+const repositorioGitHub =
     "pantalla-tv";
 
 
-var carpetaImagenes =
+const carpetaImagenes =
     "imagenes";
 
 
-var tiempoPredeterminado =
+// Cada imagen:
+// 8 segundos.
+
+const tiempoPredeterminado =
     8000;
 
 
-// Consulta normal cada 5 minutos.
+// Consulta GitHub:
+// cada 5 minutos.
 
-var intervaloConsultaNormal =
+const intervaloConsultaNormal =
     5 * 60 * 1000;
 
 
-// Si la carga falla, reintenta en 30 segundos.
+// Si ocurre un error:
+// reintentar en 30 segundos.
 
-var intervaloReintentoError =
+const intervaloReintentoError =
     30 * 1000;
 
 
-// Máximo de espera para descargar una imagen.
+// Tiempo máximo para precargar
+// una imagen.
 
-var tiempoMaximoImagen =
+const tiempoMaximoPrecarga =
     20000;
 
 
@@ -718,118 +790,49 @@ var tiempoMaximoImagen =
 // 2. VARIABLES
 // ======================================================
 
-var currentIndex =
+let currentIndex =
     0;
 
 
-var slides =
+let slides =
     [];
 
 
-var backgroundSlides =
+let backgroundSlides =
     [];
 
 
-var timerSlide =
+let timerSlide =
     null;
 
 
-var timerConsulta =
+let timerConsulta =
     null;
 
 
-var consultaEnProceso =
+let consultaEnProceso =
     false;
 
 
-var cargaInicialCompletada =
+let cargaInicialCompletada =
     false;
 
 
-var firmaImagenesActual =
+let firmaImagenesActual =
     "";
 
 
-var imagenesPendientes =
+let imagenesPendientes =
     null;
 
 
-var firmaPendiente =
+let firmaPendiente =
     "";
 
 
-var estadoDiagnostico = {
-
-    api:
-        "Pendiente",
-
-    archivosDetectados:
-        0,
-
-    imagenesValidas:
-        0,
-
-    imagenesConError:
-        0,
-
-    ultimaConsulta:
-        "Sin consulta",
-
-    ultimoError:
-        "Ninguno"
-
-};
-
-
 
 // ======================================================
-// 3. FUNCIONES DE COMPATIBILIDAD
-// ======================================================
-
-function agregarEvento(
-    elemento,
-    evento,
-    funcion
-) {
-
-    if (!elemento) {
-        return;
-    }
-
-
-    if (elemento.addEventListener) {
-
-        elemento.addEventListener(
-            evento,
-            funcion,
-            false
-        );
-
-    }
-
-    else if (elemento.attachEvent) {
-
-        elemento.attachEvent(
-            "on" + evento,
-            funcion
-        );
-
-    }
-
-    else {
-
-        elemento[
-            "on" + evento
-        ] = funcion;
-
-    }
-
-}
-
-
-
-// ======================================================
-// 4. INDICADOR DE ESTADO
+// 3. ESTADO
 // ======================================================
 
 function establecerEstado(
@@ -837,14 +840,17 @@ function establecerEstado(
     texto
 ) {
 
-    var indicador =
+
+    const indicador =
         document.getElementById(
             "indicador-estado"
         );
 
 
     if (!indicador) {
+
         return;
+
     }
 
 
@@ -852,24 +858,37 @@ function establecerEstado(
         "indicador-estado";
 
 
-    if (estado === "ok") {
+    if (
+        estado === "ok"
+    ) {
 
-        indicador.className +=
-            " estado-ok";
+
+        indicador.classList.add(
+            "estado-ok"
+        );
+
 
     }
 
-    else if (estado === "error") {
+    else if (
+        estado === "error"
+    ) {
 
-        indicador.className +=
-            " estado-error";
+
+        indicador.classList.add(
+            "estado-error"
+        );
+
 
     }
 
     else {
 
-        indicador.className +=
-            " estado-consultando";
+
+        indicador.classList.add(
+            "estado-consultando"
+        );
+
 
     }
 
@@ -877,206 +896,31 @@ function establecerEstado(
     indicador.title =
         texto || "";
 
-
-    actualizarPanelDiagnostico();
-
 }
 
 
 
 // ======================================================
-// 5. PANEL DE DIAGNÓSTICO
-// ======================================================
-
-function actualizarPanelDiagnostico() {
-
-    var contenido =
-        document.getElementById(
-            "diagnostico-contenido"
-        );
-
-
-    if (!contenido) {
-        return;
-    }
-
-
-    contenido.innerHTML =
-
-        "<strong>API GitHub:</strong> "
-        + escaparHTML(
-            estadoDiagnostico.api
-        )
-
-        + "<br>"
-
-        + "<strong>Archivos detectados:</strong> "
-        + estadoDiagnostico.archivosDetectados
-
-        + "<br>"
-
-        + "<strong>Imágenes cargadas:</strong> "
-        + estadoDiagnostico.imagenesValidas
-
-        + "<br>"
-
-        + "<strong>Imágenes con error:</strong> "
-        + estadoDiagnostico.imagenesConError
-
-        + "<br>"
-
-        + "<strong>Última consulta:</strong> "
-        + escaparHTML(
-            estadoDiagnostico.ultimaConsulta
-        )
-
-        + "<br>"
-
-        + "<strong>Último error:</strong> "
-        + escaparHTML(
-            estadoDiagnostico.ultimoError
-        );
-
-}
-
-
-
-function alternarPanelDiagnostico() {
-
-    var panel =
-        document.getElementById(
-            "panel-diagnostico"
-        );
-
-
-    if (!panel) {
-        return;
-    }
-
-
-    if (
-        panel.className.indexOf(
-            "visible"
-        ) >= 0
-    ) {
-
-        panel.className =
-            "panel-diagnostico";
-
-    }
-
-    else {
-
-        panel.className =
-            "panel-diagnostico visible";
-
-    }
-
-}
-
-
-
-function escaparHTML(
-    texto
-) {
-
-    if (
-        texto === null
-        ||
-        typeof texto === "undefined"
-    ) {
-
-        return "";
-
-    }
-
-
-    texto =
-        String(
-            texto
-        );
-
-
-    return texto
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-
-// ======================================================
-// 6. HORA PARA DIAGNÓSTICO
-// ======================================================
-
-function obtenerHoraDiagnostico() {
-
-    var ahora =
-        new Date();
-
-
-    var horas =
-        ahora.getHours();
-
-
-    var minutos =
-        ahora.getMinutes();
-
-
-    var segundos =
-        ahora.getSeconds();
-
-
-    if (minutos < 10) {
-        minutos = "0" + minutos;
-    }
-
-
-    if (segundos < 10) {
-        segundos = "0" + segundos;
-    }
-
-
-    return (
-        horas
-        + ":"
-        + minutos
-        + ":"
-        + segundos
-    );
-
-}
-
-
-
-// ======================================================
-// 7. PROGRAMAR CONSULTA
+// 4. PROGRAMAR SIGUIENTE CONSULTA
 // ======================================================
 
 function programarConsulta(
     milisegundos
 ) {
 
-    if (timerConsulta !== null) {
 
-        clearTimeout(
-            timerConsulta
-        );
-
-    }
+    clearTimeout(
+        timerConsulta
+    );
 
 
     timerConsulta =
         setTimeout(
-            function () {
 
-                consultarImagenesGitHub();
+            consultarImagenesGitHub,
 
-            },
             milisegundos
+
         );
 
 }
@@ -1084,78 +928,18 @@ function programarConsulta(
 
 
 // ======================================================
-// 8. CREAR XMLHTTPREQUEST
+// 5. CONSULTAR GITHUB
 // ======================================================
 
-function crearSolicitudHTTP() {
-
-    var solicitud =
-        null;
+async function consultarImagenesGitHub() {
 
 
     if (
-        typeof XMLHttpRequest !==
-        "undefined"
+        consultaEnProceso
     ) {
 
-        solicitud =
-            new XMLHttpRequest();
-
-    }
-
-    else {
-
-        /*
-            Compatibilidad con versiones antiguas
-            de Internet Explorer.
-        */
-
-        try {
-
-            solicitud =
-                new ActiveXObject(
-                    "Msxml2.XMLHTTP"
-                );
-
-        }
-
-        catch (errorUno) {
-
-            try {
-
-                solicitud =
-                    new ActiveXObject(
-                        "Microsoft.XMLHTTP"
-                    );
-
-            }
-
-            catch (errorDos) {
-
-                solicitud =
-                    null;
-
-            }
-
-        }
-
-    }
-
-
-    return solicitud;
-
-}
-
-
-
-// ======================================================
-// 9. CONSULTAR GITHUB
-// ======================================================
-
-function consultarImagenesGitHub() {
-
-    if (consultaEnProceso) {
         return;
+
     }
 
 
@@ -1163,315 +947,346 @@ function consultarImagenesGitHub() {
         true;
 
 
-    estadoDiagnostico.ultimaConsulta =
-        obtenerHoraDiagnostico();
-
-
-    estadoDiagnostico.ultimoError =
-        "Ninguno";
-
-
     establecerEstado(
         "consultando",
-        "Consultando imágenes"
+        "Consultando GitHub"
     );
 
 
-    var solicitud =
-        crearSolicitudHTTP();
-
-
-    if (!solicitud) {
-
-        finalizarConsultaConError(
-            "El navegador no admite solicitudes HTTP."
-        );
-
-        return;
-
-    }
-
-
-    var marcaTiempo =
-        new Date().getTime();
-
-
-    var apiURL =
-
-        "https://api.github.com/repos/"
-        + usuarioGitHub
-        + "/"
-        + repositorioGitHub
-        + "/contents/"
-        + carpetaImagenes
-        + "?_="
-        + marcaTiempo;
-
-
-    solicitud.onreadystatechange =
-        function () {
-
-            if (
-                solicitud.readyState !== 4
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                solicitud.status >= 200
-                &&
-                solicitud.status < 300
-            ) {
-
-                procesarRespuestaGitHub(
-                    solicitud.responseText
-                );
-
-            }
-
-            else {
-
-                finalizarConsultaConError(
-                    "GitHub respondió con estado "
-                    + solicitud.status
-                );
-
-            }
-
-        };
-
-
-    solicitud.onerror =
-        function () {
-
-            finalizarConsultaConError(
-                "Error de conexión con GitHub."
-            );
-
-        };
-
-
-    solicitud.ontimeout =
-        function () {
-
-            finalizarConsultaConError(
-                "GitHub tardó demasiado en responder."
-            );
-
-        };
-
-
     try {
 
-        solicitud.open(
-            "GET",
-            apiURL,
-            true
-        );
+
+        const apiURL =
+
+            "https://api.github.com/repos/"
+
+            +
+
+            usuarioGitHub
+
+            +
+
+            "/"
+
+            +
+
+            repositorioGitHub
+
+            +
+
+            "/contents/"
+
+            +
+
+            carpetaImagenes;
+
 
 
         /*
-            Si el navegador no reconoce timeout,
-            simplemente ignorará esta propiedad.
+            IMPORTANTE:
+
+            Volvemos al fetch sencillo que sí funcionaba.
+
+            No agregamos headers adicionales.
+            No agregamos parámetros extra.
         */
 
-        try {
-
-            solicitud.timeout =
-                25000;
-
-        }
-
-        catch (errorTimeout) {
-        }
-
-
-        /*
-            Evitar reutilizar una respuesta anterior.
-        */
-
-        try {
-
-            solicitud.setRequestHeader(
-                "Cache-Control",
-                "no-cache"
+        const respuesta =
+            await fetch(
+                apiURL,
+                {
+                    cache:
+                        "no-store"
+                }
             );
 
-        }
-
-        catch (errorCabecera) {
-        }
-
-
-        solicitud.send(
-            null
-        );
-
-    }
-
-    catch (errorSolicitud) {
-
-        finalizarConsultaConError(
-            "No se pudo iniciar la consulta: "
-            + errorSolicitud.message
-        );
-
-    }
-
-}
-
-
-
-// ======================================================
-// 10. PROCESAR RESPUESTA DE GITHUB
-// ======================================================
-
-function procesarRespuestaGitHub(
-    textoRespuesta
-) {
-
-    var archivos;
-
-
-    try {
-
-        archivos =
-            JSON.parse(
-                textoRespuesta
-            );
-
-    }
-
-    catch (errorJSON) {
-
-        finalizarConsultaConError(
-            "El navegador no pudo interpretar la respuesta de GitHub."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !archivos
-        ||
-        typeof archivos.length ===
-        "undefined"
-    ) {
-
-        finalizarConsultaConError(
-            "GitHub no devolvió una lista de archivos."
-        );
-
-        return;
-
-    }
-
-
-    estadoDiagnostico.api =
-        "Correcta";
-
-
-    var imagenes =
-        [];
-
-
-    var indice;
-
-
-    for (
-        indice = 0;
-        indice < archivos.length;
-        indice++
-    ) {
-
-        var archivo =
-            archivos[indice];
 
 
         if (
-            archivo
-            &&
-            archivo.type === "file"
-            &&
-            esArchivoImagen(
-                archivo.name
-            )
+            !respuesta.ok
         ) {
 
-            imagenes.push(
-                archivo
+
+            throw new Error(
+
+                "GitHub respondió con estado "
+
+                +
+
+                respuesta.status
+
             );
+
 
         }
 
-    }
 
 
-    ordenarImagenesPorNombre(
-        imagenes
-    );
+        const archivos =
+            await respuesta.json();
 
 
-    estadoDiagnostico.archivosDetectados =
-        imagenes.length;
+
+        if (
+            !Array.isArray(
+                archivos
+            )
+        ) {
 
 
-    if (
-        imagenes.length === 0
-    ) {
-
-        finalizarConsultaConError(
-            "La carpeta no contiene imágenes compatibles."
-        );
-
-        return;
-
-    }
+            throw new Error(
+                "GitHub no devolvió una lista de archivos."
+            );
 
 
-    var nuevaFirma =
-        crearFirma(
-            imagenes
-        );
+        }
 
 
-    /*
-        Si ya tenemos presentación y no hubo cambios,
-        no descargamos nuevamente los archivos.
-    */
 
-    if (
-        cargaInicialCompletada
-        &&
-        nuevaFirma ===
-        firmaImagenesActual
-    ) {
+        // ==================================================
+        // FILTRAR IMÁGENES
+        // ==================================================
 
-        consultaEnProceso =
-            false;
+        const imagenes =
+            archivos
+                .filter(
+
+                    archivo =>
+
+                        archivo.type ===
+                        "file"
+
+                        &&
+
+                        /\.(png|jpg|jpeg|webp|gif)$/i
+                            .test(
+                                archivo.name
+                            )
+
+                )
+                .sort(
+
+                    (a, b) =>
+
+                        a.name.localeCompare(
+                            b.name,
+                            "es",
+                            {
+                                numeric:
+                                    true,
+
+                                sensitivity:
+                                    "base"
+                            }
+                        )
+
+                );
 
 
-        estadoDiagnostico.imagenesValidas =
-            slides.length;
+
+        if (
+            imagenes.length === 0
+        ) {
 
 
-        estadoDiagnostico.imagenesConError =
-            0;
+            throw new Error(
+                "No se encontraron imágenes."
+            );
 
 
-        estadoDiagnostico.ultimoError =
-            "Ninguno";
+        }
+
+
+
+        // ==================================================
+        // FIRMA DE LA LISTA
+        // ==================================================
+
+        const nuevaFirma =
+            crearFirma(
+                imagenes
+            );
+
+
+
+        // ==================================================
+        // PRIMERA CARGA
+        // ==================================================
+
+        if (
+            !cargaInicialCompletada
+        ) {
+
+
+            const imagenesValidas =
+                await precargarImagenes(
+                    imagenes
+                );
+
+
+            if (
+                imagenesValidas.length === 0
+            ) {
+
+
+                throw new Error(
+                    "No fue posible descargar ninguna imagen."
+                );
+
+
+            }
+
+
+
+            const firmaValida =
+                crearFirma(
+                    imagenesValidas
+                );
+
+
+
+            aplicarNuevaLista(
+                imagenesValidas,
+                firmaValida
+            );
+
+
+            cargaInicialCompletada =
+                true;
+
+
+            establecerEstado(
+                "ok",
+                imagenesValidas.length
+                +
+                " imágenes cargadas"
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
+            );
+
+
+            return;
+
+        }
+
+
+
+        // ==================================================
+        // NO HAY CAMBIOS
+        // ==================================================
+
+        if (
+            nuevaFirma ===
+            firmaImagenesActual
+        ) {
+
+
+            imagenesPendientes =
+                null;
+
+
+            firmaPendiente =
+                "";
+
+
+            establecerEstado(
+                "ok",
+                slides.length
+                +
+                " imágenes activas"
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
+            );
+
+
+            return;
+
+        }
+
+
+
+        // ==================================================
+        // EXISTEN CAMBIOS
+        // ==================================================
+
+        const imagenesValidas =
+            await precargarImagenes(
+                imagenes
+            );
+
+
+
+        if (
+            imagenesValidas.length === 0
+        ) {
+
+
+            throw new Error(
+                "La actualización no contiene imágenes disponibles."
+            );
+
+
+        }
+
+
+
+        const firmaValida =
+            crearFirma(
+                imagenesValidas
+            );
+
+
+
+        if (
+            firmaValida ===
+            firmaImagenesActual
+        ) {
+
+
+            establecerEstado(
+                "ok",
+                slides.length
+                +
+                " imágenes activas"
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
+            );
+
+
+            return;
+
+        }
+
+
+
+        /*
+            No cambiamos la imagen inmediatamente.
+
+            Guardamos la actualización
+            y esperamos hasta terminar
+            la vuelta actual.
+        */
+
+        imagenesPendientes =
+            imagenesValidas;
+
+
+        firmaPendiente =
+            firmaValida;
 
 
         establecerEstado(
             "ok",
-            slides.length
-            + " imágenes activas"
+            "Actualización preparada"
         );
 
 
@@ -1480,179 +1295,131 @@ function procesarRespuestaGitHub(
         );
 
 
-        return;
-
     }
 
 
-    /*
-        Validamos las imágenes una por una.
-
-        Esta estrategia es más compatible que
-        Promise.all.
-    */
-
-    precargarImagenesSecuencialmente(
-        imagenes,
-        0,
-        [],
-        nuevaFirma
-    );
-
-}
+    catch (
+        error
+    ) {
 
 
-
-// ======================================================
-// 11. IDENTIFICAR ARCHIVOS DE IMAGEN
-// ======================================================
-
-function esArchivoImagen(
-    nombre
-) {
-
-    if (!nombre) {
-        return false;
-    }
+        console.error(
+            "ERROR:",
+            error
+        );
 
 
-    return (
-        /\.(png|jpg|jpeg|webp|gif)$/i
-    ).test(
-        nombre
-    );
-
-}
+        establecerEstado(
+            "error",
+            error.message
+        );
 
 
 
-// ======================================================
-// 12. ORDENAR POR NOMBRE
-// ======================================================
+        /*
+            Si todavía no existen imágenes,
+            mostramos el mensaje.
 
-function ordenarImagenesPorNombre(
-    imagenes
-) {
+            Si ya están funcionando,
+            NO borramos el slideshow.
+        */
 
-    imagenes.sort(
-        function (
-            archivoA,
-            archivoB
+        if (
+            !cargaInicialCompletada
         ) {
 
-            var nombreA =
-                String(
-                    archivoA.name
-                ).toLowerCase();
 
+            mostrarMensaje(
+                "Intentando cargar las imágenes..."
+            );
 
-            var nombreB =
-                String(
-                    archivoB.name
-                ).toLowerCase();
-
-
-            if (
-                nombreA < nombreB
-            ) {
-
-                return -1;
-
-            }
-
-
-            if (
-                nombreA > nombreB
-            ) {
-
-                return 1;
-
-            }
-
-
-            return 0;
 
         }
-    );
+
+
+
+        programarConsulta(
+            intervaloReintentoError
+        );
+
+
+    }
+
+
+    finally {
+
+
+        consultaEnProceso =
+            false;
+
+
+    }
 
 }
 
 
 
 // ======================================================
-// 13. CREAR FIRMA
+// 6. CREAR FIRMA
 // ======================================================
 
 function crearFirma(
     imagenes
 ) {
 
-    var partes =
-        [];
 
+    return imagenes
+        .map(
 
-    var indice;
+            archivo =>
 
+                archivo.name
 
-    for (
-        indice = 0;
-        indice < imagenes.length;
-        indice++
-    ) {
+                +
 
-        partes.push(
+                ":"
 
-            imagenes[indice].name
-            + ":"
-            + imagenes[indice].sha
+                +
 
+                archivo.sha
+
+        )
+        .join(
+            "|"
         );
-
-    }
-
-
-    return partes.join(
-        "|"
-    );
 
 }
 
 
 
 // ======================================================
-// 14. CONSTRUIR URL DE IMAGEN
+// 7. URL DE IMAGEN
 //
 // IMPORTANTE:
 //
-// Ya no usamos download_url.
-//
-// La imagen se solicita desde el mismo sitio
-// donde está abierto index.html:
-//
-// imagenes/archivo.png
-//
-// Esto evita depender directamente de
-// raw.githubusercontent.com.
+// Conservamos download_url porque esta fue
+// la arquitectura que previamente funcionó.
 // ======================================================
 
 function construirUrlImagen(
     archivo
 ) {
 
-    var nombreCodificado =
-        codificarRutaArchivo(
-            archivo.name
-        );
-
 
     return (
-        carpetaImagenes
-        + "/"
-        + nombreCodificado
-        + "?v="
-        + encodeURIComponent(
+
+        archivo.download_url
+
+        +
+
+        "?v="
+
+        +
+
+        encodeURIComponent(
             archivo.sha
         )
+
     );
 
 }
@@ -1660,333 +1427,197 @@ function construirUrlImagen(
 
 
 // ======================================================
-// 15. CODIFICAR NOMBRE DE ARCHIVO
+// 8. PRECARGAR TODAS LAS IMÁGENES
 // ======================================================
 
-function codificarRutaArchivo(
-    nombre
+async function precargarImagenes(
+    imagenes
 ) {
 
-    /*
-        encodeURIComponent maneja:
-        - espacios;
-        - acentos;
-        - paréntesis;
-        - caracteres especiales.
-    */
 
-    return encodeURIComponent(
-        nombre
-    )
-    .replace(
-        /%2F/gi,
-        "/"
-    );
+    const resultados =
+        await Promise.all(
 
-}
+            imagenes.map(
+                precargarUnaImagen
+            )
 
-
-
-// ======================================================
-// 16. PRECARGA SECUENCIAL
-// ======================================================
-
-function precargarImagenesSecuencialmente(
-    imagenes,
-    posicion,
-    imagenesValidas,
-    nuevaFirmaOriginal
-) {
-
-    if (
-        posicion >= imagenes.length
-    ) {
-
-        procesarResultadoPrecarga(
-            imagenes,
-            imagenesValidas,
-            nuevaFirmaOriginal
         );
 
-        return;
-
-    }
 
 
-    var archivo =
-        imagenes[posicion];
+    const imagenesValidas =
+        resultados.filter(
+
+            resultado =>
+
+                resultado !== null
+
+        );
 
 
-    precargarUnaImagen(
-        archivo,
-        function (
-            resultado
-        ) {
 
-            if (resultado) {
+    console.log(
 
-                imagenesValidas.push(
-                    archivo
-                );
+        "Imágenes válidas:",
 
-            }
+        imagenesValidas.length,
 
+        "de",
 
-            precargarImagenesSecuencialmente(
-                imagenes,
-                posicion + 1,
-                imagenesValidas,
-                nuevaFirmaOriginal
-            );
+        imagenes.length
 
-        }
     );
+
+
+
+    return imagenesValidas;
 
 }
 
 
 
 // ======================================================
-// 17. PRECARGAR UNA IMAGEN
+// 9. PRECARGAR UNA IMAGEN
 // ======================================================
 
 function precargarUnaImagen(
-    archivo,
-    callback
+    archivo
 ) {
 
-    var imagen =
-        new Image();
+
+    return new Promise(
+
+        resolve => {
 
 
-    var finalizado =
-        false;
+            const imagen =
+                new Image();
 
 
-    var urlImagen =
-        construirUrlImagen(
-            archivo
-        );
+            let terminado =
+                false;
 
 
-    var temporizador =
-        setTimeout(
-            function () {
-
-                if (finalizado) {
-                    return;
-                }
-
-
-                finalizado =
-                    true;
-
-
-                callback(
-                    false
+            const urlImagen =
+                construirUrlImagen(
+                    archivo
                 );
 
-            },
-            tiempoMaximoImagen
-        );
 
 
-    imagen.onload =
-        function () {
+            const timeout =
+                setTimeout(
 
-            if (finalizado) {
-                return;
-            }
+                    function () {
 
 
-            finalizado =
-                true;
+                        if (
+                            terminado
+                        ) {
 
+                            return;
 
-            clearTimeout(
-                temporizador
-            );
+                        }
 
 
-            callback(
-                true
-            );
+                        terminado =
+                            true;
 
-        };
 
+                        console.warn(
+                            "Tiempo agotado:",
+                            archivo.name
+                        );
 
-    imagen.onerror =
-        function () {
 
-            if (finalizado) {
-                return;
-            }
+                        resolve(
+                            null
+                        );
 
 
-            finalizado =
-                true;
+                    },
 
+                    tiempoMaximoPrecarga
 
-            clearTimeout(
-                temporizador
-            );
+                );
 
 
-            callback(
-                false
-            );
 
-        };
+            imagen.onload =
+                function () {
 
 
-    imagen.src =
-        urlImagen;
+                    if (
+                        terminado
+                    ) {
 
-}
+                        return;
 
+                    }
 
 
-// ======================================================
-// 18. RESULTADO DE PRECARGA
-// ======================================================
+                    terminado =
+                        true;
 
-function procesarResultadoPrecarga(
-    imagenesOriginales,
-    imagenesValidas,
-    nuevaFirmaOriginal
-) {
 
-    consultaEnProceso =
-        false;
+                    clearTimeout(
+                        timeout
+                    );
 
 
-    estadoDiagnostico.imagenesValidas =
-        imagenesValidas.length;
+                    resolve(
+                        archivo
+                    );
 
 
-    estadoDiagnostico.imagenesConError =
-        imagenesOriginales.length
-        -
-        imagenesValidas.length;
+                };
 
 
-    if (
-        imagenesValidas.length === 0
-    ) {
 
-        finalizarConsultaConError(
-            "La API respondió, pero ninguna imagen pudo descargarse."
-        );
+            imagen.onerror =
+                function () {
 
-        return;
 
-    }
+                    if (
+                        terminado
+                    ) {
 
+                        return;
 
-    var firmaValida =
-        crearFirma(
-            imagenesValidas
-        );
+                    }
 
 
-    /*
-        Primera carga.
-    */
+                    terminado =
+                        true;
 
-    if (
-        !cargaInicialCompletada
-    ) {
 
-        aplicarNuevaLista(
-            imagenesValidas,
-            firmaValida
-        );
+                    clearTimeout(
+                        timeout
+                    );
 
 
-        cargaInicialCompletada =
-            true;
+                    console.warn(
+                        "Error cargando:",
+                        archivo.name
+                    );
 
 
-        estadoDiagnostico.ultimoError =
-            estadoDiagnostico.imagenesConError > 0
-            ? "Algunas imágenes no pudieron cargarse."
-            : "Ninguno";
+                    resolve(
+                        null
+                    );
 
 
-        establecerEstado(
-            "ok",
-            imagenesValidas.length
-            + " imágenes cargadas"
-        );
+                };
 
 
-        programarConsulta(
-            intervaloConsultaNormal
-        );
 
+            imagen.src =
+                urlImagen;
 
-        return;
 
-    }
+        }
 
-
-    /*
-        Si la lista validada es igual a la actual,
-        no hacemos cambios.
-    */
-
-    if (
-        firmaValida ===
-        firmaImagenesActual
-    ) {
-
-        imagenesPendientes =
-            null;
-
-
-        firmaPendiente =
-            "";
-
-
-        establecerEstado(
-            "ok",
-            slides.length
-            + " imágenes activas"
-        );
-
-
-        programarConsulta(
-            intervaloConsultaNormal
-        );
-
-
-        return;
-
-    }
-
-
-    /*
-        Guardar actualización.
-
-        Se aplicará al finalizar la vuelta actual.
-    */
-
-    imagenesPendientes =
-        imagenesValidas;
-
-
-    firmaPendiente =
-        firmaValida;
-
-
-    establecerEstado(
-        "ok",
-        "Actualización preparada"
-    );
-
-
-    programarConsulta(
-        intervaloConsultaNormal
     );
 
 }
@@ -1994,56 +1625,7 @@ function procesarResultadoPrecarga(
 
 
 // ======================================================
-// 19. ERROR DE CONSULTA
-// ======================================================
-
-function finalizarConsultaConError(
-    mensaje
-) {
-
-    consultaEnProceso =
-        false;
-
-
-    estadoDiagnostico.ultimoError =
-        mensaje;
-
-
-    establecerEstado(
-        "error",
-        mensaje
-    );
-
-
-    /*
-        Si todavía no existe presentación,
-        mostramos el mensaje.
-
-        Si ya hay imágenes visibles,
-        se conservan.
-    */
-
-    if (
-        !cargaInicialCompletada
-    ) {
-
-        mostrarMensaje(
-            "Intentando cargar las imágenes..."
-        );
-
-    }
-
-
-    programarConsulta(
-        intervaloReintentoError
-    );
-
-}
-
-
-
-// ======================================================
-// 20. APLICAR NUEVA LISTA
+// 10. APLICAR NUEVA LISTA
 // ======================================================
 
 function aplicarNuevaLista(
@@ -2051,38 +1633,38 @@ function aplicarNuevaLista(
     nuevaFirma
 ) {
 
+
     if (
         !imagenes
         ||
         imagenes.length === 0
     ) {
 
+
         return;
 
-    }
-
-
-    if (
-        timerSlide !== null
-    ) {
-
-        clearTimeout(
-            timerSlide
-        );
 
     }
 
 
-    var contenedorPrincipal =
+
+    clearTimeout(
+        timerSlide
+    );
+
+
+
+    const contenedorPrincipal =
         document.getElementById(
             "slideshow"
         );
 
 
-    var contenedorFondos =
+    const contenedorFondos =
         document.getElementById(
             "bg-ambientes"
         );
+
 
 
     if (
@@ -2091,143 +1673,153 @@ function aplicarNuevaLista(
         !contenedorFondos
     ) {
 
-        finalizarConsultaConError(
-            "No se encontraron los contenedores de la presentación."
+
+        throw new Error(
+            "No se encontraron los contenedores."
         );
 
-        return;
 
     }
 
 
-    var fragmentoSlides =
+
+    const fragmentoSlides =
         document.createDocumentFragment();
 
 
-    var fragmentoFondos =
+    const fragmentoFondos =
         document.createDocumentFragment();
 
 
-    var indice;
+
+    imagenes.forEach(
+
+        (archivo, index) => {
 
 
-    for (
-        indice = 0;
-        indice < imagenes.length;
-        indice++
-    ) {
-
-        var archivo =
-            imagenes[indice];
+            const urlImagen =
+                construirUrlImagen(
+                    archivo
+                );
 
 
-        var urlImagen =
-            construirUrlImagen(
-                archivo
+
+            // ==========================================
+            // IMAGEN PRINCIPAL
+            // ==========================================
+
+            const slide =
+                document.createElement(
+                    "img"
+                );
+
+
+            slide.className =
+                "slide";
+
+
+            slide.src =
+                urlImagen;
+
+
+            slide.alt =
+                archivo.name;
+
+
+            slide.dataset.nombre =
+                archivo.name;
+
+
+            slide.dataset.sha =
+                archivo.sha;
+
+
+            slide.dataset.tiempo =
+                String(
+                    tiempoPredeterminado
+                );
+
+
+
+            if (
+                index === 0
+            ) {
+
+
+                slide.classList.add(
+                    "active"
+                );
+
+
+            }
+
+
+
+            fragmentoSlides.appendChild(
+                slide
             );
 
 
-        // ==============================================
-        // IMAGEN PRINCIPAL
-        // ==============================================
 
-        var slide =
-            document.createElement(
-                "img"
+            // ==========================================
+            // FONDO
+            // ==========================================
+
+            const fondo =
+                document.createElement(
+                    "img"
+                );
+
+
+            fondo.className =
+                "slide-bg";
+
+
+            fondo.src =
+                urlImagen;
+
+
+            fondo.alt =
+                "";
+
+
+            fondo.setAttribute(
+                "aria-hidden",
+                "true"
             );
 
 
-        slide.className =
-            "slide";
+
+            if (
+                index === 0
+            ) {
 
 
-        slide.src =
-            urlImagen;
+                fondo.classList.add(
+                    "active"
+                );
 
 
-        slide.alt =
-            archivo.name;
+            }
 
 
-        slide.setAttribute(
-            "data-tiempo",
-            String(
-                tiempoPredeterminado
-            )
-        );
 
+            fragmentoFondos.appendChild(
+                fondo
+            );
 
-        slide.setAttribute(
-            "data-nombre",
-            archivo.name
-        );
-
-
-        slide.setAttribute(
-            "data-sha",
-            archivo.sha
-        );
-
-
-        if (indice === 0) {
-
-            slide.className +=
-                " active";
 
         }
 
-
-        fragmentoSlides.appendChild(
-            slide
-        );
+    );
 
 
-        // ==============================================
-        // FONDO
-        // ==============================================
 
-        var fondo =
-            document.createElement(
-                "img"
-            );
-
-
-        fondo.className =
-            "slide-bg";
-
-
-        fondo.src =
-            urlImagen;
-
-
-        fondo.alt =
-            "";
-
-
-        fondo.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        if (indice === 0) {
-
-            fondo.className +=
-                " active";
-
-        }
-
-
-        fragmentoFondos.appendChild(
-            fondo
-        );
-
-    }
-
-
-    /*
-        No usamos replaceChildren().
-    */
+    // ==================================================
+    // CAMBIO DE COMPATIBILIDAD
+    //
+    // NO usamos replaceChildren().
+    // ==================================================
 
     contenedorPrincipal.innerHTML =
         "";
@@ -2247,57 +1839,22 @@ function aplicarNuevaLista(
     );
 
 
-    /*
-        Convertimos NodeList en arreglos usando ciclos.
-        No usamos Array.from().
-    */
+
+    // ==================================================
+    // ACTUALIZAR COLECCIONES
+    // ==================================================
 
     slides =
-        [];
+        document.querySelectorAll(
+            "#slideshow .slide"
+        );
 
 
     backgroundSlides =
-        [];
-
-
-    var nodosSlides =
-        contenedorPrincipal
-            .getElementsByTagName(
-                "img"
-            );
-
-
-    var nodosFondos =
-        contenedorFondos
-            .getElementsByTagName(
-                "img"
-            );
-
-
-    for (
-        indice = 0;
-        indice < nodosSlides.length;
-        indice++
-    ) {
-
-        slides.push(
-            nodosSlides[indice]
+        document.querySelectorAll(
+            "#bg-ambientes .slide-bg"
         );
 
-    }
-
-
-    for (
-        indice = 0;
-        indice < nodosFondos.length;
-        indice++
-    ) {
-
-        backgroundSlides.push(
-            nodosFondos[indice]
-        );
-
-    }
 
 
     currentIndex =
@@ -2316,6 +1873,14 @@ function aplicarNuevaLista(
         "";
 
 
+
+    console.log(
+        "Slideshow cargado:",
+        slides.length
+    );
+
+
+
     programarSiguienteCambio();
 
 }
@@ -2323,33 +1888,37 @@ function aplicarNuevaLista(
 
 
 // ======================================================
-// 21. CAMBIAR IMAGEN
+// 11. CAMBIAR SLIDE
 // ======================================================
 
-function cambiarSlide() {
+function changeSlide() {
+
 
     if (
-        !slides
-        ||
         slides.length === 0
     ) {
 
+
         return;
+
 
     }
 
 
-    /*
-        Si solo existe una imagen.
-    */
+
+    // ==================================================
+    // SOLO UNA IMAGEN
+    // ==================================================
 
     if (
         slides.length === 1
     ) {
 
+
         if (
             imagenesPendientes !== null
         ) {
+
 
             aplicarNuevaLista(
                 imagenesPendientes,
@@ -2359,7 +1928,9 @@ function cambiarSlide() {
 
             return;
 
+
         }
+
 
 
         programarSiguienteCambio();
@@ -2370,7 +1941,8 @@ function cambiarSlide() {
     }
 
 
-    var siguienteIndice =
+
+    const siguienteIndice =
 
         (
             currentIndex + 1
@@ -2381,19 +1953,23 @@ function cambiarSlide() {
         slides.length;
 
 
-    var vueltaTerminada =
+
+    const vueltaTerminada =
+
         siguienteIndice === 0;
 
 
-    /*
-        Aplicar actualización al terminar la vuelta.
-    */
+
+    // ==================================================
+    // CAMBIO PENDIENTE
+    // ==================================================
 
     if (
         vueltaTerminada
         &&
         imagenesPendientes !== null
     ) {
+
 
         aplicarNuevaLista(
             imagenesPendientes,
@@ -2406,44 +1982,78 @@ function cambiarSlide() {
     }
 
 
-    quitarClase(
-        slides[currentIndex],
-        "active"
-    );
 
+    // ==================================================
+    // DESACTIVAR ACTUAL
+    // ==================================================
 
-    if (
-        backgroundSlides[currentIndex]
-    ) {
-
-        quitarClase(
-            backgroundSlides[currentIndex],
+    slides[
+        currentIndex
+    ]
+        .classList
+        .remove(
             "active"
         );
 
+
+
+    if (
+        backgroundSlides[
+            currentIndex
+        ]
+    ) {
+
+
+        backgroundSlides[
+            currentIndex
+        ]
+            .classList
+            .remove(
+                "active"
+            );
+
+
     }
+
 
 
     currentIndex =
         siguienteIndice;
 
 
-    agregarClase(
-        slides[currentIndex],
-        "active"
-    );
 
+    // ==================================================
+    // ACTIVAR SIGUIENTE
+    // ==================================================
 
-    if (
-        backgroundSlides[currentIndex]
-    ) {
-
-        agregarClase(
-            backgroundSlides[currentIndex],
+    slides[
+        currentIndex
+    ]
+        .classList
+        .add(
             "active"
         );
 
+
+
+    if (
+        backgroundSlides[
+            currentIndex
+        ]
+    ) {
+
+
+        backgroundSlides[
+            currentIndex
+        ]
+            .classList
+            .add(
+                "active"
+            );
+
+
     }
+
 
 
     programarSiguienteCambio();
@@ -2453,67 +2063,62 @@ function cambiarSlide() {
 
 
 // ======================================================
-// 22. PROGRAMAR SIGUIENTE
+// 12. PROGRAMAR PRÓXIMA IMAGEN
 // ======================================================
 
 function programarSiguienteCambio() {
 
+
     if (
-        !slides
-        ||
         slides.length === 0
     ) {
 
-        return;
-
-    }
-
-
-    var valorTiempo =
-        slides[currentIndex]
-            .getAttribute(
-                "data-tiempo"
-            );
-
-
-    var tiempoActual =
-        parseInt(
-            valorTiempo,
-            10
-        );
-
-
-    if (
-        isNaN(
-            tiempoActual
-        )
-    ) {
-
-        tiempoActual =
-            tiempoPredeterminado;
-
-    }
-
-
-    if (
-        timerSlide !== null
-    ) {
 
         clearTimeout(
             timerSlide
         );
 
+
+        return;
+
+
     }
+
+
+
+    const tiempoActual =
+
+        parseInt(
+
+            slides[
+                currentIndex
+            ]
+                .dataset
+                .tiempo,
+
+            10
+
+        )
+
+        ||
+
+        tiempoPredeterminado;
+
+
+
+    clearTimeout(
+        timerSlide
+    );
+
 
 
     timerSlide =
         setTimeout(
-            function () {
 
-                cambiarSlide();
+            changeSlide,
 
-            },
             tiempoActual
+
         );
 
 }
@@ -2521,128 +2126,54 @@ function programarSiguienteCambio() {
 
 
 // ======================================================
-// 23. AGREGAR Y QUITAR CLASES
-// ======================================================
-
-function agregarClase(
-    elemento,
-    nombreClase
-) {
-
-    if (!elemento) {
-        return;
-    }
-
-
-    if (
-        elemento.className.indexOf(
-            nombreClase
-        ) < 0
-    ) {
-
-        elemento.className +=
-            " "
-            +
-            nombreClase;
-
-    }
-
-}
-
-
-
-function quitarClase(
-    elemento,
-    nombreClase
-) {
-
-    if (!elemento) {
-        return;
-    }
-
-
-    var expresion =
-        new RegExp(
-            "(^|\\s)"
-            + nombreClase
-            + "(\\s|$)",
-            "g"
-        );
-
-
-    elemento.className =
-        elemento.className
-            .replace(
-                expresion,
-                " "
-            )
-            .replace(
-                /^\s+|\s+$/g,
-                ""
-            );
-
-}
-
-
-
-// ======================================================
-// 24. MENSAJE
+// 13. MENSAJE
 // ======================================================
 
 function mostrarMensaje(
     mensaje
 ) {
 
-    var contenedor =
+
+    const contenedor =
         document.getElementById(
             "slideshow"
         );
 
 
-    if (!contenedor) {
+    if (
+        !contenedor
+    ) {
+
+
         return;
+
+
     }
+
 
 
     contenedor.innerHTML =
         "";
 
 
-    var elementoMensaje =
+
+    const texto =
         document.createElement(
             "div"
         );
 
 
-    elementoMensaje.className =
+    texto.className =
         "mensaje-estado";
 
 
-    /*
-        textContent no está disponible en algunos
-        navegadores muy antiguos.
-    */
+    texto.textContent =
+        mensaje;
 
-    if (
-        typeof elementoMensaje.textContent !==
-        "undefined"
-    ) {
-
-        elementoMensaje.textContent =
-            mensaje;
-
-    }
-
-    else {
-
-        elementoMensaje.innerText =
-            mensaje;
-
-    }
 
 
     contenedor.appendChild(
-        elementoMensaje
+        texto
     );
 
 }
@@ -2650,163 +2181,172 @@ function mostrarMensaje(
 
 
 // ======================================================
-// 25. RELOJ Y FECHA
-//
-// Evitamos depender de configuraciones avanzadas
-// de toLocaleDateString.
+// 14. RELOJ + FECHA + MODO ECO
 // ======================================================
 
 function actualizarTiempo() {
 
-    var ahora =
+
+    const ahora =
         new Date();
 
 
-    var horas =
-        ahora.getHours();
+
+    // ==================================================
+    // HORA
+    // ==================================================
+
+    const opcionesReloj = {
+
+        hour:
+            "numeric",
+
+        minute:
+            "2-digit",
+
+        hour12:
+            true
+
+    };
 
 
-    var minutos =
-        ahora.getMinutes();
+
+    let hora12 =
+        ahora.toLocaleTimeString(
+            "es-CR",
+            opcionesReloj
+        );
 
 
-    if (
-        minutos < 10
-    ) {
 
-        minutos =
-            "0"
-            +
-            minutos;
-
-    }
-
-
-    /*
-        Convertir a 12 horas sin AM/PM.
-    */
-
-    var horaDoce =
-        horas % 12;
+    hora12 =
+        hora12
+            .replace(
+                /\./g,
+                ""
+            )
+            .replace(
+                /[a-zA-Z]/g,
+                ""
+            )
+            .trim();
 
 
-    if (
-        horaDoce === 0
-    ) {
 
-        horaDoce =
-            12;
-
-    }
-
-
-    var textoHora =
-        horaDoce
-        + ":"
-        + minutos;
-
-
-    var elementoReloj =
+    const elementoReloj =
         document.getElementById(
             "reloj"
         );
 
 
-    if (elementoReloj) {
 
-        establecerTexto(
-            elementoReloj,
-            textoHora
-        );
+    if (
+        elementoReloj
+    ) {
+
+
+        elementoReloj.textContent =
+            hora12;
+
 
     }
 
 
-    var diasSemana = [
-        "Domingo",
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado"
-    ];
+
+    // ==================================================
+    // FECHA
+    // ==================================================
+
+    const opcionesFecha = {
+
+        weekday:
+            "long",
+
+        day:
+            "numeric",
+
+        month:
+            "long"
+
+    };
 
 
-    var meses = [
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
-        "diciembre"
-    ];
+
+    let fechaTexto =
+        ahora.toLocaleDateString(
+            "es-ES",
+            opcionesFecha
+        );
 
 
-    var textoFecha =
 
-        diasSemana[
-            ahora.getDay()
-        ]
+    fechaTexto =
 
-        + " "
+        fechaTexto
+            .charAt(0)
+            .toUpperCase()
 
-        + ahora.getDate()
+        +
 
-        + " de "
-
-        + meses[
-            ahora.getMonth()
-        ];
+        fechaTexto
+            .slice(1);
 
 
-    var elementoFecha =
+
+    const elementoFecha =
         document.getElementById(
             "fecha"
         );
 
 
-    if (elementoFecha) {
 
-        establecerTexto(
-            elementoFecha,
-            textoFecha
-        );
+    if (
+        elementoFecha
+    ) {
+
+
+        elementoFecha.textContent =
+            fechaTexto;
+
 
     }
 
 
-    /*
-        Modo eco:
-        antes de las 7:00
-        y desde las 16:00.
-    */
+
+    // ==================================================
+    // MODO ECO
+    // ==================================================
+
+    const horaActual =
+        ahora.getHours();
+
+
 
     if (
-        horas < 7
+        horaActual < 7
         ||
-        horas >= 16
+        horaActual >= 16
     ) {
 
-        agregarClase(
-            document.body,
-            "modo-eco"
-        );
+
+        document.body
+            .classList
+            .add(
+                "modo-eco"
+            );
+
 
     }
 
     else {
 
-        quitarClase(
-            document.body,
-            "modo-eco"
-        );
+
+        document.body
+            .classList
+            .remove(
+                "modo-eco"
+            );
+
 
     }
 
@@ -2815,71 +2355,52 @@ function actualizarTiempo() {
 
 
 // ======================================================
-// 26. ESTABLECER TEXTO
-// ======================================================
-
-function establecerTexto(
-    elemento,
-    texto
-) {
-
-    if (!elemento) {
-        return;
-    }
-
-
-    if (
-        typeof elemento.textContent !==
-        "undefined"
-    ) {
-
-        elemento.textContent =
-            texto;
-
-    }
-
-    else {
-
-        elemento.innerText =
-            texto;
-
-    }
-
-}
-
-
-
-// ======================================================
-// 27. PIXEL SHIFT
+// 15. PIXEL SHIFT
 // ======================================================
 
 function ejecutarPixelShift() {
 
-    var barra =
+
+    const barra =
         document.getElementById(
             "barra-institucional"
         );
 
 
-    if (!barra) {
+    if (
+        !barra
+    ) {
+
+
         return;
+
+
     }
 
 
-    var desvioTop =
+
+    const desvioTop =
+
         Math.floor(
             Math.random() * 5
         )
+
         -
+
         2;
 
 
-    var desvioLeft =
+
+    const desvioLeft =
+
         Math.floor(
             Math.random() * 5
         )
+
         -
+
         2;
+
 
 
     barra.style.top =
@@ -2898,68 +2419,35 @@ function ejecutarPixelShift() {
 
 
 // ======================================================
-// 28. INICIAR
+// 16. INICIAR
 // ======================================================
 
-function iniciarPantalla() {
 
-    var indicador =
-        document.getElementById(
-            "indicador-estado"
-        );
+// Reloj inmediatamente.
+
+actualizarTiempo();
 
 
-    agregarEvento(
-        indicador,
-        "click",
-        alternarPanelDiagnostico
-    );
+// Primera consulta.
+
+consultarImagenesGitHub();
 
 
-    actualizarTiempo();
+// Reloj cada 15 segundos.
+
+setInterval(
+    actualizarTiempo,
+    15000
+);
 
 
-    consultarImagenesGitHub();
+// Pixel Shift cada minuto.
 
+setInterval(
+    ejecutarPixelShift,
+    60000
+);
 
-    setInterval(
-        actualizarTiempo,
-        15000
-    );
-
-
-    setInterval(
-        ejecutarPixelShift,
-        60000
-    );
-
-}
-
-
-
-// ======================================================
-// 29. INICIAR AL TERMINAR DE CARGAR EL HTML
-// ======================================================
-
-if (
-    document.readyState === "complete"
-    ||
-    document.readyState === "interactive"
-) {
-
-    iniciarPantalla();
-
-}
-
-else {
-
-    agregarEvento(
-        window,
-        "load",
-        iniciarPantalla
-    );
-
-}
 
 
 /*
@@ -2967,20 +2455,20 @@ else {
 
 IMPORTANTE
 
-Este código no utiliza location.reload().
+NO EXISTE location.reload()
 
-La página sigue abierta y consulta cambios mediante
-XMLHttpRequest.
+Funcionamiento:
 
-Si la consulta falla:
-
-- no recarga el navegador;
-- no vuelve a pedir aceptar certificados;
-- reintenta después de 30 segundos;
-- conserva las imágenes anteriores si ya estaban visibles.
-
-Selecciona el punto de estado para mostrar el panel de
-diagnóstico.
+1. La página se carga manualmente.
+2. Se aceptan los certificados necesarios.
+3. GitHub devuelve la lista de imágenes.
+4. Las imágenes se descargan mediante download_url.
+5. Se precargan antes de mostrarse.
+6. Cada 5 minutos se consulta si hubo cambios.
+7. Si no cambió nada, no se toca el slideshow.
+8. Si hubo cambios, se aplican al terminar la vuelta.
+9. Si GitHub falla, se conservan las imágenes existentes.
+10. Si falla la carga inicial, reintenta a los 30 segundos.
 
 =========================================================
 */
