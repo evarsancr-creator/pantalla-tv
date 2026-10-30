@@ -211,20 +211,207 @@
     </div>
 
 <script>
-    // 1. CONTROL DEL SLIDESHOW
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const backgroundSlides = document.querySelectorAll('.slide-bg');
-    let timerID = null;
 
-    function changeSlide() {
-        if (slides.length > 1) {
-            slides[currentIndex].classList.remove('active');
-            backgroundSlides[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % slides.length;
-            slides[currentIndex].classList.add('active');
-            backgroundSlides[currentIndex].classList.add('active');
+// ======================================================
+// 1. CARGA AUTOMÁTICA DE IMÁGENES DESDE GITHUB
+// ======================================================
+
+let currentIndex = 0;
+let slides = [];
+let backgroundSlides = [];
+let timerID = null;
+
+// CAMBIAR ESTOS DOS VALORES
+const usuarioGitHub = "evarsancr";
+const repositorioGitHub = "pantalla-tv";
+
+// Carpeta donde colocamos las imágenes
+const carpetaImagenes = "imagenes";
+
+async function cargarImagenes() {
+
+    try {
+
+        const apiURL =
+            `https://api.github.com/repos/${usuarioGitHub}/${repositorioGitHub}/contents/${carpetaImagenes}`;
+
+        const respuesta = await fetch(apiURL);
+
+        if (!respuesta.ok) {
+            throw new Error(
+                `Error al consultar GitHub: ${respuesta.status}`
+            );
         }
+
+        const archivos = await respuesta.json();
+
+        // Solo tomar archivos de imagen
+        const imagenes = archivos.filter(archivo =>
+            archivo.type === "file" &&
+            /\.(png|jpg|jpeg|webp|gif)$/i.test(archivo.name)
+        );
+
+        if (imagenes.length === 0) {
+            console.warn("No se encontraron imágenes en la carpeta.");
+            return;
+        }
+
+        const contenedorPrincipal =
+            document.getElementById("slideshow");
+
+        const contenedorFondos =
+            document.getElementById("bg-ambientes");
+
+
+        // Limpiar por si posteriormente recargamos las imágenes
+        contenedorPrincipal.innerHTML = "";
+        contenedorFondos.innerHTML = "";
+
+
+        imagenes.forEach((archivo, index) => {
+
+            // ==========================================
+            // IMAGEN PRINCIPAL
+            // ==========================================
+
+            const slide = document.createElement("img");
+
+            slide.className = "slide";
+
+            slide.src = archivo.download_url;
+
+            slide.alt = archivo.name;
+
+            // Todas estarán 8 segundos
+            slide.dataset.tiempo = "8000";
+
+            if (index === 0) {
+                slide.classList.add("active");
+            }
+
+            contenedorPrincipal.appendChild(slide);
+
+
+            // ==========================================
+            // FONDO DESENFOCADO
+            // ==========================================
+
+            const fondo = document.createElement("img");
+
+            fondo.className = "slide-bg";
+
+            fondo.src = archivo.download_url;
+
+            fondo.alt = "";
+
+            if (index === 0) {
+                fondo.classList.add("active");
+            }
+
+            contenedorFondos.appendChild(fondo);
+
+        });
+
+
+        // Obtener nuevamente las imágenes creadas
+        slides = document.querySelectorAll(".slide");
+
+        backgroundSlides =
+            document.querySelectorAll(".slide-bg");
+
+
+        // Arrancar desde la primera imagen
+        currentIndex = 0;
+
+        programarSiguienteCambio();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error cargando las imágenes:",
+            error
+        );
+
+    }
+
+}
+
+
+// ======================================================
+// CAMBIO DE IMAGEN
+// ======================================================
+
+function changeSlide() {
+
+    if (slides.length === 0) {
+        return;
+    }
+
+    if (slides.length > 1) {
+
+        slides[currentIndex].classList.remove("active");
+
+        backgroundSlides[currentIndex]
+            .classList.remove("active");
+
+
+        currentIndex =
+            (currentIndex + 1) % slides.length;
+
+
+        slides[currentIndex]
+            .classList.add("active");
+
+        backgroundSlides[currentIndex]
+            .classList.add("active");
+
+    }
+
+    programarSiguienteCambio();
+
+}
+
+
+// ======================================================
+// PROGRAMAR SIGUIENTE CAMBIO
+// ======================================================
+
+function programarSiguienteCambio() {
+
+    if (slides.length === 0) {
+        return;
+    }
+
+    const tiempoActual =
+        parseInt(
+            slides[currentIndex].dataset.tiempo
+        ) || 8000;
+
+
+    clearTimeout(timerID);
+
+    timerID =
+        setTimeout(
+            changeSlide,
+            tiempoActual
+        );
+
+}
+
+
+// ======================================================
+// INICIAR
+// ======================================================
+
+cargarImagenes();
+
+
+    
+
+
+
+    
         programarSiguienteCambio();
     }
 
