@@ -1,376 +1,1034 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Pantalla Corporativa DABS</title>
+
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body, html { 
-            width: 100%; 
-            height: 100%; 
-            overflow: hidden; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body,
+        html {
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            font-family:
+                'Segoe UI',
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
             background-color: #0d1117;
         }
-        
+
+
+        /* =====================================================
+           CONTENEDOR GENERAL
+        ===================================================== */
+
         .pantalla-completa {
+
             display: flex;
             flex-direction: column;
+
             width: 100vw;
             height: 100vh;
+
             padding: 20px;
+
             gap: 15px;
+
             position: relative;
+
             z-index: 5;
         }
 
-        /* MARCO SUPERIOR: Cristal Ultra Traslúcido Corregido */
+
+
+        /* =====================================================
+           MARCO SUPERIOR
+        ===================================================== */
+
         .marco-superior {
+
             width: 100%;
             height: 15vh;
-            /* CORRECCIÓN: Fondo más transparente (0.15) y mayor desenfoque (25px) */
-            background: rgba(13, 17, 23, 0.15);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            background:
+                rgba(13, 17, 23, 0.15);
+
+            backdrop-filter:
+                blur(5px);
+
+            -webkit-backdrop-filter:
+                blur(5px);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
             border-radius: 16px;
+
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
+            justify-content:
+                space-between;
+
+            padding:
+                0 30px;
+
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
             position: relative;
-            top: 0; left: 0;
-            transition: top 0.5s ease, left 0.5s ease, opacity 1s ease, filter 1s ease;
+
+            top: 0;
+
+            left: 0;
+
+            transition:
+                top 0.5s ease,
+                left 0.5s ease,
+                opacity 1s ease,
+                filter 1s ease;
         }
+
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
 
         .contenedor-logo {
+
             height: 80%;
+
             display: flex;
+
             align-items: center;
         }
-        
+
+
         .logo-ccss {
+
             height: 100%;
+
             object-fit: contain;
-            filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.15));
+
+            filter:
+                drop-shadow(
+                    0px 0px 8px
+                    rgba(255, 255, 255, 0.15)
+                );
         }
+
+
+
+        /* =====================================================
+           TÍTULOS
+        ===================================================== */
 
         .bloque-titulos {
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
+
             flex-grow: 1;
-            padding: 0 20px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8); /* Sombra de texto reforzada para lectura ultra clara */
+
+            padding:
+                0 20px;
+
+            text-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, 0.8);
         }
 
+
         .texto-institucion-gerencia {
-            color: #60a5fa; 
+
+            color: #60a5fa;
+
             font-size: 1.1vw;
+
             font-weight: 600;
+
             letter-spacing: 1px;
-            text-transform: uppercase;
+
+            text-transform:
+                uppercase;
+
             margin-bottom: 2px;
         }
 
+
         .texto-direccion {
-            color: #e2e8f0; 
+
+            color: #e2e8f0;
+
             font-size: 1.9vw;
+
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+
+            letter-spacing:
+                0.5px;
+
+            text-transform:
+                uppercase;
+
             text-align: center;
         }
 
+
+
+        /* =====================================================
+           RELOJ
+        ===================================================== */
+
         .tiempo-contenedor {
+
             display: flex;
+
             flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                center;
+
             min-width: 220px;
         }
 
+
         .reloj {
-            color: #cbd5e1; 
+
+            color: #cbd5e1;
+
             font-size: 2.4vw;
+
             font-weight: 700;
-            font-family: 'Segoe UI', sans-serif;
-            text-shadow: 0 0 8px rgba(224, 242, 254, 0.2), 0 2px 4px rgba(0,0,0,0.6);
+
+            font-family:
+                'Segoe UI',
+                sans-serif;
+
+            text-shadow:
+                0 0 8px rgba(224, 242, 254, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.6);
+
             line-height: 1;
+
             margin-bottom: 4px;
-            letter-spacing: -1px;
+
+            letter-spacing:
+                -1px;
         }
+
 
         .fecha {
-            color: #94a3b8; 
+
+            color: #94a3b8;
+
             font-size: 1.1vw;
+
             font-weight: 500;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+
+            letter-spacing:
+                0.5px;
+
+            text-shadow:
+                0 1px 3px
+                rgba(0, 0, 0, 0.6);
         }
 
-        .slideshow-container { 
+
+
+        /* =====================================================
+           SLIDESHOW
+        ===================================================== */
+
+        .slideshow-container {
+
             width: 100%;
+
             height: 79vh;
-            position: relative; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background-color: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+
+            position: relative;
+
+            display: flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            background-color:
+                rgba(0, 0, 0, 0.2);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius:
+                20px;
+
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0, 0, 0, 0.6);
         }
-        
-        img.slide { 
+
+
+
+        /* =====================================================
+           IMÁGENES PRINCIPALES
+        ===================================================== */
+
+        img.slide {
+
             position: absolute;
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
-            opacity: 0; 
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+            object-fit:
+                contain;
+
+            opacity: 0;
+
             z-index: 2;
-            transform: scale(0.97);
-            transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out; 
+
+            transform:
+                scale(0.97);
+
+            transition:
+                opacity 1.2s ease-in-out,
+                transform 1.2s ease-in-out;
         }
-        
-        img.slide.active { 
-            opacity: 1; 
-            transform: scale(1);
+
+
+        img.slide.active {
+
+            opacity: 1;
+
+            transform:
+                scale(1);
         }
+
+
+
+        /* =====================================================
+           FONDO AMBIENTE
+        ===================================================== */
 
         .background-ambientes {
+
             position: absolute;
+
             top: 0;
+
             left: 0;
+
             width: 100vw;
+
             height: 100vh;
+
             z-index: 1;
+
             overflow: hidden;
-            transition: filter 1s ease;
+
+            transition:
+                filter 1s ease;
         }
+
 
         img.slide-bg {
+
             position: absolute;
+
             width: 100%;
+
             height: 100%;
+
             object-fit: cover;
+
             opacity: 0;
-            filter: blur(60px) brightness(0.4) saturate(1.4); 
-            transition: opacity 1.2s ease-in-out;
+
+            filter:
+                blur(60px)
+                brightness(0.4)
+                saturate(1.4);
+
+            transition:
+                opacity 1.2s ease-in-out;
         }
 
+
         img.slide-bg.active {
+
             opacity: 1;
         }
 
-        /* MODO PROTECCIÓN NOCTURNO (4:00 PM) */
+
+
+        /* =====================================================
+           MODO PROTECCIÓN
+        ===================================================== */
+
         .modo-eco .marco-superior {
-            opacity: 0.3; /* Un poco más oscuro de noche para proteger el panel */
-            background: rgba(13, 17, 23, 0.3);
-            filter: grayscale(0.5);
+
+            opacity: 0.3;
+
+            background:
+                rgba(13, 17, 23, 0.3);
+
+            filter:
+                grayscale(0.5);
         }
+
+
         .modo-eco .background-ambientes {
-            filter: brightness(0.1); 
+
+            filter:
+                brightness(0.1);
         }
+
+
+        /* =====================================================
+           MENSAJE EN CASO DE ERROR
+        ===================================================== */
+
+        .mensaje-error {
+
+            color: #e2e8f0;
+
+            font-size: 1.3vw;
+
+            text-align: center;
+
+            padding: 30px;
+
+            z-index: 10;
+        }
+
     </style>
+
 </head>
+
+
+
 <body>
 
-    <div class="background-ambientes" id="bg-ambientes">
-       
-        
+
+    <!-- =====================================================
+         FONDO DINÁMICO
+    ====================================================== -->
+
+    <div
+        class="background-ambientes"
+        id="bg-ambientes">
     </div>
 
-    <div class="pantalla-completa" id="contenedor-principal">
 
-        <header class="marco-superior" id="barra-institucional">
+
+    <!-- =====================================================
+         CONTENIDO GENERAL
+    ====================================================== -->
+
+    <div
+        class="pantalla-completa"
+        id="contenedor-principal">
+
+
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <header
+            class="marco-superior"
+            id="barra-institucional">
+
+
             <div class="contenedor-logo">
-                <img class="logo-ccss" src="logo-ccss.png" alt="Logo CCSS">
+
+                <img
+                    class="logo-ccss"
+                    src="logo-ccss.png"
+                    alt="Logo CCSS">
+
             </div>
-            
+
+
+
             <div class="bloque-titulos">
-                <h2 class="texto-institucion-gerencia">Caja Costarricense de Seguro Social - Gerencia de Logística</h2>
-                <h1 class="texto-direccion">Dirección de Aprovisionamiento de Bienes y Servicios</h1>
+
+                <h2 class="texto-institucion-gerencia">
+
+                    Caja Costarricense de Seguro Social -
+                    Gerencia de Logística
+
+                </h2>
+
+
+                <h1 class="texto-direccion">
+
+                    Dirección de Aprovisionamiento
+                    de Bienes y Servicios
+
+                </h1>
+
             </div>
-            
+
+
+
             <div class="tiempo-contenedor">
-                <div class="reloj" id="reloj">00:00</div>
-                <div class="fecha" id="fecha">Cargando...</div>
+
+                <div
+                    class="reloj"
+                    id="reloj">
+
+                    00:00
+
+                </div>
+
+
+                <div
+                    class="fecha"
+                    id="fecha">
+
+                    Cargando...
+
+                </div>
+
             </div>
+
+
         </header>
 
-        <main class="slideshow-container">
-            
+
+
+        <!-- =================================================
+             SLIDESHOW
+             
+             IMPORTANTE:
+             JavaScript insertará automáticamente aquí
+             todas las imágenes encontradas en /imagenes
+        ================================================== -->
+
+        <main
+            class="slideshow-container"
+            id="slideshow">
         </main>
 
+
     </div>
+
+
+
 
 <script>
 
+
 // ======================================================
-// 1. CARGA AUTOMÁTICA DE IMÁGENES DESDE GITHUB
+// CONFIGURACIÓN GENERAL
+// ======================================================
+
+const usuarioGitHub =
+    "evarsancr-creator";
+
+const repositorioGitHub =
+    "pantalla-tv";
+
+const carpetaImagenes =
+    "imagenes";
+
+
+const tiempoPredeterminado =
+    8000;
+
+
+
+// ======================================================
+// VARIABLES DEL SLIDESHOW
 // ======================================================
 
 let currentIndex = 0;
+
 let slides = [];
+
 let backgroundSlides = [];
+
 let timerID = null;
 
-// CAMBIAR ESTOS DOS VALORES
-const usuarioGitHub = "evarsancr-creator";
-const repositorioGitHub = "pantalla-tv";
 
-// Carpeta donde colocamos las imágenes
-const carpetaImagenes = "imagenes";
+
+// ======================================================
+// CARGAR IMÁGENES DE GITHUB
+// ======================================================
 
 async function cargarImagenes() {
 
+
     try {
+
+
+        // -----------------------------------------------
+        // CONSTRUIR URL DE LA API
+        // -----------------------------------------------
 
         const apiURL =
             `https://api.github.com/repos/${usuarioGitHub}/${repositorioGitHub}/contents/${carpetaImagenes}`;
 
-        const respuesta = await fetch(apiURL);
 
-        if (!respuesta.ok) {
-            throw new Error(
-                `Error al consultar GitHub: ${respuesta.status}`
-            );
-        }
-
-        const archivos = await respuesta.json();
-
-        // Solo tomar archivos de imagen
-        const imagenes = archivos.filter(archivo =>
-            archivo.type === "file" &&
-            /\.(png|jpg|jpeg|webp|gif)$/i.test(archivo.name)
+        console.log(
+            "Consultando imágenes:",
+            apiURL
         );
 
-        if (imagenes.length === 0) {
-            console.warn("No se encontraron imágenes en la carpeta.");
-            return;
+
+
+        // -----------------------------------------------
+        // CONSULTAR GITHUB
+        // -----------------------------------------------
+
+        const respuesta =
+            await fetch(
+                apiURL,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                `GitHub respondió con estado ${respuesta.status}`
+            );
+
         }
 
+
+
+        const archivos =
+            await respuesta.json();
+
+
+
+        // -----------------------------------------------
+        // FILTRAR SOLAMENTE IMÁGENES
+        // -----------------------------------------------
+
+        const imagenes =
+            archivos.filter(
+                archivo =>
+
+                    archivo.type === "file"
+
+                    &&
+
+                    /\.(png|jpg|jpeg|webp|gif)$/i
+                        .test(archivo.name)
+            );
+
+
+
+        console.log(
+            "Imágenes encontradas:",
+            imagenes.length
+        );
+
+
+
+        // -----------------------------------------------
+        // VERIFICAR QUE EXISTAN IMÁGENES
+        // -----------------------------------------------
+
+        if (imagenes.length === 0) {
+
+            mostrarError(
+                "No se encontraron imágenes en la carpeta."
+            );
+
+            return;
+
+        }
+
+
+
+        // -----------------------------------------------
+        // LOCALIZAR CONTENEDORES
+        // -----------------------------------------------
+
         const contenedorPrincipal =
-            document.getElementById("slideshow");
+            document.getElementById(
+                "slideshow"
+            );
+
 
         const contenedorFondos =
-            document.getElementById("bg-ambientes");
+            document.getElementById(
+                "bg-ambientes"
+            );
 
 
-        // Limpiar por si posteriormente recargamos las imágenes
-        contenedorPrincipal.innerHTML = "";
-        contenedorFondos.innerHTML = "";
+
+        if (!contenedorPrincipal) {
+
+            throw new Error(
+                'No se encontró el contenedor "slideshow".'
+            );
+
+        }
 
 
-        imagenes.forEach((archivo, index) => {
 
-            // ==========================================
-            // IMAGEN PRINCIPAL
-            // ==========================================
+        if (!contenedorFondos) {
 
-            const slide = document.createElement("img");
+            throw new Error(
+                'No se encontró el contenedor "bg-ambientes".'
+            );
 
-            slide.className = "slide";
+        }
 
-            slide.src = archivo.download_url;
 
-            slide.alt = archivo.name;
 
-            // Todas estarán 8 segundos
-            slide.dataset.tiempo = "8000";
+        // -----------------------------------------------
+        // DETENER TEMPORIZADOR ANTERIOR
+        // -----------------------------------------------
 
-            if (index === 0) {
-                slide.classList.add("active");
+        clearTimeout(
+            timerID
+        );
+
+
+
+        // -----------------------------------------------
+        // LIMPIAR CONTENEDORES
+        // -----------------------------------------------
+
+        contenedorPrincipal.innerHTML =
+            "";
+
+        contenedorFondos.innerHTML =
+            "";
+
+
+
+        // -----------------------------------------------
+        // CREAR CADA IMAGEN
+        // -----------------------------------------------
+
+        imagenes.forEach(
+            (archivo, index) => {
+
+
+                // =======================================
+                // IMAGEN PRINCIPAL
+                // =======================================
+
+                const slide =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                slide.className =
+                    "slide";
+
+
+                slide.src =
+                    archivo.download_url;
+
+
+                slide.alt =
+                    archivo.name;
+
+
+                slide.dataset.tiempo =
+                    tiempoPredeterminado;
+
+
+
+                if (index === 0) {
+
+                    slide.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+
+                contenedorPrincipal
+                    .appendChild(
+                        slide
+                    );
+
+
+
+
+                // =======================================
+                // IMAGEN DE FONDO
+                // =======================================
+
+                const fondo =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                fondo.className =
+                    "slide-bg";
+
+
+                fondo.src =
+                    archivo.download_url;
+
+
+                fondo.alt =
+                    "";
+
+
+
+                if (index === 0) {
+
+                    fondo.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+
+                contenedorFondos
+                    .appendChild(
+                        fondo
+                    );
+
+
             }
-
-            contenedorPrincipal.appendChild(slide);
-
-
-            // ==========================================
-            // FONDO DESENFOCADO
-            // ==========================================
-
-            const fondo = document.createElement("img");
-
-            fondo.className = "slide-bg";
-
-            fondo.src = archivo.download_url;
-
-            fondo.alt = "";
-
-            if (index === 0) {
-                fondo.classList.add("active");
-            }
-
-            contenedorFondos.appendChild(fondo);
-
-        });
+        );
 
 
-        // Obtener nuevamente las imágenes creadas
-        slides = document.querySelectorAll(".slide");
+
+        // -----------------------------------------------
+        // ACTUALIZAR LISTAS DE SLIDES
+        // -----------------------------------------------
+
+        slides =
+            document.querySelectorAll(
+                "#slideshow .slide"
+            );
+
 
         backgroundSlides =
-            document.querySelectorAll(".slide-bg");
+            document.querySelectorAll(
+                "#bg-ambientes .slide-bg"
+            );
 
 
-        // Arrancar desde la primera imagen
-        currentIndex = 0;
+
+        console.log(
+            "Slides creados:",
+            slides.length
+        );
+
+
+
+        // -----------------------------------------------
+        // COMENZAR DESDE PRIMERA IMAGEN
+        // -----------------------------------------------
+
+        currentIndex =
+            0;
+
+
+
+        // -----------------------------------------------
+        // INICIAR SLIDESHOW
+        // -----------------------------------------------
 
         programarSiguienteCambio();
 
 
-    } catch (error) {
+    }
+
+
+    catch (error) {
+
 
         console.error(
-            "Error cargando las imágenes:",
+            "ERROR CARGANDO IMÁGENES:",
             error
         );
 
+
+        mostrarError(
+            "No fue posible cargar las imágenes."
+        );
+
+
     }
+
 
 }
 
 
+
 // ======================================================
-// CAMBIO DE IMAGEN
+// MOSTRAR ERROR EN PANTALLA
+// ======================================================
+
+function mostrarError(mensaje) {
+
+
+    const contenedor =
+        document.getElementById(
+            "slideshow"
+        );
+
+
+    if (!contenedor) {
+        return;
+    }
+
+
+    contenedor.innerHTML =
+        "";
+
+
+    const texto =
+        document.createElement(
+            "div"
+        );
+
+
+    texto.className =
+        "mensaje-error";
+
+
+    texto.textContent =
+        mensaje;
+
+
+    contenedor.appendChild(
+        texto
+    );
+
+
+}
+
+
+
+// ======================================================
+// CAMBIAR IMAGEN
 // ======================================================
 
 function changeSlide() {
 
+
     if (slides.length === 0) {
+
         return;
-    }
-
-    if (slides.length > 1) {
-
-        slides[currentIndex].classList.remove("active");
-
-        backgroundSlides[currentIndex]
-            .classList.remove("active");
-
-
-        currentIndex =
-            (currentIndex + 1) % slides.length;
-
-
-        slides[currentIndex]
-            .classList.add("active");
-
-        backgroundSlides[currentIndex]
-            .classList.add("active");
 
     }
+
+
+
+    // -----------------------------------------------
+    // SI SOLO EXISTE UNA IMAGEN
+    // -----------------------------------------------
+
+    if (slides.length === 1) {
+
+        programarSiguienteCambio();
+
+        return;
+
+    }
+
+
+
+    // -----------------------------------------------
+    // QUITAR IMAGEN ACTUAL
+    // -----------------------------------------------
+
+    slides[currentIndex]
+        .classList.remove(
+            "active"
+        );
+
+
+    backgroundSlides[currentIndex]
+        .classList.remove(
+            "active"
+        );
+
+
+
+    // -----------------------------------------------
+    // SIGUIENTE POSICIÓN
+    // -----------------------------------------------
+
+    currentIndex =
+        (currentIndex + 1)
+        % slides.length;
+
+
+
+    // -----------------------------------------------
+    // MOSTRAR NUEVA IMAGEN
+    // -----------------------------------------------
+
+    slides[currentIndex]
+        .classList.add(
+            "active"
+        );
+
+
+    backgroundSlides[currentIndex]
+        .classList.add(
+            "active"
+        );
+
+
+
+    // -----------------------------------------------
+    // PROGRAMAR SIGUIENTE
+    // -----------------------------------------------
 
     programarSiguienteCambio();
 
+
 }
+
 
 
 // ======================================================
@@ -379,92 +1037,305 @@ function changeSlide() {
 
 function programarSiguienteCambio() {
 
+
     if (slides.length === 0) {
+
         return;
+
     }
 
+
+
     const tiempoActual =
+
         parseInt(
-            slides[currentIndex].dataset.tiempo
-        ) || 8000;
+            slides[currentIndex]
+                .dataset
+                .tiempo,
+            10
+        )
+
+        ||
+
+        tiempoPredeterminado;
 
 
-    clearTimeout(timerID);
+
+    clearTimeout(
+        timerID
+    );
+
+
 
     timerID =
         setTimeout(
+
             changeSlide,
+
             tiempoActual
+
         );
+
 
 }
 
 
+
 // ======================================================
-// INICIAR
+// RELOJ + FECHA + MODO ECO
 // ======================================================
 
+function actualizarTiempo() {
+
+
+    const ahora =
+        new Date();
+
+
+
+    // -----------------------------------------------
+    // HORA
+    // -----------------------------------------------
+
+    const opcionesReloj = {
+
+        hour:
+            "numeric",
+
+        minute:
+            "2-digit",
+
+        hour12:
+            true
+
+    };
+
+
+
+    let hora12 =
+        ahora.toLocaleTimeString(
+            "es-CR",
+            opcionesReloj
+        );
+
+
+
+    hora12 =
+        hora12
+            .replace(/\./g, "")
+            .replace(/[a-zA-Z]/g, "")
+            .trim();
+
+
+
+    document
+        .getElementById(
+            "reloj"
+        )
+        .textContent =
+        hora12;
+
+
+
+    // -----------------------------------------------
+    // FECHA
+    // -----------------------------------------------
+
+    const opcionesFecha = {
+
+        weekday:
+            "long",
+
+        day:
+            "numeric",
+
+        month:
+            "long"
+
+    };
+
+
+
+    let fechaTexto =
+        ahora.toLocaleDateString(
+            "es-ES",
+            opcionesFecha
+        );
+
+
+
+    fechaTexto =
+
+        fechaTexto
+            .charAt(0)
+            .toUpperCase()
+
+        +
+
+        fechaTexto
+            .slice(1);
+
+
+
+    document
+        .getElementById(
+            "fecha"
+        )
+        .textContent =
+        fechaTexto;
+
+
+
+    // -----------------------------------------------
+    // MODO ECO
+    //
+    // Antes de 7:00 AM
+    // Desde 4:00 PM
+    // -----------------------------------------------
+
+    const horaActual =
+        ahora.getHours();
+
+
+    const cuerpo =
+        document.body;
+
+
+
+    if (
+
+        horaActual < 7
+
+        ||
+
+        horaActual >= 16
+
+    ) {
+
+
+        cuerpo.classList.add(
+            "modo-eco"
+        );
+
+
+    }
+
+    else {
+
+
+        cuerpo.classList.remove(
+            "modo-eco"
+        );
+
+
+    }
+
+
+}
+
+
+
+// ======================================================
+// PIXEL SHIFT ANTI QUEMADO
+// ======================================================
+
+function ejecutarPixelShift() {
+
+
+    const barra =
+        document.getElementById(
+            "barra-institucional"
+        );
+
+
+
+    if (!barra) {
+
+        return;
+
+    }
+
+
+
+    const desvioTop =
+
+        Math.floor(
+            Math.random() * 5
+        )
+
+        - 2;
+
+
+
+    const desvioLeft =
+
+        Math.floor(
+            Math.random() * 5
+        )
+
+        - 2;
+
+
+
+    barra.style.top =
+        desvioTop + "px";
+
+
+    barra.style.left =
+        desvioLeft + "px";
+
+
+}
+
+
+
+// ======================================================
+// INICIAR PANTALLA
+// ======================================================
+
+
+// Cargar automáticamente imágenes
 cargarImagenes();
 
 
-    
+// Cargar inmediatamente reloj y fecha
+actualizarTiempo();
 
 
+// Actualizar reloj
+setInterval(
+    actualizarTiempo,
+    15000
+);
 
-    
-        programarSiguienteCambio();
-    }
 
-    function programarSiguienteCambio() {
-        const tiempoActual = parseInt(slides[currentIndex].getAttribute('data-tiempo')) || 8000;
-        clearTimeout(timerID);
-        timerID = setTimeout(changeSlide, tiempoActual);
-    }
-    programarSiguienteCambio();
+// Pixel shift cada minuto
+setInterval(
+    ejecutarPixelShift,
+    60000
+);
 
-    // 2. RELOJ 12H SIN AM/PM Y FECHA FORMATEADA CORRECTAMENTE
-    function actualizarTiempo() {
-        const ahora = new Date();
-        
-        const opcionesReloj = { hour: 'numeric', minute: '2-digit', hour12: true };
-        let hora12 = ahora.toLocaleTimeString('es-CR', opcionesReloj);
-        hora12 = hora12.replace(/\./g, '').replace(/[a-zA-Z]/g, '').trim();
-        document.getElementById('reloj').textContent = hora12;
-        
-        const opcionesFecha = { weekday: 'long', day: 'numeric', month: 'long' };
-        let fechaTexto = ahora.toLocaleDateString('es-ES', opcionesFecha);
-        fechaTexto = fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
-        document.getElementById('fecha').textContent = fechaTexto;
 
-        // MODO ECO (4:00 PM)
-        const horaActual = ahora.getHours();
-        const cuerpo = document.body;
-        if (horaActual < 7 || horaActual >= 16) {
-            cuerpo.classList.add('modo-eco');
-        } else {
-            cuerpo.classList.remove('modo-eco');
-        }
-    }
-    setInterval(actualizarTiempo, 15000); 
-    actualizarTiempo();
+// ======================================================
+// REFRESCO COMPLETO CADA 24 HORAS
+// ======================================================
 
-    // 3. PIXEL-SHIFT ANTI QUEMADO (Cada 1 minuto)
-    function ejecutarPixelShift() {
-        const barra = document.getElementById('barra-institucional');
-        const desvíoTop = Math.floor(Math.random() * 5) - 2;
-        const desvíoLeft = Math.floor(Math.random() * 5) - 2;
-        
-        barra.style.top = desvíoTop + 'px';
-        barra.style.left = desvíoLeft + 'px';
-    }
-    setInterval(ejecutarPixelShift, 60000); 
+setTimeout(
 
-    // 4. AUTOREFRESCO DE PRUEBAS (Cada 2 minutos)
-    setTimeout(function() { 
-        location.reload(); 
-    }, 86400000); 
+    function () {
+
+        location.reload();
+
+    },
+
+    86400000
+
+);
+
+
 </script>
 
-</body>
-</html>
 
+</body>
+
+</html>
