@@ -5,11 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Pantalla Corporativa DABS</title>
-
 
     <style>
 
@@ -19,17 +20,14 @@
             box-sizing: border-box;
         }
 
-
-        body,
-        html {
-
+        html,
+        body {
             width: 100%;
             height: 100%;
-
             overflow: hidden;
 
             font-family:
-                'Segoe UI',
+                "Segoe UI",
                 Tahoma,
                 Geneva,
                 Verdana,
@@ -44,7 +42,6 @@
         ===================================================== */
 
         .pantalla-completa {
-
             display: flex;
             flex-direction: column;
 
@@ -52,14 +49,11 @@
             height: 100vh;
 
             padding: 20px;
-
             gap: 15px;
 
             position: relative;
-
             z-index: 5;
         }
-
 
 
         /* =====================================================
@@ -67,7 +61,6 @@
         ===================================================== */
 
         .marco-superior {
-
             width: 100%;
             height: 15vh;
 
@@ -86,22 +79,16 @@
             border-radius: 16px;
 
             display: flex;
-
             align-items: center;
+            justify-content: space-between;
 
-            justify-content:
-                space-between;
-
-            padding:
-                0 30px;
+            padding: 0 30px;
 
             box-shadow:
-                0 8px 32px 0 rgba(0, 0, 0, 0.4);
+                0 8px 32px rgba(0, 0, 0, 0.4);
 
             position: relative;
-
             top: 0;
-
             left: 0;
 
             transition:
@@ -112,34 +99,27 @@
         }
 
 
-
         /* =====================================================
            LOGO
         ===================================================== */
 
         .contenedor-logo {
-
             height: 80%;
 
             display: flex;
-
             align-items: center;
         }
 
-
         .logo-ccss {
-
             height: 100%;
-
             object-fit: contain;
 
             filter:
                 drop-shadow(
-                    0px 0px 8px
+                    0 0 8px
                     rgba(255, 255, 255, 0.15)
                 );
         }
-
 
 
         /* =====================================================
@@ -147,60 +127,44 @@
         ===================================================== */
 
         .bloque-titulos {
-
             display: flex;
-
             flex-direction: column;
 
             justify-content: center;
-
             align-items: center;
 
             flex-grow: 1;
 
-            padding:
-                0 20px;
+            padding: 0 20px;
 
             text-shadow:
                 0 2px 5px
                 rgba(0, 0, 0, 0.8);
         }
 
-
         .texto-institucion-gerencia {
-
             color: #60a5fa;
 
             font-size: 1.1vw;
-
             font-weight: 600;
 
             letter-spacing: 1px;
-
-            text-transform:
-                uppercase;
+            text-transform: uppercase;
 
             margin-bottom: 2px;
         }
 
-
         .texto-direccion {
-
             color: #e2e8f0;
 
             font-size: 1.9vw;
-
             font-weight: 700;
 
-            letter-spacing:
-                0.5px;
+            letter-spacing: 0.5px;
 
-            text-transform:
-                uppercase;
-
+            text-transform: uppercase;
             text-align: center;
         }
-
 
 
         /* =====================================================
@@ -208,31 +172,23 @@
         ===================================================== */
 
         .tiempo-contenedor {
-
             display: flex;
-
             flex-direction: column;
 
-            align-items:
-                flex-end;
-
-            justify-content:
-                center;
+            align-items: flex-end;
+            justify-content: center;
 
             min-width: 220px;
         }
 
-
         .reloj {
-
             color: #cbd5e1;
 
             font-size: 2.4vw;
-
             font-weight: 700;
 
             font-family:
-                'Segoe UI',
+                "Segoe UI",
                 sans-serif;
 
             text-shadow:
@@ -240,24 +196,18 @@
                 0 2px 4px rgba(0, 0, 0, 0.6);
 
             line-height: 1;
-
             margin-bottom: 4px;
 
-            letter-spacing:
-                -1px;
+            letter-spacing: -1px;
         }
 
-
         .fecha {
-
             color: #94a3b8;
 
             font-size: 1.1vw;
-
             font-weight: 500;
 
-            letter-spacing:
-                0.5px;
+            letter-spacing: 0.5px;
 
             text-shadow:
                 0 1px 3px
@@ -265,26 +215,19 @@
         }
 
 
-
         /* =====================================================
            SLIDESHOW
         ===================================================== */
 
         .slideshow-container {
-
             width: 100%;
-
             height: 79vh;
 
             position: relative;
 
             display: flex;
-
-            justify-content:
-                center;
-
-            align-items:
-                center;
+            justify-content: center;
+            align-items: center;
 
             background-color:
                 rgba(0, 0, 0, 0.2);
@@ -292,8 +235,7 @@
             border:
                 1px solid rgba(255, 255, 255, 0.08);
 
-            border-radius:
-                20px;
+            border-radius: 20px;
 
             overflow: hidden;
 
@@ -303,24 +245,19 @@
         }
 
 
-
         /* =====================================================
            IMÁGENES PRINCIPALES
         ===================================================== */
 
         img.slide {
-
             position: absolute;
 
             max-width: 100%;
-
             max-height: 100%;
 
-            object-fit:
-                contain;
+            object-fit: contain;
 
             opacity: 0;
-
             z-index: 2;
 
             transform:
@@ -331,9 +268,7 @@
                 transform 1.2s ease-in-out;
         }
 
-
         img.slide.active {
-
             opacity: 1;
 
             transform:
@@ -341,21 +276,17 @@
         }
 
 
-
         /* =====================================================
-           FONDO AMBIENTE
+           FONDO DIFUMINADO
         ===================================================== */
 
         .background-ambientes {
-
             position: absolute;
 
             top: 0;
-
             left: 0;
 
             width: 100vw;
-
             height: 100vh;
 
             z-index: 1;
@@ -366,13 +297,10 @@
                 filter 1s ease;
         }
 
-
         img.slide-bg {
-
             position: absolute;
 
             width: 100%;
-
             height: 100%;
 
             object-fit: cover;
@@ -388,12 +316,9 @@
                 opacity 1.2s ease-in-out;
         }
 
-
         img.slide-bg.active {
-
             opacity: 1;
         }
-
 
 
         /* =====================================================
@@ -401,7 +326,6 @@
         ===================================================== */
 
         .modo-eco .marco-superior {
-
             opacity: 0.3;
 
             background:
@@ -411,23 +335,21 @@
                 grayscale(0.5);
         }
 
-
         .modo-eco .background-ambientes {
-
             filter:
                 brightness(0.1);
         }
 
 
         /* =====================================================
-           MENSAJE EN CASO DE ERROR
+           MENSAJE DE ESTADO
         ===================================================== */
 
-        .mensaje-error {
-
+        .mensaje-estado {
             color: #e2e8f0;
 
-            font-size: 1.3vw;
+            font-size: 1.2vw;
+            font-weight: 500;
 
             text-align: center;
 
@@ -441,13 +363,10 @@
 </head>
 
 
-
 <body>
 
 
-    <!-- =====================================================
-         FONDO DINÁMICO
-    ====================================================== -->
+    <!-- Fondo difuminado -->
 
     <div
         class="background-ambientes"
@@ -455,19 +374,12 @@
     </div>
 
 
-
-    <!-- =====================================================
-         CONTENIDO GENERAL
-    ====================================================== -->
+    <!-- Pantalla principal -->
 
     <div
         class="pantalla-completa"
         id="contenedor-principal">
 
-
-        <!-- =================================================
-             ENCABEZADO
-        ================================================== -->
 
         <header
             class="marco-superior"
@@ -479,31 +391,25 @@
                 <img
                     class="logo-ccss"
                     src="logo-ccss.png"
-                    alt="Logo CCSS">
+                    alt="Logo CCSS"
+                >
 
             </div>
-
 
 
             <div class="bloque-titulos">
 
                 <h2 class="texto-institucion-gerencia">
-
                     Caja Costarricense de Seguro Social -
                     Gerencia de Logística
-
                 </h2>
 
-
                 <h1 class="texto-direccion">
-
                     Dirección de Aprovisionamiento
                     de Bienes y Servicios
-
                 </h1>
 
             </div>
-
 
 
             <div class="tiempo-contenedor">
@@ -511,18 +417,13 @@
                 <div
                     class="reloj"
                     id="reloj">
-
                     00:00
-
                 </div>
-
 
                 <div
                     class="fecha"
                     id="fecha">
-
                     Cargando...
-
                 </div>
 
             </div>
@@ -531,14 +432,10 @@
         </header>
 
 
-
-        <!-- =================================================
-             SLIDESHOW
-             
-             IMPORTANTE:
-             JavaScript insertará automáticamente aquí
-             todas las imágenes encontradas en /imagenes
-        ================================================== -->
+        <!--
+            Las imágenes se insertan automáticamente
+            desde la carpeta /imagenes de GitHub.
+        -->
 
         <main
             class="slideshow-container"
@@ -549,13 +446,11 @@
     </div>
 
 
-
-
 <script>
 
 
 // ======================================================
-// CONFIGURACIÓN GENERAL
+// 1. CONFIGURACIÓN
 // ======================================================
 
 const usuarioGitHub =
@@ -568,62 +463,112 @@ const carpetaImagenes =
     "imagenes";
 
 
+// Duración de cada imagen: 8 segundos
+
 const tiempoPredeterminado =
     8000;
 
 
+// Consulta GitHub cada 5 minutos.
 
-// ======================================================
-// VARIABLES DEL SLIDESHOW
-// ======================================================
-
-let currentIndex = 0;
-
-let slides = [];
-
-let backgroundSlides = [];
-
-let timerID = null;
+const intervaloConsultaGitHub =
+    5 * 60 * 1000;
 
 
 
 // ======================================================
-// CARGAR IMÁGENES DE GITHUB
+// 2. VARIABLES DEL SLIDESHOW
 // ======================================================
 
-async function cargarImagenes() {
+let currentIndex =
+    0;
+
+let slides =
+    [];
+
+let backgroundSlides =
+    [];
+
+let timerID =
+    null;
+
+
+// Firma actualmente mostrada.
+
+let firmaImagenesActual =
+    "";
+
+
+// Datos detectados en GitHub que todavía
+// no se han aplicado al slideshow.
+
+let imagenesPendientes =
+    null;
+
+let firmaPendiente =
+    "";
+
+
+// Impide ejecutar dos consultas simultáneas.
+
+let consultaEnProceso =
+    false;
+
+
+// Indica si es la carga inicial.
+
+let cargaInicialCompletada =
+    false;
+
+
+
+// ======================================================
+// 3. CONSULTAR IMÁGENES EN GITHUB
+// ======================================================
+
+async function consultarImagenesGitHub() {
+
+
+    if (consultaEnProceso) {
+
+        console.log(
+            "Ya existe una consulta a GitHub en proceso."
+        );
+
+        return;
+
+    }
+
+
+    consultaEnProceso =
+        true;
 
 
     try {
 
-
-        // -----------------------------------------------
-        // CONSTRUIR URL DE LA API
-        // -----------------------------------------------
 
         const apiURL =
             `https://api.github.com/repos/${usuarioGitHub}/${repositorioGitHub}/contents/${carpetaImagenes}`;
 
 
         console.log(
-            "Consultando imágenes:",
-            apiURL
+            "Consultando carpeta de imágenes..."
         );
 
-
-
-        // -----------------------------------------------
-        // CONSULTAR GITHUB
-        // -----------------------------------------------
 
         const respuesta =
             await fetch(
                 apiURL,
                 {
-                    cache: "no-store"
+                    method: "GET",
+                    cache: "no-store",
+
+                    headers: {
+                        "Accept":
+                            "application/vnd.github+json"
+                    }
                 }
             );
-
 
 
         if (!respuesta.ok) {
@@ -635,248 +580,163 @@ async function cargarImagenes() {
         }
 
 
-
         const archivos =
             await respuesta.json();
 
 
+        if (!Array.isArray(archivos)) {
 
-        // -----------------------------------------------
-        // FILTRAR SOLAMENTE IMÁGENES
-        // -----------------------------------------------
-
-        const imagenes =
-            archivos.filter(
-                archivo =>
-
-                    archivo.type === "file"
-
-                    &&
-
-                    /\.(png|jpg|jpeg|webp|gif)$/i
-                        .test(archivo.name)
+            throw new Error(
+                "La respuesta recibida no contiene una lista de archivos."
             );
 
+        }
+
+
+        // Filtrar únicamente formatos de imagen.
+
+        const imagenes =
+            archivos
+                .filter(
+                    archivo =>
+
+                        archivo.type === "file"
+
+                        &&
+
+                        /\.(png|jpg|jpeg|webp|gif)$/i
+                            .test(archivo.name)
+                )
+                .sort(
+                    (archivoA, archivoB) =>
+
+                        archivoA.name.localeCompare(
+                            archivoB.name,
+                            "es",
+                            {
+                                numeric: true,
+                                sensitivity: "base"
+                            }
+                        )
+                );
 
 
         console.log(
-            "Imágenes encontradas:",
+            "Cantidad de imágenes encontradas:",
             imagenes.length
         );
 
 
+        // La firma usa nombre y SHA.
+        // Por eso detecta:
+        // - imagen nueva;
+        // - imagen eliminada;
+        // - imagen reemplazada con el mismo nombre.
 
-        // -----------------------------------------------
-        // VERIFICAR QUE EXISTAN IMÁGENES
-        // -----------------------------------------------
+        const nuevaFirma =
+            imagenes
+                .map(
+                    archivo =>
+                        `${archivo.name}:${archivo.sha}`
+                )
+                .join("|");
 
-        if (imagenes.length === 0) {
 
-            mostrarError(
-                "No se encontraron imágenes en la carpeta."
+        // ----------------------------------------------
+        // PRIMERA CARGA
+        // ----------------------------------------------
+
+        if (!cargaInicialCompletada) {
+
+            if (imagenes.length === 0) {
+
+                mostrarMensaje(
+                    "No se encontraron imágenes en la carpeta."
+                );
+
+                return;
+
+            }
+
+
+            aplicarNuevaLista(
+                imagenes,
+                nuevaFirma
             );
+
+
+            cargaInicialCompletada =
+                true;
+
+
+            console.log(
+                "Carga inicial completada."
+            );
+
 
             return;
 
         }
 
 
+        // ----------------------------------------------
+        // NO HAY CAMBIOS
+        // ----------------------------------------------
 
-        // -----------------------------------------------
-        // LOCALIZAR CONTENEDORES
-        // -----------------------------------------------
+        if (nuevaFirma === firmaImagenesActual) {
 
-        const contenedorPrincipal =
-            document.getElementById(
-                "slideshow"
+            // Si había una actualización pendiente,
+            // pero la carpeta volvió al estado actual,
+            // se cancela esa actualización.
+
+            imagenesPendientes =
+                null;
+
+            firmaPendiente =
+                "";
+
+
+            console.log(
+                "No existen cambios en las imágenes."
             );
 
 
-        const contenedorFondos =
-            document.getElementById(
-                "bg-ambientes"
-            );
-
-
-
-        if (!contenedorPrincipal) {
-
-            throw new Error(
-                'No se encontró el contenedor "slideshow".'
-            );
+            return;
 
         }
 
 
+        // ----------------------------------------------
+        // CAMBIO DETECTADO
+        // ----------------------------------------------
 
-        if (!contenedorFondos) {
+        imagenesPendientes =
+            imagenes;
 
-            throw new Error(
-                'No se encontró el contenedor "bg-ambientes".'
-            );
-
-        }
-
-
-
-        // -----------------------------------------------
-        // DETENER TEMPORIZADOR ANTERIOR
-        // -----------------------------------------------
-
-        clearTimeout(
-            timerID
-        );
-
-
-
-        // -----------------------------------------------
-        // LIMPIAR CONTENEDORES
-        // -----------------------------------------------
-
-        contenedorPrincipal.innerHTML =
-            "";
-
-        contenedorFondos.innerHTML =
-            "";
-
-
-
-        // -----------------------------------------------
-        // CREAR CADA IMAGEN
-        // -----------------------------------------------
-
-        imagenes.forEach(
-            (archivo, index) => {
-
-
-                // =======================================
-                // IMAGEN PRINCIPAL
-                // =======================================
-
-                const slide =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                slide.className =
-                    "slide";
-
-
-                slide.src =
-                    archivo.download_url;
-
-
-                slide.alt =
-                    archivo.name;
-
-
-                slide.dataset.tiempo =
-                    tiempoPredeterminado;
-
-
-
-                if (index === 0) {
-
-                    slide.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-
-                contenedorPrincipal
-                    .appendChild(
-                        slide
-                    );
-
-
-
-
-                // =======================================
-                // IMAGEN DE FONDO
-                // =======================================
-
-                const fondo =
-                    document.createElement(
-                        "img"
-                    );
-
-
-                fondo.className =
-                    "slide-bg";
-
-
-                fondo.src =
-                    archivo.download_url;
-
-
-                fondo.alt =
-                    "";
-
-
-
-                if (index === 0) {
-
-                    fondo.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-
-                contenedorFondos
-                    .appendChild(
-                        fondo
-                    );
-
-
-            }
-        );
-
-
-
-        // -----------------------------------------------
-        // ACTUALIZAR LISTAS DE SLIDES
-        // -----------------------------------------------
-
-        slides =
-            document.querySelectorAll(
-                "#slideshow .slide"
-            );
-
-
-        backgroundSlides =
-            document.querySelectorAll(
-                "#bg-ambientes .slide-bg"
-            );
-
+        firmaPendiente =
+            nuevaFirma;
 
 
         console.log(
-            "Slides creados:",
-            slides.length
+            "Se detectaron cambios. Se aplicarán al terminar la vuelta actual."
         );
 
 
+        // Caso especial:
+        // si ya no queda ninguna imagen en GitHub.
 
-        // -----------------------------------------------
-        // COMENZAR DESDE PRIMERA IMAGEN
-        // -----------------------------------------------
+        if (imagenes.length === 0) {
 
-        currentIndex =
-            0;
+            console.warn(
+                "La carpeta de imágenes quedó vacía."
+            );
+
+        }
 
 
-
-        // -----------------------------------------------
-        // INICIAR SLIDESHOW
-        // -----------------------------------------------
-
-        programarSiguienteCambio();
-
+        // Si solo hay una imagen actualmente,
+        // no existe una vuelta que terminar.
+        // La actualización se aplica al vencer su tiempo.
 
     }
 
@@ -885,15 +745,31 @@ async function cargarImagenes() {
 
 
         console.error(
-            "ERROR CARGANDO IMÁGENES:",
+            "No fue posible consultar las imágenes:",
             error
         );
 
 
-        mostrarError(
-            "No fue posible cargar las imágenes."
-        );
+        // Importante:
+        // si el slideshow ya funciona, no lo borramos.
+        // Conservamos las imágenes existentes.
 
+        if (!cargaInicialCompletada) {
+
+            mostrarMensaje(
+                "No fue posible cargar las imágenes."
+            );
+
+        }
+
+
+    }
+
+
+    finally {
+
+        consultaEnProceso =
+            false;
 
     }
 
@@ -903,44 +779,246 @@ async function cargarImagenes() {
 
 
 // ======================================================
-// MOSTRAR ERROR EN PANTALLA
+// 4. APLICAR NUEVA LISTA DE IMÁGENES
 // ======================================================
 
-function mostrarError(mensaje) {
+function aplicarNuevaLista(
+    imagenes,
+    nuevaFirma
+) {
 
 
-    const contenedor =
+    clearTimeout(
+        timerID
+    );
+
+
+    const contenedorPrincipal =
         document.getElementById(
             "slideshow"
         );
 
 
-    if (!contenedor) {
-        return;
-    }
-
-
-    contenedor.innerHTML =
-        "";
-
-
-    const texto =
-        document.createElement(
-            "div"
+    const contenedorFondos =
+        document.getElementById(
+            "bg-ambientes"
         );
 
 
-    texto.className =
-        "mensaje-error";
+    if (
+        !contenedorPrincipal
+        ||
+        !contenedorFondos
+    ) {
+
+        console.error(
+            "No se encontraron los contenedores del slideshow."
+        );
+
+        return;
+
+    }
 
 
-    texto.textContent =
-        mensaje;
+    contenedorPrincipal.innerHTML =
+        "";
+
+    contenedorFondos.innerHTML =
+        "";
 
 
-    contenedor.appendChild(
-        texto
+    // Si se eliminaron todas las imágenes,
+    // mostramos un mensaje y dejamos de programar cambios.
+
+    if (imagenes.length === 0) {
+
+        slides =
+            [];
+
+        backgroundSlides =
+            [];
+
+        currentIndex =
+            0;
+
+        firmaImagenesActual =
+            nuevaFirma;
+
+        imagenesPendientes =
+            null;
+
+        firmaPendiente =
+            "";
+
+        mostrarMensaje(
+            "No hay imágenes disponibles."
+        );
+
+        console.warn(
+            "El slideshow quedó sin imágenes."
+        );
+
+        return;
+
+    }
+
+
+    imagenes.forEach(
+        (archivo, index) => {
+
+
+            /*
+                Agregamos el SHA como versión.
+
+                Si Insumos.png se reemplaza manteniendo
+                el mismo nombre, la URL cambia de:
+
+                Insumos.png?v=SHA-ANTERIOR
+
+                a:
+
+                Insumos.png?v=SHA-NUEVO
+
+                Así evitamos mostrar la versión almacenada
+                anteriormente en la caché del navegador.
+            */
+
+            const urlVersionada =
+                `${archivo.download_url}?v=${archivo.sha}`;
+
+
+            // ==========================================
+            // IMAGEN PRINCIPAL
+            // ==========================================
+
+            const slide =
+                document.createElement(
+                    "img"
+                );
+
+
+            slide.className =
+                "slide";
+
+
+            slide.src =
+                urlVersionada;
+
+
+            slide.alt =
+                archivo.name;
+
+
+            slide.dataset.tiempo =
+                String(
+                    tiempoPredeterminado
+                );
+
+
+            slide.dataset.nombre =
+                archivo.name;
+
+
+            slide.dataset.sha =
+                archivo.sha;
+
+
+            if (index === 0) {
+
+                slide.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            contenedorPrincipal.appendChild(
+                slide
+            );
+
+
+
+            // ==========================================
+            // FONDO DIFUMINADO
+            // ==========================================
+
+            const fondo =
+                document.createElement(
+                    "img"
+                );
+
+
+            fondo.className =
+                "slide-bg";
+
+
+            fondo.src =
+                urlVersionada;
+
+
+            fondo.alt =
+                "";
+
+
+            fondo.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            if (index === 0) {
+
+                fondo.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            contenedorFondos.appendChild(
+                fondo
+            );
+
+
+        }
     );
+
+
+    slides =
+        document.querySelectorAll(
+            "#slideshow .slide"
+        );
+
+
+    backgroundSlides =
+        document.querySelectorAll(
+            "#bg-ambientes .slide-bg"
+        );
+
+
+    currentIndex =
+        0;
+
+
+    firmaImagenesActual =
+        nuevaFirma;
+
+
+    imagenesPendientes =
+        null;
+
+
+    firmaPendiente =
+        "";
+
+
+    console.log(
+        "Slideshow actualizado. Imágenes activas:",
+        slides.length
+    );
+
+
+    programarSiguienteCambio();
 
 
 }
@@ -948,7 +1026,7 @@ function mostrarError(mensaje) {
 
 
 // ======================================================
-// CAMBIAR IMAGEN
+// 5. CAMBIAR DE IMAGEN
 // ======================================================
 
 function changeSlide() {
@@ -961,12 +1039,30 @@ function changeSlide() {
     }
 
 
-
-    // -----------------------------------------------
-    // SI SOLO EXISTE UNA IMAGEN
-    // -----------------------------------------------
+    // Si actualmente existe una sola imagen,
+    // después de sus 8 segundos se pueden aplicar
+    // cambios pendientes.
 
     if (slides.length === 1) {
+
+
+        if (imagenesPendientes !== null) {
+
+            console.log(
+                "Aplicando actualización pendiente."
+            );
+
+
+            aplicarNuevaLista(
+                imagenesPendientes,
+                firmaPendiente
+            );
+
+
+            return;
+
+        }
+
 
         programarSiguienteCambio();
 
@@ -975,37 +1071,68 @@ function changeSlide() {
     }
 
 
-
-    // -----------------------------------------------
-    // QUITAR IMAGEN ACTUAL
-    // -----------------------------------------------
-
-    slides[currentIndex]
-        .classList.remove(
-            "active"
-        );
-
-
-    backgroundSlides[currentIndex]
-        .classList.remove(
-            "active"
-        );
-
-
-
-    // -----------------------------------------------
-    // SIGUIENTE POSICIÓN
-    // -----------------------------------------------
-
-    currentIndex =
+    const siguienteIndice =
         (currentIndex + 1)
         % slides.length;
 
 
+    /*
+        siguienteIndice === 0 significa que terminó
+        una vuelta completa y regresaría a la primera
+        imagen.
 
-    // -----------------------------------------------
-    // MOSTRAR NUEVA IMAGEN
-    // -----------------------------------------------
+        Solo en ese momento se aplican los cambios
+        pendientes.
+    */
+
+    const vueltaCompletada =
+        siguienteIndice === 0;
+
+
+    if (
+        vueltaCompletada
+        &&
+        imagenesPendientes !== null
+    ) {
+
+
+        console.log(
+            "Vuelta terminada. Aplicando cambios detectados."
+        );
+
+
+        aplicarNuevaLista(
+            imagenesPendientes,
+            firmaPendiente
+        );
+
+
+        return;
+
+    }
+
+
+    slides[currentIndex]
+        .classList.remove(
+            "active"
+        );
+
+
+    if (
+        backgroundSlides[currentIndex]
+    ) {
+
+        backgroundSlides[currentIndex]
+            .classList.remove(
+                "active"
+            );
+
+    }
+
+
+    currentIndex =
+        siguienteIndice;
+
 
     slides[currentIndex]
         .classList.add(
@@ -1013,16 +1140,17 @@ function changeSlide() {
         );
 
 
-    backgroundSlides[currentIndex]
-        .classList.add(
-            "active"
-        );
+    if (
+        backgroundSlides[currentIndex]
+    ) {
 
+        backgroundSlides[currentIndex]
+            .classList.add(
+                "active"
+            );
 
+    }
 
-    // -----------------------------------------------
-    // PROGRAMAR SIGUIENTE
-    // -----------------------------------------------
 
     programarSiguienteCambio();
 
@@ -1032,7 +1160,7 @@ function changeSlide() {
 
 
 // ======================================================
-// PROGRAMAR SIGUIENTE CAMBIO
+// 6. PROGRAMAR SIGUIENTE CAMBIO
 // ======================================================
 
 function programarSiguienteCambio() {
@@ -1040,10 +1168,13 @@ function programarSiguienteCambio() {
 
     if (slides.length === 0) {
 
+        clearTimeout(
+            timerID
+        );
+
         return;
 
     }
-
 
 
     const tiempoActual =
@@ -1060,20 +1191,15 @@ function programarSiguienteCambio() {
         tiempoPredeterminado;
 
 
-
     clearTimeout(
         timerID
     );
 
 
-
     timerID =
         setTimeout(
-
             changeSlide,
-
             tiempoActual
-
         );
 
 
@@ -1082,7 +1208,54 @@ function programarSiguienteCambio() {
 
 
 // ======================================================
-// RELOJ + FECHA + MODO ECO
+// 7. MOSTRAR MENSAJES
+// ======================================================
+
+function mostrarMensaje(mensaje) {
+
+
+    const contenedor =
+        document.getElementById(
+            "slideshow"
+        );
+
+
+    if (!contenedor) {
+
+        return;
+
+    }
+
+
+    contenedor.innerHTML =
+        "";
+
+
+    const elementoMensaje =
+        document.createElement(
+            "div"
+        );
+
+
+    elementoMensaje.className =
+        "mensaje-estado";
+
+
+    elementoMensaje.textContent =
+        mensaje;
+
+
+    contenedor.appendChild(
+        elementoMensaje
+    );
+
+
+}
+
+
+
+// ======================================================
+// 8. RELOJ, FECHA Y MODO ECO
 // ======================================================
 
 function actualizarTiempo() {
@@ -1092,10 +1265,7 @@ function actualizarTiempo() {
         new Date();
 
 
-
-    // -----------------------------------------------
-    // HORA
-    // -----------------------------------------------
+    // Hora
 
     const opcionesReloj = {
 
@@ -1111,13 +1281,11 @@ function actualizarTiempo() {
     };
 
 
-
     let hora12 =
         ahora.toLocaleTimeString(
             "es-CR",
             opcionesReloj
         );
-
 
 
     hora12 =
@@ -1127,19 +1295,21 @@ function actualizarTiempo() {
             .trim();
 
 
-
-    document
-        .getElementById(
+    const elementoReloj =
+        document.getElementById(
             "reloj"
-        )
-        .textContent =
-        hora12;
+        );
 
 
+    if (elementoReloj) {
 
-    // -----------------------------------------------
-    // FECHA
-    // -----------------------------------------------
+        elementoReloj.textContent =
+            hora12;
+
+    }
+
+
+    // Fecha
 
     const opcionesFecha = {
 
@@ -1155,13 +1325,11 @@ function actualizarTiempo() {
     };
 
 
-
     let fechaTexto =
         ahora.toLocaleDateString(
             "es-ES",
             opcionesFecha
         );
-
 
 
     fechaTexto =
@@ -1176,57 +1344,44 @@ function actualizarTiempo() {
             .slice(1);
 
 
-
-    document
-        .getElementById(
+    const elementoFecha =
+        document.getElementById(
             "fecha"
-        )
-        .textContent =
-        fechaTexto;
+        );
 
 
+    if (elementoFecha) {
 
-    // -----------------------------------------------
-    // MODO ECO
-    //
-    // Antes de 7:00 AM
-    // Desde 4:00 PM
-    // -----------------------------------------------
+        elementoFecha.textContent =
+            fechaTexto;
+
+    }
+
+
+    // Modo eco antes de 7:00 a. m.
+    // y desde las 4:00 p. m.
 
     const horaActual =
         ahora.getHours();
 
 
-    const cuerpo =
-        document.body;
-
-
-
     if (
-
         horaActual < 7
-
         ||
-
         horaActual >= 16
-
     ) {
 
-
-        cuerpo.classList.add(
+        document.body.classList.add(
             "modo-eco"
         );
-
 
     }
 
     else {
 
-
-        cuerpo.classList.remove(
+        document.body.classList.remove(
             "modo-eco"
         );
-
 
     }
 
@@ -1236,7 +1391,7 @@ function actualizarTiempo() {
 
 
 // ======================================================
-// PIXEL SHIFT ANTI QUEMADO
+// 9. PIXEL SHIFT ANTIQUEMADO
 // ======================================================
 
 function ejecutarPixelShift() {
@@ -1248,13 +1403,11 @@ function ejecutarPixelShift() {
         );
 
 
-
     if (!barra) {
 
         return;
 
     }
-
 
 
     const desvioTop =
@@ -1266,7 +1419,6 @@ function ejecutarPixelShift() {
         - 2;
 
 
-
     const desvioLeft =
 
         Math.floor(
@@ -1274,7 +1426,6 @@ function ejecutarPixelShift() {
         )
 
         - 2;
-
 
 
     barra.style.top =
@@ -1290,51 +1441,54 @@ function ejecutarPixelShift() {
 
 
 // ======================================================
-// INICIAR PANTALLA
+// 10. INICIAR PANTALLA
 // ======================================================
 
 
-// Cargar automáticamente imágenes
-cargarImagenes();
+// Primera carga de imágenes.
+
+consultarImagenesGitHub();
 
 
-// Cargar inmediatamente reloj y fecha
+// Consulta la carpeta cada 5 minutos.
+// Esto NO refresca la página.
+
+setInterval(
+    consultarImagenesGitHub,
+    intervaloConsultaGitHub
+);
+
+
+// Reloj y fecha.
+
 actualizarTiempo();
 
-
-// Actualizar reloj
 setInterval(
     actualizarTiempo,
     15000
 );
 
 
-// Pixel shift cada minuto
+// Movimiento mínimo del encabezado.
+
 setInterval(
     ejecutarPixelShift,
     60000
 );
 
 
-// ======================================================
-// REFRESCO COMPLETO CADA 24 HORAS
-// ======================================================
+/*
+    IMPORTANTE:
 
-setTimeout(
+    No existe location.reload() en este código.
 
-    function () {
-
-        location.reload();
-
-    },
-
-    86400000
-
-);
+    La página permanece abierta.
+    El refresco completo seguirá siendo manual
+    por el tema del certificado.
+*/
 
 
 </script>
-
 
 </body>
 
