@@ -5,10 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Pantalla Corporativa DABS</title>
 
@@ -57,21 +55,17 @@
 
 
         /* =====================================================
-           MARCO SUPERIOR
+           ENCABEZADO
         ===================================================== */
 
         .marco-superior {
             width: 100%;
             height: 15vh;
 
-            background:
-                rgba(13, 17, 23, 0.15);
+            background: rgba(13, 17, 23, 0.15);
 
-            backdrop-filter:
-                blur(5px);
-
-            -webkit-backdrop-filter:
-                blur(5px);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
 
             border:
                 1px solid rgba(255, 255, 255, 0.08);
@@ -88,6 +82,7 @@
                 0 8px 32px rgba(0, 0, 0, 0.4);
 
             position: relative;
+
             top: 0;
             left: 0;
 
@@ -110,8 +105,10 @@
             align-items: center;
         }
 
+
         .logo-ccss {
             height: 100%;
+
             object-fit: contain;
 
             filter:
@@ -142,6 +139,7 @@
                 rgba(0, 0, 0, 0.8);
         }
 
+
         .texto-institucion-gerencia {
             color: #60a5fa;
 
@@ -149,10 +147,12 @@
             font-weight: 600;
 
             letter-spacing: 1px;
+
             text-transform: uppercase;
 
             margin-bottom: 2px;
         }
+
 
         .texto-direccion {
             color: #e2e8f0;
@@ -163,6 +163,7 @@
             letter-spacing: 0.5px;
 
             text-transform: uppercase;
+
             text-align: center;
         }
 
@@ -181,6 +182,7 @@
             min-width: 220px;
         }
 
+
         .reloj {
             color: #cbd5e1;
 
@@ -196,10 +198,12 @@
                 0 2px 4px rgba(0, 0, 0, 0.6);
 
             line-height: 1;
+
             margin-bottom: 4px;
 
             letter-spacing: -1px;
         }
+
 
         .fecha {
             color: #94a3b8;
@@ -247,37 +251,47 @@
 
         /* =====================================================
            IMÁGENES PRINCIPALES
+
+           IMPORTANTE:
+           width + height al 100% hace que imágenes pequeñas
+           también se amplíen.
+
+           contain evita deformarlas o recortarlas.
         ===================================================== */
 
         img.slide {
             position: absolute;
 
-            max-width: 100%;
-            max-height: 100%;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
 
             object-fit: contain;
+            object-position: center center;
 
             opacity: 0;
+
             z-index: 2;
 
-            transform:
-                scale(0.97);
+            transform: scale(0.98);
 
             transition:
                 opacity 1.2s ease-in-out,
                 transform 1.2s ease-in-out;
         }
 
+
         img.slide.active {
             opacity: 1;
 
-            transform:
-                scale(1);
+            transform: scale(1);
         }
 
 
         /* =====================================================
-           FONDO DIFUMINADO
+           FONDO AMBIENTE
         ===================================================== */
 
         .background-ambientes {
@@ -293,15 +307,21 @@
 
             overflow: hidden;
 
+            background-color: #0d1117;
+
             transition:
                 filter 1s ease;
         }
 
+
         img.slide-bg {
             position: absolute;
 
-            width: 100%;
-            height: 100%;
+            top: -5%;
+            left: -5%;
+
+            width: 110%;
+            height: 110%;
 
             object-fit: cover;
 
@@ -312,9 +332,12 @@
                 brightness(0.4)
                 saturate(1.4);
 
+            transform: scale(1.08);
+
             transition:
                 opacity 1.2s ease-in-out;
         }
+
 
         img.slide-bg.active {
             opacity: 1;
@@ -322,7 +345,76 @@
 
 
         /* =====================================================
-           MODO PROTECCIÓN
+           MENSAJE DE ESTADO
+        ===================================================== */
+
+        .mensaje-estado {
+            color: #cbd5e1;
+
+            font-size: 1.3vw;
+            font-weight: 500;
+
+            text-align: center;
+
+            padding: 30px;
+
+            z-index: 10;
+        }
+
+
+        /* =====================================================
+           INDICADOR DE CONEXIÓN
+
+           Verde  = funcionamiento normal
+           Amarillo = actualizando
+           Rojo = problema de consulta
+
+           Se mantiene discreto en la esquina inferior derecha.
+        ===================================================== */
+
+        .indicador-estado {
+            position: fixed;
+
+            right: 8px;
+            bottom: 8px;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #64748b;
+
+            z-index: 100;
+
+            opacity: 0.55;
+
+            box-shadow:
+                0 0 6px
+                rgba(255,255,255,0.15);
+
+            transition:
+                background 0.4s ease;
+        }
+
+
+        .estado-ok {
+            background: #22c55e;
+        }
+
+
+        .estado-consultando {
+            background: #f59e0b;
+        }
+
+
+        .estado-error {
+            background: #ef4444;
+        }
+
+
+        /* =====================================================
+           MODO ECO
         ===================================================== */
 
         .modo-eco .marco-superior {
@@ -335,6 +427,7 @@
                 grayscale(0.5);
         }
 
+
         .modo-eco .background-ambientes {
             filter:
                 brightness(0.1);
@@ -342,20 +435,24 @@
 
 
         /* =====================================================
-           MENSAJE DE ESTADO
+           AJUSTES PARA PANTALLAS PEQUEÑAS
         ===================================================== */
 
-        .mensaje-estado {
-            color: #e2e8f0;
+        @media (max-width: 900px) {
 
-            font-size: 1.2vw;
-            font-weight: 500;
+            .pantalla-completa {
+                padding: 10px;
+                gap: 10px;
+            }
 
-            text-align: center;
+            .marco-superior {
+                padding: 0 15px;
+            }
 
-            padding: 30px;
+            .tiempo-contenedor {
+                min-width: 140px;
+            }
 
-            z-index: 10;
         }
 
     </style>
@@ -366,7 +463,9 @@
 <body>
 
 
-    <!-- Fondo difuminado -->
+    <!-- =====================================================
+         FONDO
+    ====================================================== -->
 
     <div
         class="background-ambientes"
@@ -374,12 +473,18 @@
     </div>
 
 
-    <!-- Pantalla principal -->
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
 
     <div
         class="pantalla-completa"
         id="contenedor-principal">
 
+
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
 
         <header
             class="marco-superior"
@@ -432,18 +537,32 @@
         </header>
 
 
-        <!--
-            Las imágenes se insertan automáticamente
-            desde la carpeta /imagenes de GitHub.
-        -->
+        <!-- =================================================
+             SLIDESHOW
+        ================================================== -->
 
         <main
             class="slideshow-container"
             id="slideshow">
+
+            <div class="mensaje-estado">
+                Cargando imágenes...
+            </div>
+
         </main>
 
 
     </div>
+
+
+    <!-- Indicador diagnóstico -->
+
+    <div
+        id="indicador-estado"
+        class="indicador-estado estado-consultando"
+        title="Inicializando pantalla">
+    </div>
+
 
 
 <script>
@@ -456,84 +575,184 @@
 const usuarioGitHub =
     "evarsancr-creator";
 
+
 const repositorioGitHub =
     "pantalla-tv";
+
 
 const carpetaImagenes =
     "imagenes";
 
 
-// Duración de cada imagen: 8 segundos
+// Cada imagen permanece 8 segundos.
 
 const tiempoPredeterminado =
     8000;
 
 
-// Consulta GitHub cada 5 minutos.
+// Revisión normal de GitHub.
+//
+// IMPORTANTE:
+// Esto NO refresca la página.
 
-const intervaloConsultaGitHub =
+const intervaloConsultaNormal =
     5 * 60 * 1000;
+
+
+// Si la primera carga falla,
+// intentaremos nuevamente en 30 segundos.
+
+const intervaloReintentoError =
+    30 * 1000;
+
+
+// Tiempo máximo que esperamos una imagen
+// durante la precarga.
+
+const tiempoMaximoPrecarga =
+    20000;
 
 
 
 // ======================================================
-// 2. VARIABLES DEL SLIDESHOW
+// 2. VARIABLES
 // ======================================================
 
 let currentIndex =
     0;
 
+
 let slides =
     [];
+
 
 let backgroundSlides =
     [];
 
-let timerID =
+
+let timerSlide =
     null;
 
 
-// Firma actualmente mostrada.
-
-let firmaImagenesActual =
-    "";
-
-
-// Datos detectados en GitHub que todavía
-// no se han aplicado al slideshow.
-
-let imagenesPendientes =
+let timerConsulta =
     null;
 
-let firmaPendiente =
-    "";
-
-
-// Impide ejecutar dos consultas simultáneas.
 
 let consultaEnProceso =
     false;
 
 
-// Indica si es la carga inicial.
-
 let cargaInicialCompletada =
     false;
 
 
+let firmaImagenesActual =
+    "";
+
+
+let imagenesPendientes =
+    null;
+
+
+let firmaPendiente =
+    "";
+
+
 
 // ======================================================
-// 3. CONSULTAR IMÁGENES EN GITHUB
+// 3. INDICADOR DE ESTADO
+// ======================================================
+
+function establecerEstado(
+    estado,
+    texto
+) {
+
+
+    const indicador =
+        document.getElementById(
+            "indicador-estado"
+        );
+
+
+    if (!indicador) {
+        return;
+    }
+
+
+    indicador.className =
+        "indicador-estado";
+
+
+    if (estado === "ok") {
+
+        indicador.classList.add(
+            "estado-ok"
+        );
+
+    }
+
+
+    else if (estado === "error") {
+
+        indicador.classList.add(
+            "estado-error"
+        );
+
+    }
+
+
+    else {
+
+        indicador.classList.add(
+            "estado-consultando"
+        );
+
+    }
+
+
+    indicador.title =
+        texto || "";
+
+}
+
+
+
+// ======================================================
+// 4. PROGRAMAR PRÓXIMA CONSULTA
+//
+// Usamos setTimeout en lugar de setInterval.
+// Así nunca se acumulan consultas.
+// ======================================================
+
+function programarConsulta(
+    milisegundos
+) {
+
+
+    clearTimeout(
+        timerConsulta
+    );
+
+
+    timerConsulta =
+        setTimeout(
+            consultarImagenesGitHub,
+            milisegundos
+        );
+
+}
+
+
+
+// ======================================================
+// 5. CONSULTAR GITHUB
 // ======================================================
 
 async function consultarImagenesGitHub() {
 
 
     if (consultaEnProceso) {
-
-        console.log(
-            "Ya existe una consulta a GitHub en proceso."
-        );
 
         return;
 
@@ -544,16 +763,30 @@ async function consultarImagenesGitHub() {
         true;
 
 
+    establecerEstado(
+        "consultando",
+        "Consultando imágenes"
+    );
+
+
     try {
 
 
+        /*
+            Agregamos un parámetro variable.
+
+            No modifica la carpeta consultada,
+            pero evita reutilizar accidentalmente
+            una respuesta almacenada por determinados
+            navegadores/intermediarios.
+        */
+
+        const marcaTiempo =
+            Date.now();
+
+
         const apiURL =
-            `https://api.github.com/repos/${usuarioGitHub}/${repositorioGitHub}/contents/${carpetaImagenes}`;
-
-
-        console.log(
-            "Consultando carpeta de imágenes..."
-        );
+            `https://api.github.com/repos/${usuarioGitHub}/${repositorioGitHub}/contents/${carpetaImagenes}?_=${marcaTiempo}`;
 
 
         const respuesta =
@@ -561,12 +794,7 @@ async function consultarImagenesGitHub() {
                 apiURL,
                 {
                     method: "GET",
-                    cache: "no-store",
-
-                    headers: {
-                        "Accept":
-                            "application/vnd.github+json"
-                    }
+                    cache: "no-store"
                 }
             );
 
@@ -574,7 +802,7 @@ async function consultarImagenesGitHub() {
         if (!respuesta.ok) {
 
             throw new Error(
-                `GitHub respondió con estado ${respuesta.status}`
+                `GitHub respondió ${respuesta.status}`
             );
 
         }
@@ -587,13 +815,15 @@ async function consultarImagenesGitHub() {
         if (!Array.isArray(archivos)) {
 
             throw new Error(
-                "La respuesta recibida no contiene una lista de archivos."
+                "La respuesta de GitHub no contiene una lista de archivos."
             );
 
         }
 
 
-        // Filtrar únicamente formatos de imagen.
+        // ==================================================
+        // FILTRAR IMÁGENES
+        // ==================================================
 
         const imagenes =
             archivos
@@ -608,10 +838,10 @@ async function consultarImagenesGitHub() {
                             .test(archivo.name)
                 )
                 .sort(
-                    (archivoA, archivoB) =>
+                    (a, b) =>
 
-                        archivoA.name.localeCompare(
-                            archivoB.name,
+                        a.name.localeCompare(
+                            b.name,
                             "es",
                             {
                                 numeric: true,
@@ -621,17 +851,24 @@ async function consultarImagenesGitHub() {
                 );
 
 
-        console.log(
-            "Cantidad de imágenes encontradas:",
-            imagenes.length
-        );
+        if (imagenes.length === 0) {
+
+            throw new Error(
+                "La carpeta no contiene imágenes."
+            );
+
+        }
 
 
-        // La firma usa nombre y SHA.
-        // Por eso detecta:
-        // - imagen nueva;
-        // - imagen eliminada;
-        // - imagen reemplazada con el mismo nombre.
+        // ==================================================
+        // CREAR FIRMA
+        //
+        // Nombre + SHA permite detectar:
+        //
+        // - archivo agregado
+        // - archivo eliminado
+        // - archivo reemplazado
+        // ==================================================
 
         const nuevaFirma =
             imagenes
@@ -642,26 +879,40 @@ async function consultarImagenesGitHub() {
                 .join("|");
 
 
-        // ----------------------------------------------
+
+        // ==================================================
         // PRIMERA CARGA
-        // ----------------------------------------------
+        // ==================================================
 
         if (!cargaInicialCompletada) {
 
-            if (imagenes.length === 0) {
 
-                mostrarMensaje(
-                    "No se encontraron imágenes en la carpeta."
+            const imagenesValidas =
+                await precargarImagenes(
+                    imagenes
                 );
 
-                return;
+
+            if (
+                imagenesValidas.length === 0
+            ) {
+
+                throw new Error(
+                    "GitHub respondió, pero ninguna imagen pudo descargarse."
+                );
 
             }
 
 
+            const firmaValida =
+                crearFirma(
+                    imagenesValidas
+                );
+
+
             aplicarNuevaLista(
-                imagenes,
-                nuevaFirma
+                imagenesValidas,
+                firmaValida
             );
 
 
@@ -669,8 +920,14 @@ async function consultarImagenesGitHub() {
                 true;
 
 
-            console.log(
-                "Carga inicial completada."
+            establecerEstado(
+                "ok",
+                `${imagenesValidas.length} imágenes cargadas`
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
             );
 
 
@@ -679,25 +936,33 @@ async function consultarImagenesGitHub() {
         }
 
 
-        // ----------------------------------------------
-        // NO HAY CAMBIOS
-        // ----------------------------------------------
 
-        if (nuevaFirma === firmaImagenesActual) {
+        // ==================================================
+        // SIN CAMBIOS
+        // ==================================================
 
-            // Si había una actualización pendiente,
-            // pero la carpeta volvió al estado actual,
-            // se cancela esa actualización.
+        if (
+            nuevaFirma ===
+            firmaImagenesActual
+        ) {
+
 
             imagenesPendientes =
                 null;
+
 
             firmaPendiente =
                 "";
 
 
-            console.log(
-                "No existen cambios en las imágenes."
+            establecerEstado(
+                "ok",
+                `${slides.length} imágenes activas`
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
             );
 
 
@@ -706,37 +971,82 @@ async function consultarImagenesGitHub() {
         }
 
 
-        // ----------------------------------------------
+
+        // ==================================================
         // CAMBIO DETECTADO
-        // ----------------------------------------------
+        // ==================================================
 
-        imagenesPendientes =
-            imagenes;
-
-        firmaPendiente =
-            nuevaFirma;
-
-
-        console.log(
-            "Se detectaron cambios. Se aplicarán al terminar la vuelta actual."
-        );
+        const imagenesValidas =
+            await precargarImagenes(
+                imagenes
+            );
 
 
-        // Caso especial:
-        // si ya no queda ninguna imagen en GitHub.
+        if (
+            imagenesValidas.length === 0
+        ) {
 
-        if (imagenes.length === 0) {
-
-            console.warn(
-                "La carpeta de imágenes quedó vacía."
+            throw new Error(
+                "Las nuevas imágenes no pudieron precargarse."
             );
 
         }
 
 
-        // Si solo hay una imagen actualmente,
-        // no existe una vuelta que terminar.
-        // La actualización se aplica al vencer su tiempo.
+        const firmaValida =
+            crearFirma(
+                imagenesValidas
+            );
+
+
+        // Si después de validar resulta que
+        // realmente no cambió nada...
+
+        if (
+            firmaValida ===
+            firmaImagenesActual
+        ) {
+
+
+            establecerEstado(
+                "ok",
+                `${slides.length} imágenes activas`
+            );
+
+
+            programarConsulta(
+                intervaloConsultaNormal
+            );
+
+
+            return;
+
+        }
+
+
+        // Guardamos la nueva lista.
+        //
+        // No interrumpimos inmediatamente
+        // la imagen que está mostrándose.
+
+        imagenesPendientes =
+            imagenesValidas;
+
+
+        firmaPendiente =
+            firmaValida;
+
+
+        establecerEstado(
+            "ok",
+            "Actualización lista para aplicar"
+        );
+
+
+        programarConsulta(
+            intervaloConsultaNormal
+        );
+
 
     }
 
@@ -745,22 +1055,44 @@ async function consultarImagenesGitHub() {
 
 
         console.error(
-            "No fue posible consultar las imágenes:",
+            "Error consultando GitHub:",
             error
         );
 
 
-        // Importante:
-        // si el slideshow ya funciona, no lo borramos.
-        // Conservamos las imágenes existentes.
+        establecerEstado(
+            "error",
+            error.message
+        );
+
+
+        /*
+            Si todavía no tenemos ninguna imagen,
+            podemos mostrar el problema.
+
+            Si el slideshow ya estaba funcionando,
+            NO lo eliminamos.
+
+            De esta manera una falla temporal
+            no deja la TV en negro.
+        */
 
         if (!cargaInicialCompletada) {
 
             mostrarMensaje(
-                "No fue posible cargar las imágenes."
+                "Intentando cargar las imágenes..."
             );
 
         }
+
+
+        // Intentar nuevamente.
+        //
+        // No usamos location.reload().
+
+        programarConsulta(
+            intervaloReintentoError
+        );
 
 
     }
@@ -768,18 +1100,242 @@ async function consultarImagenesGitHub() {
 
     finally {
 
+
         consultaEnProceso =
             false;
 
-    }
 
+    }
 
 }
 
 
 
 // ======================================================
-// 4. APLICAR NUEVA LISTA DE IMÁGENES
+// 6. CREAR FIRMA
+// ======================================================
+
+function crearFirma(
+    imagenes
+) {
+
+
+    return imagenes
+        .map(
+            archivo =>
+                `${archivo.name}:${archivo.sha}`
+        )
+        .join("|");
+
+}
+
+
+
+// ======================================================
+// 7. PRECARGAR IMÁGENES
+//
+// Antes de sustituir el slideshow comprobamos
+// que las imágenes realmente puedan descargarse.
+// ======================================================
+
+async function precargarImagenes(
+    imagenes
+) {
+
+
+    const resultados =
+        await Promise.all(
+            imagenes.map(
+                precargarUnaImagen
+            )
+        );
+
+
+    const imagenesValidas =
+        resultados.filter(
+            resultado =>
+                resultado !== null
+        );
+
+
+    console.log(
+        `Precarga: ${imagenesValidas.length} de ${imagenes.length} imágenes correctas`
+    );
+
+
+    return imagenesValidas;
+
+}
+
+
+
+// ======================================================
+// 8. PRECARGAR UNA IMAGEN
+// ======================================================
+
+function precargarUnaImagen(
+    archivo
+) {
+
+
+    return new Promise(
+        resolve => {
+
+
+            const imagen =
+                new Image();
+
+
+            let finalizado =
+                false;
+
+
+            const urlVersionada =
+                construirUrlImagen(
+                    archivo
+                );
+
+
+            const timeout =
+                setTimeout(
+                    function () {
+
+
+                        if (finalizado) {
+                            return;
+                        }
+
+
+                        finalizado =
+                            true;
+
+
+                        console.warn(
+                            "Tiempo agotado cargando:",
+                            archivo.name
+                        );
+
+
+                        resolve(
+                            null
+                        );
+
+
+                    },
+                    tiempoMaximoPrecarga
+                );
+
+
+            imagen.onload =
+                function () {
+
+
+                    if (finalizado) {
+                        return;
+                    }
+
+
+                    finalizado =
+                        true;
+
+
+                    clearTimeout(
+                        timeout
+                    );
+
+
+                    resolve(
+                        archivo
+                    );
+
+
+                };
+
+
+            imagen.onerror =
+                function () {
+
+
+                    if (finalizado) {
+                        return;
+                    }
+
+
+                    finalizado =
+                        true;
+
+
+                    clearTimeout(
+                        timeout
+                    );
+
+
+                    console.warn(
+                        "No se pudo cargar:",
+                        archivo.name
+                    );
+
+
+                    resolve(
+                        null
+                    );
+
+
+                };
+
+
+            imagen.src =
+                urlVersionada;
+
+
+        }
+    );
+
+}
+
+
+
+// ======================================================
+// 9. CONSTRUIR URL VERSIONADA
+// ======================================================
+
+function construirUrlImagen(
+    archivo
+) {
+
+
+    /*
+        Agregamos el SHA al URL.
+
+        Si se reemplaza:
+
+        Ejecucion.png
+
+        conservando el mismo nombre,
+        cambia el SHA y por lo tanto
+        cambia también la URL.
+
+        Esto ayuda a evitar mostrar
+        una versión anterior en caché.
+    */
+
+
+    return (
+        archivo.download_url
+        +
+        "?v="
+        +
+        encodeURIComponent(
+            archivo.sha
+        )
+    );
+
+}
+
+
+
+// ======================================================
+// 10. APLICAR NUEVA LISTA
 // ======================================================
 
 function aplicarNuevaLista(
@@ -788,8 +1344,19 @@ function aplicarNuevaLista(
 ) {
 
 
+    if (
+        !imagenes
+        ||
+        imagenes.length === 0
+    ) {
+
+        return;
+
+    }
+
+
     clearTimeout(
-        timerID
+        timerSlide
     );
 
 
@@ -812,7 +1379,7 @@ function aplicarNuevaLista(
     ) {
 
         console.error(
-            "No se encontraron los contenedores del slideshow."
+            "No se encontraron los contenedores."
         );
 
         return;
@@ -820,71 +1387,27 @@ function aplicarNuevaLista(
     }
 
 
-    contenedorPrincipal.innerHTML =
-        "";
+    // Creamos primero los nuevos elementos.
+    //
+    // Después sustituimos el contenido.
 
-    contenedorFondos.innerHTML =
-        "";
+    const fragmentoSlides =
+        document.createDocumentFragment();
 
 
-    // Si se eliminaron todas las imágenes,
-    // mostramos un mensaje y dejamos de programar cambios.
+    const fragmentoFondos =
+        document.createDocumentFragment();
 
-    if (imagenes.length === 0) {
-
-        slides =
-            [];
-
-        backgroundSlides =
-            [];
-
-        currentIndex =
-            0;
-
-        firmaImagenesActual =
-            nuevaFirma;
-
-        imagenesPendientes =
-            null;
-
-        firmaPendiente =
-            "";
-
-        mostrarMensaje(
-            "No hay imágenes disponibles."
-        );
-
-        console.warn(
-            "El slideshow quedó sin imágenes."
-        );
-
-        return;
-
-    }
 
 
     imagenes.forEach(
         (archivo, index) => {
 
 
-            /*
-                Agregamos el SHA como versión.
-
-                Si Insumos.png se reemplaza manteniendo
-                el mismo nombre, la URL cambia de:
-
-                Insumos.png?v=SHA-ANTERIOR
-
-                a:
-
-                Insumos.png?v=SHA-NUEVO
-
-                Así evitamos mostrar la versión almacenada
-                anteriormente en la caché del navegador.
-            */
-
-            const urlVersionada =
-                `${archivo.download_url}?v=${archivo.sha}`;
+            const urlImagen =
+                construirUrlImagen(
+                    archivo
+                );
 
 
             // ==========================================
@@ -902,17 +1425,11 @@ function aplicarNuevaLista(
 
 
             slide.src =
-                urlVersionada;
+                urlImagen;
 
 
             slide.alt =
                 archivo.name;
-
-
-            slide.dataset.tiempo =
-                String(
-                    tiempoPredeterminado
-                );
 
 
             slide.dataset.nombre =
@@ -921,6 +1438,12 @@ function aplicarNuevaLista(
 
             slide.dataset.sha =
                 archivo.sha;
+
+
+            slide.dataset.tiempo =
+                String(
+                    tiempoPredeterminado
+                );
 
 
             if (index === 0) {
@@ -932,14 +1455,14 @@ function aplicarNuevaLista(
             }
 
 
-            contenedorPrincipal.appendChild(
+            fragmentoSlides.appendChild(
                 slide
             );
 
 
 
             // ==========================================
-            // FONDO DIFUMINADO
+            // FONDO
             // ==========================================
 
             const fondo =
@@ -953,7 +1476,7 @@ function aplicarNuevaLista(
 
 
             fondo.src =
-                urlVersionada;
+                urlImagen;
 
 
             fondo.alt =
@@ -975,7 +1498,7 @@ function aplicarNuevaLista(
             }
 
 
-            contenedorFondos.appendChild(
+            fragmentoFondos.appendChild(
                 fondo
             );
 
@@ -984,15 +1507,29 @@ function aplicarNuevaLista(
     );
 
 
+    contenedorPrincipal.replaceChildren(
+        fragmentoSlides
+    );
+
+
+    contenedorFondos.replaceChildren(
+        fragmentoFondos
+    );
+
+
     slides =
-        document.querySelectorAll(
-            "#slideshow .slide"
+        Array.from(
+            document.querySelectorAll(
+                "#slideshow .slide"
+            )
         );
 
 
     backgroundSlides =
-        document.querySelectorAll(
-            "#bg-ambientes .slide-bg"
+        Array.from(
+            document.querySelectorAll(
+                "#bg-ambientes .slide-bg"
+            )
         );
 
 
@@ -1013,44 +1550,49 @@ function aplicarNuevaLista(
 
 
     console.log(
-        "Slideshow actualizado. Imágenes activas:",
-        slides.length
+        "Slideshow actualizado:",
+        slides.length,
+        "imágenes"
     );
 
 
     programarSiguienteCambio();
-
 
 }
 
 
 
 // ======================================================
-// 5. CAMBIAR DE IMAGEN
+// 11. CAMBIAR SLIDE
 // ======================================================
 
 function changeSlide() {
 
 
-    if (slides.length === 0) {
+    if (
+        !slides
+        ||
+        slides.length === 0
+    ) {
 
         return;
 
     }
 
 
-    // Si actualmente existe una sola imagen,
-    // después de sus 8 segundos se pueden aplicar
-    // cambios pendientes.
 
-    if (slides.length === 1) {
+    // ==================================================
+    // UNA SOLA IMAGEN
+    // ==================================================
+
+    if (
+        slides.length === 1
+    ) {
 
 
-        if (imagenesPendientes !== null) {
-
-            console.log(
-                "Aplicando actualización pendiente."
-            );
+        if (
+            imagenesPendientes !== null
+        ) {
 
 
             aplicarNuevaLista(
@@ -1066,39 +1608,37 @@ function changeSlide() {
 
         programarSiguienteCambio();
 
+
         return;
 
     }
 
 
+
+    // ==================================================
+    // CALCULAR SIGUIENTE
+    // ==================================================
+
     const siguienteIndice =
         (currentIndex + 1)
-        % slides.length;
+        %
+        slides.length;
 
 
-    /*
-        siguienteIndice === 0 significa que terminó
-        una vuelta completa y regresaría a la primera
-        imagen.
-
-        Solo en ese momento se aplican los cambios
-        pendientes.
-    */
-
-    const vueltaCompletada =
+    const vueltaTerminada =
         siguienteIndice === 0;
 
 
+
+    // ==================================================
+    // SI TERMINÓ LA VUELTA Y EXISTE ACTUALIZACIÓN
+    // ==================================================
+
     if (
-        vueltaCompletada
+        vueltaTerminada
         &&
         imagenesPendientes !== null
     ) {
-
-
-        console.log(
-            "Vuelta terminada. Aplicando cambios detectados."
-        );
 
 
         aplicarNuevaLista(
@@ -1112,10 +1652,21 @@ function changeSlide() {
     }
 
 
-    slides[currentIndex]
-        .classList.remove(
-            "active"
-        );
+
+    // ==================================================
+    // DESACTIVAR ACTUAL
+    // ==================================================
+
+    if (
+        slides[currentIndex]
+    ) {
+
+        slides[currentIndex]
+            .classList.remove(
+                "active"
+            );
+
+    }
 
 
     if (
@@ -1130,14 +1681,26 @@ function changeSlide() {
     }
 
 
+
     currentIndex =
         siguienteIndice;
 
 
-    slides[currentIndex]
-        .classList.add(
-            "active"
-        );
+
+    // ==================================================
+    // ACTIVAR SIGUIENTE
+    // ==================================================
+
+    if (
+        slides[currentIndex]
+    ) {
+
+        slides[currentIndex]
+            .classList.add(
+                "active"
+            );
+
+    }
 
 
     if (
@@ -1152,24 +1715,28 @@ function changeSlide() {
     }
 
 
-    programarSiguienteCambio();
 
+    programarSiguienteCambio();
 
 }
 
 
 
 // ======================================================
-// 6. PROGRAMAR SIGUIENTE CAMBIO
+// 12. PROGRAMAR SIGUIENTE SLIDE
 // ======================================================
 
 function programarSiguienteCambio() {
 
 
-    if (slides.length === 0) {
+    if (
+        !slides
+        ||
+        slides.length === 0
+    ) {
 
         clearTimeout(
-            timerID
+            timerSlide
         );
 
         return;
@@ -1192,26 +1759,27 @@ function programarSiguienteCambio() {
 
 
     clearTimeout(
-        timerID
+        timerSlide
     );
 
 
-    timerID =
+    timerSlide =
         setTimeout(
             changeSlide,
             tiempoActual
         );
-
 
 }
 
 
 
 // ======================================================
-// 7. MOSTRAR MENSAJES
+// 13. MOSTRAR MENSAJE
 // ======================================================
 
-function mostrarMensaje(mensaje) {
+function mostrarMensaje(
+    mensaje
+) {
 
 
     const contenedor =
@@ -1228,34 +1796,14 @@ function mostrarMensaje(mensaje) {
 
 
     contenedor.innerHTML =
-        "";
-
-
-    const elementoMensaje =
-        document.createElement(
-            "div"
-        );
-
-
-    elementoMensaje.className =
-        "mensaje-estado";
-
-
-    elementoMensaje.textContent =
-        mensaje;
-
-
-    contenedor.appendChild(
-        elementoMensaje
-    );
-
+        `<div class="mensaje-estado">${mensaje}</div>`;
 
 }
 
 
 
 // ======================================================
-// 8. RELOJ, FECHA Y MODO ECO
+// 14. RELOJ Y FECHA
 // ======================================================
 
 function actualizarTiempo() {
@@ -1265,7 +1813,9 @@ function actualizarTiempo() {
         new Date();
 
 
-    // Hora
+    // ==================================================
+    // HORA
+    // ==================================================
 
     const opcionesReloj = {
 
@@ -1295,21 +1845,24 @@ function actualizarTiempo() {
             .trim();
 
 
-    const elementoReloj =
+    const reloj =
         document.getElementById(
             "reloj"
         );
 
 
-    if (elementoReloj) {
+    if (reloj) {
 
-        elementoReloj.textContent =
+        reloj.textContent =
             hora12;
 
     }
 
 
-    // Fecha
+
+    // ==================================================
+    // FECHA
+    // ==================================================
 
     const opcionesFecha = {
 
@@ -1344,22 +1897,24 @@ function actualizarTiempo() {
             .slice(1);
 
 
-    const elementoFecha =
+    const fecha =
         document.getElementById(
             "fecha"
         );
 
 
-    if (elementoFecha) {
+    if (fecha) {
 
-        elementoFecha.textContent =
+        fecha.textContent =
             fechaTexto;
 
     }
 
 
-    // Modo eco antes de 7:00 a. m.
-    // y desde las 4:00 p. m.
+
+    // ==================================================
+    // MODO ECO
+    // ==================================================
 
     const horaActual =
         ahora.getHours();
@@ -1371,27 +1926,30 @@ function actualizarTiempo() {
         horaActual >= 16
     ) {
 
-        document.body.classList.add(
-            "modo-eco"
-        );
+        document.body
+            .classList
+            .add(
+                "modo-eco"
+            );
 
     }
 
     else {
 
-        document.body.classList.remove(
-            "modo-eco"
-        );
+        document.body
+            .classList
+            .remove(
+                "modo-eco"
+            );
 
     }
-
 
 }
 
 
 
 // ======================================================
-// 9. PIXEL SHIFT ANTIQUEMADO
+// 15. PIXEL SHIFT
 // ======================================================
 
 function ejecutarPixelShift() {
@@ -1435,33 +1993,31 @@ function ejecutarPixelShift() {
     barra.style.left =
         desvioLeft + "px";
 
-
 }
 
 
 
 // ======================================================
-// 10. INICIAR PANTALLA
+// 16. INICIALIZACIÓN
 // ======================================================
 
 
-// Primera carga de imágenes.
+// Reloj desde el inicio.
+
+actualizarTiempo();
+
+
+// Primera consulta a GitHub.
+//
+// Si falla:
+// → espera 30 segundos
+// → vuelve a intentar
+// → NO refresca la página.
 
 consultarImagenesGitHub();
 
 
-// Consulta la carpeta cada 5 minutos.
-// Esto NO refresca la página.
-
-setInterval(
-    consultarImagenesGitHub,
-    intervaloConsultaGitHub
-);
-
-
-// Reloj y fecha.
-
-actualizarTiempo();
+// Actualizar reloj cada 15 segundos.
 
 setInterval(
     actualizarTiempo,
@@ -1469,7 +2025,7 @@ setInterval(
 );
 
 
-// Movimiento mínimo del encabezado.
+// Pixel shift cada minuto.
 
 setInterval(
     ejecutarPixelShift,
@@ -1477,18 +2033,33 @@ setInterval(
 );
 
 
+
 /*
-    IMPORTANTE:
+=========================================================
 
-    No existe location.reload() en este código.
+MUY IMPORTANTE
 
-    La página permanece abierta.
-    El refresco completo seguirá siendo manual
-    por el tema del certificado.
+En este código NO existe:
+
+location.reload()
+
+Por lo tanto:
+
+- no se refresca automáticamente la página;
+- no reinicia la navegación;
+- las imágenes se actualizan mediante fetch();
+- una falla temporal conserva el slideshow existente;
+- una falla inicial provoca nuevos intentos mediante fetch().
+
+El refresco completo puede seguir haciéndose manualmente
+por la mañana cuando se aceptan los certificados.
+
+=========================================================
 */
 
 
 </script>
+
 
 </body>
 
